@@ -1,5 +1,6 @@
 const http = require('http'),
-	  url  = require('url')
+	  url  = require('url'),
+	  PORT = process.env.PORT || 3000
 	  
 function randInt(min, max){return ~~((Math.random() * (max - min + 1)) + min)}
 Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
@@ -80,17 +81,14 @@ events = [
 const server = http.createServer(function(req, res) {
 	res.writeHeader(200, {"Content-Type": "application/json"})
 	pathname = url.parse(req.url).pathname
-	if (pathname == '/ask'){
+	if (pathname == '/ask')
 		res.write(['Да', 'Нет'].choiceOne())
-	}
 	else if (pathname.split('/')[1] == 'rpg'){
 		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
-		if (['персонаж','персонажи','перс','герой'].indexOf(style) != -1){
+		if (['персонаж','персонажи','перс','герой'].indexOf(style) != -1)
 			res.write(characters.choiceOne())
-		}
-		else if (style == 'событие'){
+		else if (['событие','соба','ивент'].indexOf(style) != -1)
 			res.write(events.choiceOne())
-		}
 		else res.write('доступные категории: персонаж, событие')
 	}
 	else {
@@ -137,6 +135,5 @@ const server = http.createServer(function(req, res) {
 	}
 	return res.end()
 })
-const PORT = process.env.PORT || 3000
 server.listen(PORT)
 console.log('Server started on port: '+PORT)
