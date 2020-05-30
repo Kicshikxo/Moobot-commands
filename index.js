@@ -2,9 +2,8 @@ const http = require('http'),
 	  url  = require('url')
 	  
 function randInt(min, max){return ~~((Math.random() * (max - min + 1)) + min)}
-
-	  
-boxCharacters = [
+Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
+characters = [
 	'Я всегда хладнокровен, несмотря ни на что. Я никогда не повышаю голоса и не позволяю эмоциям управлять мной.',
 	'Я часто забиваюсь в узкие закутки, где никто не сможет добраться до меня.',
 	'Я выполняю приказы, даже если считаю, что они несправедливые.',
@@ -26,7 +25,7 @@ boxCharacters = [
 	'У меня проблемы с доверием. Те, кто выглядят самыми порядочными, зачастую скрывают множество грязных секретов.',
 	'Я сделаю всё что угодно, чтобы заполучить что-то редкое или очень ценное.'
 ]
-boxEvent = [
+events = [
 	'Персонажи видят объявление, написанное детским почерком, в котором говорится о том, что потерялся морской котик, и за его нахождение готовы заплатить 2 медяка.',
 	'Местный художник пытается продать эскизы нескольких своих картин, так же он предлагает прохожим нарисовать их портрет углем всего за 5 серебрянных.',
 	'Прибой выносит к берегу мертвеца.',
@@ -78,24 +77,21 @@ boxEvent = [
 	'Гарпии. Самые обычные гарпии. Они хотят съесть всю партию. или хотя бы их запасы еды.',
 	'Скользкий на вид господин продает со своего ярко раскрашенного фургона чудо-эликсир исцеляющий от всего. В толпе виден сгорбленный страничек с палочкой, как только он принял образец эликсира, так он закричал от радости, отбросил трость и бодро шагает по улице.'
 ]
-boxCategory = ['персонаж', 'событие']
-const PORT = process.env.PORT || 3000
 const server = http.createServer(function(req, res) {
 	res.writeHeader(200, {"Content-Type": "application/json"})
 	pathname = url.parse(req.url).pathname
 	if (pathname == '/ask'){
-		res.write(['Да', 'Нет'][randInt(0, 1)])
+		res.write(['Да', 'Нет'].choiceOne())
 	}
 	else if (pathname.split('/')[1] == 'rpg'){
 		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
-		console.log(style)
 		if (['персонаж','персонажи','перс','герой'].indexOf(style) != -1){
-			res.write(boxCharacters[randInt(0,19)])
+			res.write(characters.choiceOne())
 		}
 		else if (style == 'событие'){
-			res.write(boxEvent[randInt(0,49)])
+			res.write(events.choiceOne())
 		}
-		else res.write('доступные категории: '+boxCategory.join(', '))
+		else res.write('доступные категории: персонаж, событие')
 	}
 	else {
 		res.writeHeader(200, {"Content-Type": "text/html"})
@@ -141,5 +137,6 @@ const server = http.createServer(function(req, res) {
 	}
 	return res.end()
 })
+const PORT = process.env.PORT || 3000
 server.listen(PORT)
 console.log('Server started on port: '+PORT)
