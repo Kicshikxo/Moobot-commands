@@ -86,9 +86,10 @@ const server = http.createServer(function(req, res) {
 	if (pathname == '/ask'){
 		res.write(['Да', 'Нет'][randInt(0, 1)])
 	}
-	else if (pathname.split('/')[1] == 'box'){
+	else if (pathname.split('/')[1] == 'rpg'){
 		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
-		if (['','',''].indexOf(style)){
+		console.log(style)
+		if (['персонаж','персонажи','перс','герой'].indexOf(style) != -1){
 			res.write(boxCharacters[randInt(0,19)])
 		}
 		else if (style == 'событие'){
@@ -133,7 +134,7 @@ const server = http.createServer(function(req, res) {
 			}
 		</style>
 		<body>
-			<div class = 'button'><a href = "box">box</a></div>
+			<div class = 'button'><a href = "rpg">rpg</a></div>
 			<div class = 'button'><a href = "ask">ask</a></div>
 		</body>
 		`)
