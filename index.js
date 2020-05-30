@@ -83,13 +83,16 @@ const server = http.createServer(function(req, res) {
 	pathname = url.parse(req.url).pathname
 	if (pathname == '/ask')
 		res.write(['Да', 'Нет'].choiceOne())
+	else if (pathname.split('/')[1] == 'mine'){
+		res.write('Шахта в разработке')
+	}
 	else if (pathname.split('/')[1] == 'rpg'){
 		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
 		if (['персонаж','персонажи','перс','герой'].indexOf(style) != -1)
 			res.write(characters.choiceOne())
 		else if (['событие','соба','ивент'].indexOf(style) != -1)
 			res.write(events.choiceOne())
-		else res.write('Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации?\nВыбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа).\nНапример "!rpg персонаж"')
+		else res.write('Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации? Выбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа). Например "!rpg персонаж"')
 	}
 	else {
 		res.writeHeader(200, {"Content-Type": "text/html"})
