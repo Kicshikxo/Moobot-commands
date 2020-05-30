@@ -1,39 +1,87 @@
 const http = require('http'),
 	  url  = require('url')
-boxOptions = [
+boxCharacters = [
 	{
-		text: 'Шанс 1 процент',
-		chance: 1
-	},{
-		text: 'Шанс 4 процента',
-		chance: 4
-	},{
-		text: 'Шанс 5 процентов',
+		text: 'Я всегда хладнокровен, несмотря ни на что. Я никогда не повышаю голоса и не позволяю эмоциям управлять мной.',
 		chance: 5
 	},{
-		text: 'Шанс 10 процентов вариант 1',
-		chance: 10
+		text: 'Я часто забиваюсь в узкие закутки, где никто не сможет добраться до меня.',
+		chance: 5
 	},{
-		text: 'Шанс 10 процентов вариант 2',
-		chance: 10
+		text: 'Я выполняю приказы, даже если считаю, что они несправедливые.',
+		chance: 5
 	},{
-		text: 'Шанс 20 процентов',
-		chance: 20
+		text: 'Куда бы я ни пришёл, я начинаю собирать местные слухи и распространять сплетни.',
+		chance: 5
 	},{
-		text: 'Шанс 50 процентов',
-		chance: 50
+		text: 'Мне всегда нужно знать, как всё вокруг устроено, и как нужно обращаться с другими.',
+		chance: 5
+	},{
+		text: 'Друзья знают, что всегда могут на меня положиться.',
+		chance: 5
+	},{
+		text: 'Превыше всего я ценю совершенство.',
+		chance: 5
+	},{
+		text: 'Однажды я пробежал 40 километров без остановки, чтобы предупредить свой клан о приближающейся орде орков. Если понадобится, я повторю это.',
+		chance: 5
+	},{
+		text: 'Я связываю всё, что происходит со мной, с грандиозным замыслом космического масштаба.',
+		chance: 5
+	},{
+		text: 'Я быстро устаю. Когда уже я найду свою судьбу?',
+		chance: 5
+	},{
+		text: 'Я позволяю жажде победить в споре становиться сильнее дружбы и гармонии.',
+		chance: 5
+	},{
+		text: 'На новом месте я первым делом подмечаю, где находятся различные ценности — или места, где они могут быть спрятаны.',
+		chance: 5
+	},{
+		text: 'Когда я становлюсь перед выбором между друзьями и деньгами, я обычно выбираю деньги.',
+		chance: 5
+	},{
+		text: 'Я могу найти общую позицию даже у самых яростных врагов, сопереживая им, и всегда стремясь к примирению.',
+		chance: 5
+	},{
+		text: 'У меня есть семья, но я не знаю, где она. Надеюсь, когда-нибудь я увижу их вновь.',
+		chance: 5
+	},{
+		text: 'Власть. Я хищник, а другие корабли в море — моя добыча.',
+		chance: 5
+	},{
+		text: 'Я тайно считаю, что было бы хорошо стать тираном, правящим землями.',
+		chance: 5
+	},{
+		text: 'Я работаю над великой философской теорией и люблю тех, кто разделяет мои идеи.',
+		chance: 5
+	},{
+		text: 'У меня проблемы с доверием. Те, кто выглядят самыми порядочными, зачастую скрывают множество грязных секретов.',
+		chance: 5
+	},{
+		text: 'Я сделаю всё что угодно, чтобы заполучить что-то редкое или очень ценное.',
+		chance: 5
 	}
 ]
+boxCategory = ['персонаж', 'событие']
 const PORT = process.env.PORT || 3000
 function randInt(min, max){return ~~((Math.random() * (max - min + 1)) + min)}
 const server = http.createServer(function(req, res) {
 	res.writeHeader(200, {"Content-Type": "application/json"})
-	if (url.parse(req.url).pathname == '/box'){
-		for (sum = boxOptions[0].chance, choice = 0, rand = ~~(Math.random() * 100); sum <= rand; sum += boxOptions[choice].chance) choice++
-		res.write(boxOptions[choice].text)
-	}
-	else if (url.parse(req.url).pathname == '/ask'){
+	pathname = url.parse(req.url).pathname
+	console.log(pathname)
+	if (pathname == '/ask'){
 		res.write(['Да', 'Нет'][randInt(0, 1)])
+	}
+	else if (pathname.split('/')[1] == 'box'){
+		if (pathname.split('/')[2] == '%D0%BF%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%B6'){
+			for (sum = boxCharacters[0].chance, choice = 0, rand = ~~(Math.random() * 100); sum <= rand; sum += boxCharacters[choice].chance) choice++
+			res.write(boxCharacters[choice].text)
+		}
+		else if (pathname.split('/')[2] == '%D1%81%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D0%B5'){
+			res.write('событие')
+		}
+		else res.write('Доступные категории: '+boxCategory.join(', '))
 	}
 	else {
 		res.writeHeader(200, {"Content-Type": "text/html"})
