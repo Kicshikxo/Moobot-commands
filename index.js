@@ -119,7 +119,7 @@ const server = http.createServer(function(req, res) {
 				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa','money','bank'].indexOf(action) != -1){
 					occupiedSpace = 0
 					for (i of user.inventory) occupiedSpace += i.quantity
-					res.write(' Имя: '+user.name+', Балланс: '+user.gold+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel)
+					res.write(' Имя: '+user.name+', Балланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel)
 				}
 				else if (['инвентарь','инвент','карманы','сумка','рюкзак','вещи','ресурсы','inventory','inv'].indexOf(action) != -1) {
 					total = 0
@@ -228,9 +228,9 @@ const server = http.createServer(function(req, res) {
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
 					if (total > 0){
-						collection.updateOne(user,{$set: {gold: user.gold+total,inventory: []}}, function(error, result){
+						collection.updateOne(user,{$set: {money: user.money+total,inventory: []}}, function(error, result){
 							if(error) res.write(' Ошибка с продажей. Ошибка: '+error)
-							else res.write(' Вы продали свои ресурсы за '+total+'$, текущий баланс: '+(total + user.gold)+'$.')
+							else res.write(' Вы продали свои ресурсы за '+total+'$, текущий баланс: '+(total + user.money)+'$.')
 							resolve()
 						})
 					}
@@ -270,10 +270,10 @@ const server = http.createServer(function(req, res) {
 							newBackpackSize = backpackSizes[user.backpackSize]
 							price = backpackPrices[user.backpackSize]
 						}
-						if (user.gold >= price){
-							collection.updateOne(user,{$set: {gold: user.gold - price, backpackSize: newBackpackSize}}, function(error, result){
+						if (user.money >= price){
+							collection.updateOne(user,{$set: {money: user.money - price, backpackSize: newBackpackSize}}, function(error, result){
 								if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
-								else res.write('Вместимость рюкзака увеличена до '+newBackpackSize+' за '+price+'$, оставшиеся деньги: '+(user.gold - price)+'$.')
+								else res.write('Вместимость рюкзака увеличена до '+newBackpackSize+' за '+price+'$, оставшиеся деньги: '+(user.money - price)+'$.')
 								resolve()
 							})
 						}
@@ -290,10 +290,10 @@ const server = http.createServer(function(req, res) {
 							return
 						}
 						else price = pickaxePrices[user.pickaxeLevel]
-						if (user.gold >= price){
-							collection.updateOne(user,{$set: {gold: user.gold - price, pickaxeLevel: user.pickaxeLevel + 1}}, function(error, result){
+						if (user.money >= price){
+							collection.updateOne(user,{$set: {money: user.money - price, pickaxeLevel: user.pickaxeLevel + 1}}, function(error, result){
 								if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
-								else res.write('Уровень кирки увеличен до '+(user.pickaxeLevel + 1)+' уровня за '+price+'$, оставшиеся деньги: '+(user.gold - price)+'$.')
+								else res.write('Уровень кирки увеличен до '+(user.pickaxeLevel+1)+' уровня за '+price+'$, оставшиеся деньги: '+(user.money-price)+'$.')
 								resolve()
 							})
 						}
@@ -333,20 +333,20 @@ const server = http.createServer(function(req, res) {
 					if ((function(){
 						for (i of data){
 							if (i.name == recipient) {
-								recipientGold = i.gold
+								recipientGold = i.money
 								return true
 							}
 						}
 					})()){
-						if (user.gold >= value){
-							collection.updateOne({name: recipient},{$set: {gold: recipientGold+value}}, function(error, result){
+						if (user.money >= value){
+							collection.updateOne({name: recipient},{$set: {money: recipientGold+value}}, function(error, result){
 								if(error) {
 									res.write(' Ошибка с передачей денег. Ошибка: '+error)
 									resolve()
 								}
-								else res.write(' Вы отдали '+recipient+' '+value+'$, текущий баланс: '+(user.gold-value)+'$.')
+								else res.write(' Вы отдали '+recipient+' '+value+'$, текущий баланс: '+(user.money-value)+'$.')
 							})
-							collection.updateOne(user,{$set: {gold: user.gold-value}}, function(error, result){
+							collection.updateOne(user,{$set: {money: user.money-value}}, function(error, result){
 								if(error) res.write(' Ошибка с пересчётом баланса. Ошибка: '+error)
 								resolve()
 							})
@@ -364,16 +364,16 @@ const server = http.createServer(function(req, res) {
 					
 				else if (['пользователи','игроки','люди','users','players'].indexOf(action) != -1){
 					res.write(' Зарегистрированные пользователи: ')
-					data.sort(function(a,b){return b.gold-a.gold})
+					data.sort(function(a,b){return b.money-a.money})
 					for (i of data){
-						res.write(i.name.replace(/\b\w/g, l => l.toUpperCase())+'('+i.gold+'$) ')
+						res.write(i.name.replace(/\b\w/g, l => l.toUpperCase())+'('+i.money+'$) ')
 					}
 				}
 				
 				else res.write("Доступные команды для бота: 'инфо', 'пользователи', 'копать', ''инвентарь, 'продать', 'улучшить', 'передать', 'удалиться'")
 			}
 			else await new Promise(function(resolve, reject){
-				collection.insertOne({name: name, gold: 0, inventory: [], backpackSize: 5, pickaxeLevel: 1}, function(error, result){
+				collection.insertOne({name: name, money: 0, inventory: [], backpackSize: 5, pickaxeLevel: 1}, function(error, result){
 					if(error) res.write(' Ошибка создания аккаунта. Ошибка: '+error)
 					else res.write(' Аккаунт создан, теперь вы можете пользоваться командами бота.')
 					resolve()
