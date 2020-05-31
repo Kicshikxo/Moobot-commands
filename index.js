@@ -116,34 +116,69 @@ const server = http.createServer(function(req, res) {
 					}
 				}
 			})()) {
-				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa'].indexof(action) != -1) res.write(' Имя: '+user.name+', Балланс: '+user.gold+'$')
-				else if (['инвентарь','карманы','сумка','вещи','ресурсы','inventory','inv'].indexof(action) != -1) {
+				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa'].indexOf(action) != -1) res.write(' Имя: '+user.name+', Балланс: '+user.gold+'$')
+				else if (['инвентарь','карманы','сумка','вещи','ресурсы','inventory','inv'].indexOf(action) != -1) {
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
 					for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
 					res.write('Всего: '+total+'$')
 				}
-				else if (['копать','шахта','шахтёр','работать','dig'].indexof(action) != -1) await new Promise(function(resolve, reject){
+				else if (['копать','шахта','шахтёр','работать','dig'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					options = [{
 						type: 'Камень',
-						comment: 'вскопал камень.',
+						comment: 'вскопал камень. (1$)',
 						price: 1,
-						chance: 50
+						chance: 40
+					},{
+						type: 'Уголь',
+						comment: 'вскопал уголь. (5$)',
+						price: 5,
+						chance: 20
+					},{
+						type: 'Оловянная руда',
+						comment: 'вскопал олово. (15$)',
+						price: 15,
+						chance: 10
+					},{
+						type: 'Медная руда',
+						comment: 'вскопал медь. (15$)',
+						price: 15,
+						chance: 10
 					},{
 						type: 'Железная руда',
-						comment: 'вскопал железо.',
-						price: 25,
-						chance: 30
+						comment: 'вскопал железо. (30$)',
+						price: 30,
+						chance: 5
 					},{
 						type: 'Золотая руда',
-						comment: 'вскопал золото.',
+						comment: 'вскопал золото. (50$)',
 						price: 50,
-						chance: 10
+						chance: 5
+					},{
+						type: 'Рог единорога',
+						comment: 'подобрал рог единорога . (65$) Jebaited ',
+						price: 65,
+						chance: 4
 					},{
 						type: 'Алмазная руда',
-						comment: 'вскопал алмазы.',
+						comment: 'вскопал алмазы. (100$) ResidentSleeper ',
 						price: 100,
-						chance: 10
+						chance: 3
+					},{
+						type: 'Кокаин',
+						comment: 'нашёл кокаин. (250$) SeemsGood ',
+						price: 250,
+						chance: 2
+					},{
+						type: 'Долбанит',
+						comment: 'вскопал долбанит. (500$) PogChamp ',
+						price: 500,
+						chance: .9
+					},{
+						type: 'Нудесы Ани',
+						comment: 'увидел в инсте нудесы Ани. (∞$) NotLikeThis NotLikeThis NotLikeThis ',
+						price: 1000,
+						chance: .1
 					}]
 					for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 100); sum <= rand; sum += options[choice].chance) choice++
 					res.write(options[choice].comment)
@@ -173,7 +208,7 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					})
 				})
-				else if (['продать','сбагрить','sell'].indexof(action) != -1) await new Promise(function(resolve, reject){
+				else if (['продать','сбагрить','sell'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
 					if (total > 0){
@@ -188,7 +223,7 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					}
 				})
-				else if (['удалиться','delete','del'].indexof(action) != -1) await new Promise(function(resolve, reject){
+				else if (['удалиться','delete','del'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					collection.deleteOne(user, function(error, obj){
 						if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
 						else res.write(' Аккаунт удалён.')
@@ -243,7 +278,7 @@ const server = http.createServer(function(req, res) {
 					}
 				})
 					
-				else if (['пользователи','люди','users'].indexof(action) != -1){
+				else if (['пользователи','люди','users'].indexOf(action) != -1){
 					res.write(' Зарегистрированные пользователи: ')
 					for (i of data){
 						res.write(i.name.replace(/\b\w/g, l => l.toUpperCase())+'('+i.gold+'$) ')
