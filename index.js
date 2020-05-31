@@ -267,7 +267,7 @@ const server = http.createServer(function(req, res) {
 						if (user.gold >= price){
 							collection.updateOne(user,{$set: {gold: user.gold - price, backpackSize: newBackpackSize}}, function(error, result){
 								if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
-								else res.write('Вместимость рюкзака увеличена до '+newBackpackSize+' за '+price+'$, оставшиеся деньги: '+(user.gold - price)+'$')
+								else res.write('Вместимость рюкзака увеличена до '+newBackpackSize+' за '+price+'$, оставшиеся деньги: '+(user.gold - price)+'$.')
 								resolve()
 							})
 						}
@@ -280,7 +280,7 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					}
 					else {
-						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'")
+						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. Для улучшения рюкзака вам необходимо "+{'5': 1000, '10': 3000, '20':5000, '50': 7500, '100': 'ни сколько'}[user.backpackSize])
 						resolve()
 					}
 				})
