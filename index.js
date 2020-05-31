@@ -143,16 +143,31 @@ const server = http.createServer(function(req, res) {
 					for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 100); sum <= rand; sum += options[choice].chance) choice++
 					res.write(options[choice].comment)
 					
-					if (user.inventory){
-						
+					if ((function(){
+						for (i of user.inventory){
+							if (i.type == options[choice].type) return true
+						}
+					})()){
+						for (i of user.inventory){
+							if (i.type == options[choice].type){
+								i.quantity++
+							}
+						}
 					}
-					else user.inventory.push({
+					else 
+						user.inventory.push({
 						type: options[choice].type,
 						quantity: 1,
 						price: options[choice].price
 					})
-					
-					resolve()
+						
+					user.inventory.sort(function(a, b){return b.quantity - a.quantity})
+						
+					collection.updateOne({name: user.name},{$set: {inventory: user.inventory}}, function(error, result){
+						if(error) res.write(' Ошибка с добавлением в инвентарь. Ошибка: '+error)
+						console.log('Updated')
+						resolve()
+					})
 				})
 				else if (action == 'удалить') await new Promise(function(resolve, reject){
 					collection.deleteOne(user, function(error, obj){
