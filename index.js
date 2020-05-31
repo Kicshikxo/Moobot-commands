@@ -176,11 +176,17 @@ const server = http.createServer(function(req, res) {
 				else if (action == 'продать') await new Promise(function(resolve, reject){
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
-					collection.updateOne({name: user.name},{$set: {gold: user.gold+total,inventory: []}}, function(error, result){
-						if(error) res.write(' Ошибка с продажей. Ошибка: '+error)
-						else res.write(' Вы продали свои ресурсы за '+total+'$, текущий баланс: '+(total + user.gold)+'$')
+					if (total > 0){
+							collection.updateOne({name: user.name},{$set: {gold: user.gold+total,inventory: []}}, function(error, result){
+							if(error) res.write(' Ошибка с продажей. Ошибка: '+error)
+							else res.write(' Вы продали свои ресурсы за '+total+'$, текущий баланс: '+(total + user.gold)+'$')
+							resolve()
+						})
+					}
+					else {
+						res.write(" Вам нечего продавать, '!mine копать' для добычи")
 						resolve()
-					})
+					}
 				})
 				else if (action == 'удалить') await new Promise(function(resolve, reject){
 					collection.deleteOne(user, function(error, obj){
