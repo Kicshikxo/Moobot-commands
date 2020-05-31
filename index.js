@@ -395,6 +395,11 @@ const server = http.createServer(function(req, res) {
 						price: 1000,
 						chance: 1
 					}]
+					if (user.pickaxeLevel == 1) options = level1
+					else if (user.pickaxeLevel == 2) options = level2
+					else if (user.pickaxeLevel == 3) options = level3
+					else if (user.pickaxeLevel == 4) options = level4
+					else if (user.pickaxeLevel == 5) options = level5
 					for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 1000); sum <= rand; sum += options[choice].chance) choice++
 					res.write(options[choice].comment+', Рюкзак '+(occupiedSpace+1)+'/'+user.backpackSize+'.')
 					
