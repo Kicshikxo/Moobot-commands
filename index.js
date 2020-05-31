@@ -230,8 +230,15 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					}
 				})
+					
+				else if (action == 'пользователи'){
+					res.write(' Зарегистрированные пользователи: ')
+					for (i of data){
+						res.write(i.name+' ')
+					}
+				}
 				
-				else res.write("Доступные команды для бота: 'инфо','копать',''инвентарь,'продать','удалить'")
+				else res.write("Доступные команды для бота: 'инфо', 'пользователи', 'копать', ''инвентарь, 'продать', 'передать', 'удалить'")
 			}
 			else await new Promise(function(resolve, reject){
 				collection.insertOne({name: name, gold: 0, inventory: []}, function(error, result){
