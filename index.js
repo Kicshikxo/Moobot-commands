@@ -108,13 +108,29 @@ const server = http.createServer(function(req, res) {
 				})
 			})
 			
-			if (action == 'инфо'){
+			if ((function(){
 				for (i of data){
-					if (i.name == name){
-						res.write(' \nИмя: '+i.name+' Золото: '+i.gold)
+					if (i.name == name) return true
+				}
+			})()) {
+				if (action == 'инфо'){
+					for (i of data){
+						if (i.name == name){
+							res.write(' \nИмя: '+i.name+' Золото: '+i.gold)
+						}
 					}
 				}
 			}
+			else await new Promise(function(resolve, reject){
+					collection.insertOne({name: name, gold: 100}, function(err, result){
+						if(err){ 
+							res.write(' Ошибка создания аккаунта. Ошибка: '+error)
+							console.log(result)
+						}
+						res.write('Аккаунт создан')
+						resolve()
+					})
+				})
 			
 			
 			
