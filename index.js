@@ -278,7 +278,7 @@ const server = http.createServer(function(req, res) {
 					}
 				})
 					
-				else if (['пользователи','люди','users'].indexOf(action) != -1){
+				else if (['пользователи','игроки','люди','users'].indexOf(action) != -1){
 					res.write(' Зарегистрированные пользователи: ')
 					for (i of data){
 						res.write(i.name.replace(/\b\w/g, l => l.toUpperCase())+'('+i.gold+'$) ')
