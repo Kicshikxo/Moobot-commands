@@ -116,7 +116,7 @@ const server = http.createServer(function(req, res) {
 					}
 				}
 			})()) {
-				if (action == 'инфо') res.write(' Имя: '+user.name+', Балланс: '+user.gold)
+				if (action == 'инфо') res.write(' Имя: '+user.name+', Балланс: '+user.gold+'$')
 				else if (action == 'инвентарь') {
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
@@ -177,7 +177,7 @@ const server = http.createServer(function(req, res) {
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
 					if (total > 0){
-							collection.updateOne({name: user.name},{$set: {gold: user.gold+total,inventory: []}}, function(error, result){
+						collection.updateOne(user,{$set: {gold: user.gold+total,inventory: []}}, function(error, result){
 							if(error) res.write(' Ошибка с продажей. Ошибка: '+error)
 							else res.write(' Вы продали свои ресурсы за '+total+'$, текущий баланс: '+(total + user.gold)+'$.')
 							resolve()
@@ -196,16 +196,29 @@ const server = http.createServer(function(req, res) {
 					})
 				})
 				else if (action == 'передать') await new Promise(function(resolve, reject){
-					recipient = url.domainToUnicode(pathname.split('/')[3]).replace('@','')
-					value = url.domainToUnicode(pathname.split('/')[4])
+					recipient = url.domainToUnicode(pathname.split('/')[4]).replace('@','')
+					value = parseInt(pathname.split('/')[5])
 					
 					if ((function(){
 						for (i of data){
-							if (i.name == recipient) return true
+							if (i.name == recipient) {
+								recipientGold = i.gold
+								return true
+							}
 						}
 					})()){
 						if (user.gold >= value){
-							
+							collection.updateOne({name: recipient},{$set: {gold: recipientGold+value}}, function(error, result){
+								if(error) {
+									res.write(' Ошибка с передачей денег. Ошибка: '+error)
+									resolve()
+								}
+								else res.write(' Вы отдали '+recipient+' '+value+'$, текущий баланс: '+(user.gold-value)+'$.')
+							})
+							collection.updateOne(user,{$set: {gold: user.gold-value}}, function(error, result){
+								if(error) res.write(' Ошибка с пересчётом баланса. Ошибка: '+error)
+								resolve()
+							})
 						}
 						else {
 							res.write(' У вас недостаточно средств для перевода.')
