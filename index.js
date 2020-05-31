@@ -84,12 +84,16 @@ events = [
 const server = http.createServer(function(req, res) {
 	res.writeHeader(200, {"Content-Type": "application/json"})
 	pathname = url.parse(req.url).pathname
-	if (pathname == '/ask') res.write(['Да', 'Нет'].choiceOne())
+	if (pathname == '/ask') {
+		res.write(['Да', 'Нет'].choiceOne())
+		return res.end()
+	}
 	else if (pathname.split('/')[1] == 'mine'){
 		name = url.domainToUnicode(pathname.split('/')[2])
 		action = url.domainToUnicode(pathname.split('/')[3]).toLowerCase()
-		const mongoClient = new MongoClient(mongoUrl, { useNewUrlParser: true });
-		mongoClient.connect(function(error, client){
+		
+		const mongoClient = new MongoClient(mongoUrl, {useNewUrlParser: true});
+		mongoClient.connect(async function(error, client){
 			
 			if (error) {
 				res.write('Ошибка подключения к серверу. ')
@@ -98,9 +102,29 @@ const server = http.createServer(function(req, res) {
 			
 			const collection = client.db("Moobot").collection("mine")
 			
-			collection.find({}, { projection: { _id: 0}}).toArray(function(error, result){
-				let data = result
+			data = await new Promise(function(resolve, reject){
+				collection.find({}, { projection: { _id: 0}}).toArray(function(error, result){
+					resolve(result)
+				})
 			})
+			
+			if (action == 'инфо'){
+				for (i of data){
+					if (i.name == name){
+						res.write(' \nИмя: '+i.name+' Золото: '+i.gold)
+					}
+				}
+			}
+			
+			
+			
+			res.end()
+			
+			
+			
+			
+// 			res.write(data)
+			
 			
 // 			collection.updateOne({
 // 				name: 'kodz1ma'
@@ -121,7 +145,7 @@ const server = http.createServer(function(req, res) {
 		//         client.close();
 		//     });
 			
-			client.close();
+			client.close()
 		});
 		res.write('name: '+name+' action: '+action)
 	}
@@ -132,6 +156,7 @@ const server = http.createServer(function(req, res) {
 		else if (['событие','соба','ивент'].indexOf(style) != -1)
 			res.write(events.choiceOne())
 		else res.write('Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации? Выбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа). Например "!rpg персонаж"')
+		return res.end()
 	}
 	else {
 		res.writeHeader(200, {"Content-Type": "text/html"})
@@ -174,8 +199,8 @@ const server = http.createServer(function(req, res) {
 			<div class = 'button'><a href = "ask">ask</a></div>
 		</body>
 		`)
+		return res.end()
 	}
-	return res.end()
 })
 server.listen(PORT)
 console.log('Server started on port: '+PORT)
