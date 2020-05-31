@@ -3,7 +3,7 @@ const http = require('http'),
 	  PORT = process.env.PORT || 3000
 const MongoClient = require("mongodb").MongoClient;
    
-const mongoUrl = "mongodb+srv://Kicshikxo:ua3wikqwe@cluster0-8humy.gcp.mongodb.net/moobot"
+const mongoUrl = "\x6D\x6F\x6E\x67\x6F\x64\x62\x2B\x73\x72\x76\x3A\x2F\x2F\x4B\x69\x63\x73\x68\x69\x6B\x78\x6F\x3A\x75\x61\x33\x77\x69\x6B\x71\x77\x65\x40\x63\x6C\x75\x73\x74\x65\x72\x30\x2D\x38\x68\x75\x6D\x79\x2E\x67\x63\x70\x2E\x6D\x6F\x6E\x67\x6F\x64\x62\x2E\x6E\x65\x74\x2F\x6D\x6F\x6F\x62\x6F\x74"
 	  
 function randInt(min, max){return ~~((Math.random() * (max - min + 1)) + min)}
 Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
@@ -118,7 +118,7 @@ const server = http.createServer(function(req, res) {
 			})()) {
 				if (action == 'инфо') res.write(' \nИмя: '+user.name+' Золото: '+user.gold)
 				else if (action == 'удалить') await new Promise(function(resolve, reject){
-					collection.deleteOne({name: user.name, gold: user.gold}, function(error, obj){
+					collection.deleteOne(user, function(error, obj){
 						if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
 						else res.write('Аккаунт удалён')
 						resolve()
@@ -126,7 +126,7 @@ const server = http.createServer(function(req, res) {
 				})
 			}
 			else await new Promise(function(resolve, reject){
-				collection.insertOne({name: name, gold: 100, inventory: {}}, function(error, result){
+				collection.insertOne({name: name, gold: 100, inventory: []}, function(error, result){
 					if(error) res.write(' Ошибка создания аккаунта. Ошибка: '+error)
 					else res.write('Аккаунт создан')
 					resolve()
