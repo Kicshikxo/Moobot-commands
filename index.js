@@ -126,7 +126,7 @@ const server = http.createServer(function(req, res) {
 				})
 			}
 			else await new Promise(function(resolve, reject){
-				collection.insertOne({name: name, gold: 100}, function(error, result){
+				collection.insertOne({name: name, gold: 100, inventory: {}}, function(error, result){
 					if(error) res.write(' Ошибка создания аккаунта. Ошибка: '+error)
 					else res.write('Аккаунт создан')
 					resolve()
@@ -152,15 +152,6 @@ const server = http.createServer(function(req, res) {
 // 				console.log('Updated')
 // 			})
 			
-		//     let user = {name: "kodz1ma", gold: 100};
-		//     collection.insertOne(user, function(err, result){
-		//           
-		//         if(err){ 
-		//             return console.log(err);
-		//         }
-		//         console.log(result.ops);
-		//         client.close();
-		//     });
 			
 			client.close()
 		});
