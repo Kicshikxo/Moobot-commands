@@ -117,7 +117,12 @@ const server = http.createServer(function(req, res) {
 				}
 			})()) {
 				if (action == 'инфо') res.write(' \nИмя: '+user.name+' Золото: '+user.gold)
-				else if (action == 'инвентарь') for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
+				else if (action == 'инвентарь') {
+					total = 0
+					for (i of user.inventory) total += i.price * i.quantity
+					for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
+					res.write('Всего: '+total+'$')
+				}
 				else if (action == 'копать') await new Promise(function(resolve, reject){
 					options = [{
 						type: 'Камень',
@@ -165,7 +170,15 @@ const server = http.createServer(function(req, res) {
 						
 					collection.updateOne({name: user.name},{$set: {inventory: user.inventory}}, function(error, result){
 						if(error) res.write(' Ошибка с добавлением в инвентарь. Ошибка: '+error)
-						console.log('Updated')
+						resolve()
+					})
+				})
+				else if (action == 'продать') await new Promise(function(resolve, reject){
+					total = 0
+					for (i of user.inventory) total += i.price * i.quantity
+					collection.updateOne({name: user.name},{$set: {gold: total,inventory: []}}, function(error, result){
+						if(error) res.write(' Ошибка с продажей. Ошибка: '+error)
+						else res.write('Вы продали свои ресурсы за '+total+'$, текущий баланс: '+(total + user.gold))
 						resolve()
 					})
 				})
