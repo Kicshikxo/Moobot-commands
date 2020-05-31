@@ -226,7 +226,7 @@ const server = http.createServer(function(req, res) {
 				else if (['удалиться','delete','del','remove'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					collection.deleteOne(user, function(error, obj){
 						if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
-						else res.write(' Аккаунт удалён.')
+						else res.write(" Аккаунт удалён, введите любое сообщение с '!mine' чтобы создать новый")
 						resolve()
 					})
 				})
@@ -278,7 +278,7 @@ const server = http.createServer(function(req, res) {
 					}
 				})
 					
-				else if (['пользователи','игроки','люди','users'].indexOf(action) != -1){
+				else if (['пользователи','игроки','люди','users','players'].indexOf(action) != -1){
 					res.write(' Зарегистрированные пользователи: ')
 					data.sort(function(a,b){return b.gold-a.gold})
 					for (i of data){
