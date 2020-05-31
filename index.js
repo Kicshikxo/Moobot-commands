@@ -241,28 +241,28 @@ const server = http.createServer(function(req, res) {
 				})
 				else if (['улучшить','прокачать','апгрейд','upgrade','up'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					upgradingItem = url.domainToUnicode(pathname.split('/')[4]).toLowerCase()
+					backpackPrices = {
+						'5': 1000,
+						'10': 3000,
+						'20': 5000,
+						'50': 7500
+					}
+					backpackSizes = {
+						'5': 10,
+						'10': 20,
+						'20': 50,
+						'50': 100
+					}
 					if (['рюкзак','сумка','сумку','инвентарь','inventory','inv'].indexOf(upgradingItem) != -1){
-						if (user.backpackSize == 5) {
-							newBackpackSize = 10
-							price = 1000
-						}
-						else if (user.backpackSize == 10) {
-							newBackpackSize = 20
-							price = 3000
-						}
-						else if (user.backpackSize == 20) {
-							newBackpackSize = 50
-							price = 5000
-						}
-						else if (user.backpackSize == 50) {
-							newBackpackSize = 100
-							price = 7500
-						}
-						else if (user.backpackSize == 100){
+						if (user.backpackSize == 100){
 							res.write(' У вас максимальный уровень рюкзака.')
 							res.end()
 							resolve()
 							return
+						}
+						else {
+							newBackpackSize = backpackSizes[user.backpackSize]
+							price = backpackPrices[user.backpackSize]
 						}
 						if (user.gold >= price){
 							collection.updateOne(user,{$set: {gold: user.gold - price, backpackSize: newBackpackSize}}, function(error, result){
@@ -277,10 +277,10 @@ const server = http.createServer(function(req, res) {
 						}
 					}
 					else if (['кирка','кирку','инструмент','pickaxe','pick'].indexOf(upgradingItem) != -1){
-						resolve()
+						
 					}
 					else {
-						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. Для улучшения рюкзака вам необходимо "+{'5': '1000$', '10': '3000$', '20': '5000$', '50': '7500$', '100': 'ни сколько'}[user.backpackSize]+'.')
+						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для улучшения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+[user.backpackSize]+'$' : 'У вас максимальный уровень рюкзака')+'.')
 						resolve()
 					}
 				})
