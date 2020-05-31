@@ -116,7 +116,7 @@ const server = http.createServer(function(req, res) {
 					}
 				}
 			})()) {
-				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa'].indexOf(action) != -1) res.write(' Имя: '+user.name+', Балланс: '+user.gold+'$')
+				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa','money','bank'].indexOf(action) != -1) res.write(' Имя: '+user.name+', Балланс: '+user.gold+'$')
 				else if (['инвентарь','карманы','сумка','рюкзак','вещи','ресурсы','inventory','inv'].indexOf(action) != -1) {
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
