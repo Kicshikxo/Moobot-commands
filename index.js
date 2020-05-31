@@ -230,7 +230,7 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					})
 				})
-				else if (['передать','перевод','подарить','подарок','give'].indexof(action) != -1) await new Promise(function(resolve, reject){
+				else if (['передать','перевод','подарить','подарок','give'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					recipient = String(pathname.split('/')[4].replace('@','').replace('%40',''))
 					value = parseInt(pathname.split('/')[5])
 					
