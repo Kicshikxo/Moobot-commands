@@ -1,6 +1,10 @@
 const http = require('http'),
 	  url  = require('url'),
 	  PORT = process.env.PORT || 3000
+const MongoClient = require("mongodb").MongoClient;
+   
+const url = "mongodb+srv://Kicshikxo:ua3wikqwe@cluster0-8humy.gcp.mongodb.net/moobot";
+const mongoClient = new MongoClient(url, { useNewUrlParser: true });
 	  
 function randInt(min, max){return ~~((Math.random() * (max - min + 1)) + min)}
 Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
@@ -84,7 +88,9 @@ const server = http.createServer(function(req, res) {
 	if (pathname == '/ask')
 		res.write(['Да', 'Нет'].choiceOne())
 	else if (pathname.split('/')[1] == 'mine'){
-		res.write(pathname)
+		name = url.domainToUnicode(pathname.split('/')[2])
+		action = url.domainToUnicode(pathname.split('/')[3]).toLowerCase()
+		res.write('name: '+name+' action: '+action)
 	}
 	else if (pathname.split('/')[1] == 'rpg'){
 		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
