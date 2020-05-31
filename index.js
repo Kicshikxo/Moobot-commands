@@ -3,7 +3,7 @@ const http = require('http'),
 	  PORT = process.env.PORT || 3000
 const MongoClient = require("mongodb").MongoClient;
    
-const mongoUrl = "mongodb+srv://Kicshikxo:ua3wikqwe@cluster0-8humy.gcp.mongodb.net/test?retryWrites=true&w=majority"
+const mongoUrl = "mongodb+srv://Kicshikxo:ua3wikqwe@cluster0-8humy.gcp.mongodb.net/moobot"
 	  
 function randInt(min, max){return ~~((Math.random() * (max - min + 1)) + min)}
 Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
