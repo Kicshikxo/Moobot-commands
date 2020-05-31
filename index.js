@@ -226,7 +226,7 @@ const server = http.createServer(function(req, res) {
 						}
 					}
 					else {
-						res.write(' Пользователь не зарегистрирован.')
+						res.write(' Пользователь '+recipient+' не зарегистрирован.')
 						resolve()
 					}
 				})
