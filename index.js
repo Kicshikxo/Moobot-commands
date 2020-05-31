@@ -192,12 +192,12 @@ const server = http.createServer(function(req, res) {
 						chance: 9
 					},{
 						type: 'Нудесы Ани',
-						comment: 'увидел в инсте нудесы Ани. (∞$) NotLikeThis NotLikeThis NotLikeThis ',
+						comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
 						price: 1000,
 						chance: 1
 					}]
 					for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 1000); sum <= rand; sum += options[choice].chance) choice++
-					res.write(options[choice].comment+', Рюкзак '+occupiedSpace+'/'+user.backpackSize+'.')
+					res.write(options[choice].comment+', Рюкзак '+(occupiedSpace+1)+'/'+user.backpackSize+'.')
 					
 					if ((function(){
 						for (i of user.inventory){
