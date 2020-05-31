@@ -126,22 +126,22 @@ const server = http.createServer(function(req, res) {
 				else if (action == 'копать') await new Promise(function(resolve, reject){
 					options = [{
 						type: 'Камень',
-						comment: user.name+' вскопал камень',
+						comment: 'вскопал камень',
 						price: 1,
 						chance: 50
 					},{
 						type: 'Железная руда',
-						comment: user.name+' вскопал железо',
+						comment: 'вскопал железо',
 						price: 25,
 						chance: 30
 					},{
 						type: 'Золотая руда',
-						comment: user.name+' вскопал золото',
+						comment: 'вскопал золото',
 						price: 50,
 						chance: 10
 					},{
 						type: 'Алмазная руда',
-						comment: user.name+' вскопал алмазы',
+						comment: 'вскопал алмазы',
 						price: 100,
 						chance: 10
 					}]
