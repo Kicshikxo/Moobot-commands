@@ -84,7 +84,7 @@ const server = http.createServer(function(req, res) {
 	if (pathname == '/ask')
 		res.write(['Да', 'Нет'].choiceOne())
 	else if (pathname.split('/')[1] == 'mine'){
-		res.write('Шахта в разработке')
+		res.write(pathname)
 	}
 	else if (pathname.split('/')[1] == 'rpg'){
 		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
