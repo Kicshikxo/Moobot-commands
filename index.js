@@ -260,7 +260,9 @@ const server = http.createServer(function(req, res) {
 						}
 						else if (user.backpackSize == 100){
 							res.write(' У вас максимальный уровень рюкзака.')
+							res.end()
 							resolve()
+							return
 						}
 						if (user.gold >= price){
 							collection.updateOne(user,{$set: {gold: user.gold - price, backpackSize: newBackpackSize}}, function(error, result){
