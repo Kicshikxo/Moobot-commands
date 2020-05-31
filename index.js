@@ -128,59 +128,59 @@ const server = http.createServer(function(req, res) {
 						type: 'Камень',
 						comment: 'вскопал камень. (1$)',
 						price: 1,
-						chance: 40
+						chance: 400
 					},{
 						type: 'Уголь',
 						comment: 'вскопал уголь. (5$)',
 						price: 5,
-						chance: 20
+						chance: 200
 					},{
 						type: 'Оловянная руда',
 						comment: 'вскопал олово. (15$)',
 						price: 15,
-						chance: 10
+						chance: 100
 					},{
 						type: 'Медная руда',
 						comment: 'вскопал медь. (15$)',
 						price: 15,
-						chance: 10
+						chance: 100
 					},{
 						type: 'Железная руда',
 						comment: 'вскопал железо. (30$)',
 						price: 30,
-						chance: 5
+						chance: 50
 					},{
 						type: 'Золотая руда',
 						comment: 'вскопал золото. (50$)',
 						price: 50,
-						chance: 5
+						chance: 50
 					},{
 						type: 'Рог единорога',
 						comment: 'подобрал рог единорога . (65$) Jebaited ',
 						price: 65,
-						chance: 4
+						chance: 40
 					},{
 						type: 'Алмазная руда',
 						comment: 'вскопал алмазы. (100$) ResidentSleeper ',
 						price: 100,
-						chance: 3
+						chance: 30
 					},{
 						type: 'Кокаин',
 						comment: 'нашёл кокаин. (250$) SeemsGood ',
 						price: 250,
-						chance: 2
+						chance: 20
 					},{
 						type: 'Долбанит',
 						comment: 'вскопал долбанит. (500$) PogChamp ',
 						price: 500,
-						chance: .9
+						chance: 9
 					},{
 						type: 'Нудесы Ани',
 						comment: 'увидел в инсте нудесы Ани. (∞$) NotLikeThis NotLikeThis NotLikeThis ',
 						price: 1000,
-						chance: .1
+						chance: 1
 					}]
-					for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 100); sum <= rand; sum += options[choice].chance) choice++
+					for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 1000); sum <= rand; sum += options[choice].chance) choice++
 					res.write(options[choice].comment)
 					
 					if ((function(){
@@ -226,7 +226,7 @@ const server = http.createServer(function(req, res) {
 				else if (['удалиться','delete','del','remove'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					collection.deleteOne(user, function(error, obj){
 						if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
-						else res.write(" Аккаунт удалён, введите любое сообщение с '!mine' чтобы создать новый")
+						else res.write(" Аккаунт удалён, введите любое сообщение с '!mine' чтобы создать новый.")
 						resolve()
 					})
 				})
