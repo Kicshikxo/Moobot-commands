@@ -195,6 +195,29 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					})
 				})
+				else if (action == 'передать') await new Promise(function(resolve, reject){
+					recipient = url.domainToUnicode(pathname.split('/')[3]).replace('@','')
+					value = url.domainToUnicode(pathname.split('/')[4])
+					
+					if ((function(){
+						for (i of data){
+							if (i.name == recipient) return true
+						}
+					})()){
+						if (user.gold >= value){
+							
+						}
+						else {
+							res.write(' У вас недостаточно средств для перевода.')
+							resolve()
+						}
+					}
+					else {
+						res.write(' Пользователь не зарегистрирован.')
+						resolve()
+					}
+				})
+				
 				else res.write("Доступные команды для бота: 'инфо','копать',''инвентарь,'продать','удалить'")
 			}
 			else await new Promise(function(resolve, reject){
