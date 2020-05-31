@@ -220,12 +220,7 @@ const server = http.createServer(function(req, res) {
 						type: 'Долбанит',
 						comment: 'вскопал долбанит. (500$) PogChamp ',
 						price: 500,
-						chance: 9
-					},{
-						type: 'Нудесы Ани',
-						comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
-						price: 1000,
-						chance: 1
+						chance: 10
 					}]
 					level3 = [{
 						type: 'Камень',
