@@ -116,7 +116,7 @@ const server = http.createServer(function(req, res) {
 					}
 				}
 			})()) {
-				if (action == 'инфо') res.write(' \nИмя: '+user.name+' Золото: '+user.gold)
+				if (action == 'инфо') res.write(' \nИмя: '+user.name+', Золото: '+user.gold)
 				else if (action == 'инвентарь') {
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
@@ -176,9 +176,9 @@ const server = http.createServer(function(req, res) {
 				else if (action == 'продать') await new Promise(function(resolve, reject){
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
-					collection.updateOne({name: user.name},{$set: {gold: total,inventory: []}}, function(error, result){
+					collection.updateOne({name: user.name},{$set: {gold: user.gold+total,inventory: []}}, function(error, result){
 						if(error) res.write(' Ошибка с продажей. Ошибка: '+error)
-						else res.write('Вы продали свои ресурсы за '+total+'$, текущий баланс: '+(total + user.gold))
+						else res.write('Вы продали свои ресурсы за '+total+'$, текущий баланс: '+(total + user.gold)+'$')
 						resolve()
 					})
 				})
