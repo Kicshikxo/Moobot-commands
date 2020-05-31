@@ -96,7 +96,7 @@ const server = http.createServer(function(req, res) {
 		mongoClient.connect(async function(error, client){
 			
 			if (error) {
-				res.write(' Ошибка подключения к серверу. ')
+				res.write(' Ошибка подключения к серверу. Ошибка: '+error)
 				return res.end()
 			}
 			
