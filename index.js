@@ -199,6 +199,12 @@ const server = http.createServer(function(req, res) {
 					recipient = url.domainToUnicode(pathname.split('/')[4]).replace('@','')
 					value = parseInt(pathname.split('/')[5])
 					
+					if (!recipient || !value){
+						res.write(" Команда '!mine передать' имеет структуру: '!mine передать пользователь сумма'!")
+						res.end()
+						return
+					}
+					
 					if ((function(){
 						for (i of data){
 							if (i.name == recipient) {
@@ -234,7 +240,7 @@ const server = http.createServer(function(req, res) {
 				else if (action == 'пользователи'){
 					res.write(' Зарегистрированные пользователи: ')
 					for (i of data){
-						res.write(i.name+' ')
+						res.write(i.name+'('+i.gold+'$) ')
 					}
 				}
 				
