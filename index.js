@@ -253,6 +253,12 @@ const server = http.createServer(function(req, res) {
 						'20': 50,
 						'50': 100
 					}
+					pickaxePrices = {
+						'1': 1000,
+						'2': 2000,
+						'3': 5000,
+						'4': 10000
+					}
 					if (['рюкзак','сумка','сумку','инвентарь','inventory','inv'].indexOf(upgradingItem) != -1){
 						if (user.backpackSize == 100){
 							res.write(' У вас максимальный уровень рюкзака.')
@@ -277,10 +283,27 @@ const server = http.createServer(function(req, res) {
 						}
 					}
 					else if (['кирка','кирку','инструмент','pickaxe','pick'].indexOf(upgradingItem) != -1){
-						
+						if (user.pickaxeLevel == 5){
+							res.write(' У вас максимальный уровень кирки.')
+							res.end()
+							resolve()
+							return
+						}
+						else price = pickaxePrices[user.pickaxeLevel]
+						if (user.gold >= price){
+							collection.updateOne(user,{$set: {gold: user.gold - price, pickaxeLevel: user.pickaxeLevel + 1}}, function(error, result){
+								if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
+								else res.write('Уровень кирки увеличен до '+(user.pickaxeLevel + 1)+' уровня за '+price+'$, оставшиеся деньги: '+(user.gold - price)+'$.')
+								resolve()
+							})
+						}
+						else {
+							res.write(' Для увеличения уровня кирки до '+(user.pickaxeLevel+1)+' уровня требуется '+price+'$')
+							resolve()
+						}
 					}
 					else {
-						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для улучшения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$' : 'У вас максимальный уровень рюкзака')+'.')
+						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для улучшения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$.' : 'У вас максимальный уровень рюкзака')+'. '+((user.pickaxeLevel != 5) ? 'Для улучшения кирки до '+(user.pickaxeLevel+1)+' уровня необходимо '+pickaxePrices[user.pickaxeLevel]+'$.' : 'У вас максимальный уровень кирки.'))
 						resolve()
 					}
 				})
