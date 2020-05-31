@@ -198,7 +198,7 @@ const server = http.createServer(function(req, res) {
 				else res.write("Доступные команды для бота: 'инфо','копать',''инвентарь,'продать','удалить'")
 			}
 			else await new Promise(function(resolve, reject){
-				collection.insertOne({name: name, gold: 100, inventory: []}, function(error, result){
+				collection.insertOne({name: name, gold: 0, inventory: []}, function(error, result){
 					if(error) res.write(' Ошибка создания аккаунта. Ошибка: '+error)
 					else res.write(' Аккаунт создан, теперь вы можете пользоваться командами бота.')
 					resolve()
