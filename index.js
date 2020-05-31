@@ -196,7 +196,7 @@ const server = http.createServer(function(req, res) {
 					})
 				})
 				else if (action == 'передать') await new Promise(function(resolve, reject){
-					recipient = String(pathname.split('/')[4]).replace('@','')
+					recipient = String(pathname.split('/')[4].replace('@',''))
 					value = parseInt(pathname.split('/')[5])
 					
 					if (!recipient || !value){
@@ -259,8 +259,6 @@ const server = http.createServer(function(req, res) {
 					resolve()
 				})
 			})
-			
-			
 			
 			res.end()
 			client.close()
