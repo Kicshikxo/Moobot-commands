@@ -117,26 +117,41 @@ const server = http.createServer(function(req, res) {
 				}
 			})()) {
 				if (action == 'инфо') res.write(' \nИмя: '+user.name+' Золото: '+user.gold)
+				else if (action == 'инвентарь') for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
 				else if (action == 'копать') await new Promise(function(resolve, reject){
 					options = [{
 						type: 'Камень',
-						comment: user.name+' Вскопал камень',
+						comment: user.name+' вскопал камень',
+						price: 1,
 						chance: 50
 					},{
 						type: 'Железная руда',
-						comment: user.name+' Вскопал железо',
+						comment: user.name+' вскопал железо',
+						price: 25,
 						chance: 30
 					},{
 						type: 'Золотая руда',
-						comment: user.name+' Вскопал золото',
+						comment: user.name+' вскопал золото',
+						price: 50,
 						chance: 10
 					},{
 						type: 'Алмазная руда',
-						comment: user.name+' Вскопал алмазы',
+						comment: user.name+' вскопал алмазы',
+						price: 100,
 						chance: 10
 					}]
 					for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 100); sum <= rand; sum += options[choice].chance) choice++
 					res.write(options[choice].comment)
+					
+					if (user.inventory){
+						
+					}
+					else user.inventory.push({
+						type: options[choice].type,
+						quantity: 1,
+						price: options[choice].price
+					})
+					
 					resolve()
 				})
 				else if (action == 'удалить') await new Promise(function(resolve, reject){
@@ -159,9 +174,6 @@ const server = http.createServer(function(req, res) {
 			
 			res.end()
 			
-			
-			
-			
 // 			res.write(data)
 			
 			
@@ -173,7 +185,6 @@ const server = http.createServer(function(req, res) {
 // 				if (error) throw error
 // 				console.log('Updated')
 // 			})
-			
 			
 			client.close()
 		});
