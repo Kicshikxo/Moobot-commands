@@ -261,7 +261,7 @@ const server = http.createServer(function(req, res) {
 						if (user.gold >= price){
 							collection.updateOne(user,{$set: {gold: user.gold - price, backpackSize: newBackpackSize}}, function(error, result){
 								if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
-								else res.write('Вместимость рюкзака увеличена до: '+newBackpackSize+' за '+price+'$, оставшиеся деньги: '+user.gold - price)
+								else res.write('Вместимость рюкзака увеличена до '+newBackpackSize+' за '+price+'$, оставшиеся деньги: '+(user.gold - price)+'$')
 								resolve()
 							})
 						}
