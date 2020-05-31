@@ -201,22 +201,9 @@ const server = http.createServer(function(req, res) {
 			
 			
 			res.end()
-			
-// 			res.write(data)
-			
-			
-// 			collection.updateOne({
-// 				name: 'kodz1ma'
-// 			},{
-// 				$set: {gold: 0}
-// 			}, function(error, result){
-// 				if (error) throw error
-// 				console.log('Updated')
-// 			})
-			
 			client.close()
 		});
-		res.write('name: '+name+' action: '+action+'.   ')
+// 		res.write('name: '+name+' action: '+action+'.   ')
 	}
 	else if (pathname.split('/')[1] == 'rpg'){
 		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
