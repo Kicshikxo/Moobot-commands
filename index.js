@@ -196,11 +196,17 @@ const server = http.createServer(function(req, res) {
 					})
 				})
 				else if (action == 'передать') await new Promise(function(resolve, reject){
-					recipient = url.domainToUnicode(pathname.split('/')[4]).replace('@','')
+					recipient = String(pathname.split('/')[4]).replace('@','')
 					value = parseInt(pathname.split('/')[5])
 					
 					if (!recipient || !value){
-						res.write(" Команда '!mine передать' имеет структуру: '!mine передать пользователь сумма'!")
+						res.write(" Команда '!mine передать' имеет структуру: '!mine передать пользователь сумма'.")
+						res.end()
+						return
+					}
+					
+					if (user.name == recipient){
+						res.write(" Нельзя передавать деньги себе.")
 						res.end()
 						return
 					}
