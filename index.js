@@ -280,6 +280,7 @@ const server = http.createServer(function(req, res) {
 					
 				else if (['пользователи','игроки','люди','users'].indexOf(action) != -1){
 					res.write(' Зарегистрированные пользователи: ')
+					data.sort(function(a,b){return b.gold-a.gold})
 					for (i of data){
 						res.write(i.name.replace(/\b\w/g, l => l.toUpperCase())+'('+i.gold+'$) ')
 					}
