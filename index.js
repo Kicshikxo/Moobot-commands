@@ -271,7 +271,7 @@ const server = http.createServer(function(req, res) {
 						}
 					}
 					else if (['кирка','кирку','инструмент','pickaxe','pick'].indexOf(upgradingItem) != -1){
-						
+						resolve()
 					}
 					else {
 						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'")
