@@ -237,7 +237,7 @@ const server = http.createServer(function(req, res) {
 				})
 				else if (['улучшить','прокачать','апгрейд','upgrade','up'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					upgradingItem = url.domainToUnicode(pathname.split('/')[4]).toLowerCase()
-					if (['рюкзак','сумка','инвентарь','inventory','inv'].indexOf(upgradingItem) != -1){
+					if (['рюкзак','сумка','сумку','инвентарь','inventory','inv'].indexOf(upgradingItem) != -1){
 						if (user.backpackSize == 5) {
 							newBackpackSize = 10
 							price = 1000
@@ -341,7 +341,7 @@ const server = http.createServer(function(req, res) {
 					}
 				}
 				
-				else res.write("Доступные команды для бота: 'инфо', 'пользователи', 'копать', ''инвентарь, 'продать', 'передать', 'удалиться'")
+				else res.write("Доступные команды для бота: 'инфо', 'пользователи', 'копать', ''инвентарь, 'продать', 'улучшить', 'передать', 'удалиться'")
 			}
 			else await new Promise(function(resolve, reject){
 				collection.insertOne({name: name, gold: 0, inventory: [], backpackSize: 5, pickaxeLevel: 1}, function(error, result){
