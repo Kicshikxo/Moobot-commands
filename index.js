@@ -116,14 +116,14 @@ const server = http.createServer(function(req, res) {
 					}
 				}
 			})()) {
-				if (action == 'инфо') res.write(' Имя: '+user.name+', Балланс: '+user.gold+'$')
-				else if (action == 'инвентарь') {
+				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa'].indexof(action) != -1) res.write(' Имя: '+user.name+', Балланс: '+user.gold+'$')
+				else if (['инвентарь','карманы','сумка','вещи','ресурсы','inventory','inv'].indexof(action) != -1) {
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
 					for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
 					res.write('Всего: '+total+'$')
 				}
-				else if (action == 'копать') await new Promise(function(resolve, reject){
+				else if (['копать','шахта','шахтёр','работать','dig'].indexof(action) != -1) await new Promise(function(resolve, reject){
 					options = [{
 						type: 'Камень',
 						comment: 'вскопал камень.',
@@ -173,7 +173,7 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					})
 				})
-				else if (action == 'продать') await new Promise(function(resolve, reject){
+				else if (['продать','сбагрить','sell'].indexof(action) != -1) await new Promise(function(resolve, reject){
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
 					if (total > 0){
@@ -188,14 +188,14 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					}
 				})
-				else if (action == 'удалить') await new Promise(function(resolve, reject){
+				else if (['удалиться','delete','del'].indexof(action) != -1) await new Promise(function(resolve, reject){
 					collection.deleteOne(user, function(error, obj){
 						if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
 						else res.write(' Аккаунт удалён.')
 						resolve()
 					})
 				})
-				else if (action == 'передать') await new Promise(function(resolve, reject){
+				else if (['передать','перевод','подарить','подарок','give'].indexof(action) != -1) await new Promise(function(resolve, reject){
 					recipient = String(pathname.split('/')[4].replace('@','').replace('%40',''))
 					value = parseInt(pathname.split('/')[5])
 					
@@ -243,14 +243,14 @@ const server = http.createServer(function(req, res) {
 					}
 				})
 					
-				else if (action == 'пользователи'){
+				else if (['пользователи','люди','users'].indexof(action) != -1){
 					res.write(' Зарегистрированные пользователи: ')
 					for (i of data){
 						res.write(i.name.replace(/\b\w/g, l => l.toUpperCase())+'('+i.gold+'$) ')
 					}
 				}
 				
-				else res.write("Доступные команды для бота: 'инфо', 'пользователи', 'копать', ''инвентарь, 'продать', 'передать', 'удалить'")
+				else res.write("Доступные команды для бота: 'инфо', 'пользователи', 'копать', ''инвентарь, 'продать', 'передать', 'удалиться'")
 			}
 			else await new Promise(function(resolve, reject){
 				collection.insertOne({name: name, gold: 0, inventory: []}, function(error, result){
