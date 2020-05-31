@@ -280,7 +280,7 @@ const server = http.createServer(function(req, res) {
 						
 					}
 					else {
-						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для улучшения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+[user.backpackSize]+'$' : 'У вас максимальный уровень рюкзака')+'.')
+						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для улучшения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$' : 'У вас максимальный уровень рюкзака')+'.')
 						resolve()
 					}
 				})
