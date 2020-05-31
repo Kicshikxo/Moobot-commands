@@ -140,7 +140,38 @@ const server = http.createServer(function(req, res) {
 						resolve()
 						return
 					}
-					options = [{
+					level1 = [{
+						type: 'Камень',
+						comment: 'вскопал камень. (1$)',
+						price: 1,
+						chance: 500
+					},{
+						type: 'Уголь',
+						comment: 'вскопал уголь. (5$)',
+						price: 5,
+						chance: 200
+					},{
+						type: 'Оловянная руда',
+						comment: 'вскопал олово. (15$)',
+						price: 15,
+						chance: 100
+					},{
+						type: 'Медная руда',
+						comment: 'вскопал медь. (15$)',
+						price: 15,
+						chance: 100
+					},{
+						type: 'Железная руда',
+						comment: 'вскопал железо. (30$)',
+						price: 30,
+						chance: 50
+					},{
+						type: 'Золотая руда',
+						comment: 'вскопал золото. (50$)',
+						price: 50,
+						chance: 50
+					}]
+					level2 = [{
 						type: 'Камень',
 						comment: 'вскопал камень. (1$)',
 						price: 1,
@@ -185,6 +216,174 @@ const server = http.createServer(function(req, res) {
 						comment: 'нашёл кокаин. (250$) SeemsGood ',
 						price: 250,
 						chance: 20
+					},{
+						type: 'Долбанит',
+						comment: 'вскопал долбанит. (500$) PogChamp ',
+						price: 500,
+						chance: 9
+					},{
+						type: 'Нудесы Ани',
+						comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
+						price: 1000,
+						chance: 1
+					}]
+					level3 = [{
+						type: 'Камень',
+						comment: 'вскопал камень. (1$)',
+						price: 1,
+						chance: 350
+					},{
+						type: 'Уголь',
+						comment: 'вскопал уголь. (5$)',
+						price: 5,
+						chance: 150
+					},{
+						type: 'Оловянная руда',
+						comment: 'вскопал олово. (15$)',
+						price: 15,
+						chance: 80
+					},{
+						type: 'Медная руда',
+						comment: 'вскопал медь. (15$)',
+						price: 15,
+						chance: 80
+					},{
+						type: 'Железная руда',
+						comment: 'вскопал железо. (30$)',
+						price: 30,
+						chance: 100
+					},{
+						type: 'Золотая руда',
+						comment: 'вскопал золото. (50$)',
+						price: 50,
+						chance: 140
+					},{
+						type: 'Рог единорога',
+						comment: 'подобрал рог единорога . (65$) Jebaited ',
+						price: 65,
+						chance: 40
+					},{
+						type: 'Алмазная руда',
+						comment: 'вскопал алмазы. (100$) ResidentSleeper ',
+						price: 100,
+						chance: 30
+					},{
+						type: 'Кокаин',
+						comment: 'нашёл кокаин. (250$) SeemsGood ',
+						price: 250,
+						chance: 20
+					},{
+						type: 'Долбанит',
+						comment: 'вскопал долбанит. (500$) PogChamp ',
+						price: 500,
+						chance: 9
+					},{
+						type: 'Нудесы Ани',
+						comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
+						price: 1000,
+						chance: 1
+					}]
+					level4 = [{
+						type: 'Камень',
+						comment: 'вскопал камень. (1$)',
+						price: 1,
+						chance: 200
+					},{
+						type: 'Уголь',
+						comment: 'вскопал уголь. (5$)',
+						price: 5,
+						chance: 200
+					},{
+						type: 'Оловянная руда',
+						comment: 'вскопал олово. (15$)',
+						price: 15,
+						chance: 100
+					},{
+						type: 'Медная руда',
+						comment: 'вскопал медь. (15$)',
+						price: 15,
+						chance: 100
+					},{
+						type: 'Железная руда',
+						comment: 'вскопал железо. (30$)',
+						price: 30,
+						chance: 150
+					},{
+						type: 'Золотая руда',
+						comment: 'вскопал золото. (50$)',
+						price: 50,
+						chance: 150
+					},{
+						type: 'Рог единорога',
+						comment: 'подобрал рог единорога . (65$) Jebaited ',
+						price: 65,
+						chance: 40
+					},{
+						type: 'Алмазная руда',
+						comment: 'вскопал алмазы. (100$) ResidentSleeper ',
+						price: 100,
+						chance: 30
+					},{
+						type: 'Кокаин',
+						comment: 'нашёл кокаин. (250$) SeemsGood ',
+						price: 250,
+						chance: 20
+					},{
+						type: 'Долбанит',
+						comment: 'вскопал долбанит. (500$) PogChamp ',
+						price: 500,
+						chance: 9
+					},{
+						type: 'Нудесы Ани',
+						comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
+						price: 1000,
+						chance: 1
+					}]
+					level5 = [{
+						type: 'Камень',
+						comment: 'вскопал камень. (1$)',
+						price: 1,
+						chance: 100
+					},{
+						type: 'Уголь',
+						comment: 'вскопал уголь. (5$)',
+						price: 5,
+						chance: 100
+					},{
+						type: 'Оловянная руда',
+						comment: 'вскопал олово. (15$)',
+						price: 15,
+						chance: 100
+					},{
+						type: 'Медная руда',
+						comment: 'вскопал медь. (15$)',
+						price: 15,
+						chance: 100
+					},{
+						type: 'Железная руда',
+						comment: 'вскопал железо. (30$)',
+						price: 30,
+						chance: 200
+					},{
+						type: 'Золотая руда',
+						comment: 'вскопал золото. (50$)',
+						price: 50,
+						chance: 200
+					},{
+						type: 'Рог единорога',
+						comment: 'подобрал рог единорога . (65$) Jebaited ',
+						price: 65,
+						chance: 100
+					},{
+						type: 'Алмазная руда',
+						comment: 'вскопал алмазы. (100$) ResidentSleeper ',
+						price: 100,
+						chance: 60
+					},{
+						type: 'Кокаин',
+						comment: 'нашёл кокаин. (250$) SeemsGood ',
+						price: 250,
+						chance: 30
 					},{
 						type: 'Долбанит',
 						comment: 'вскопал долбанит. (500$) PogChamp ',
