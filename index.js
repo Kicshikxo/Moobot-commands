@@ -197,7 +197,7 @@ const server = http.createServer(function(req, res) {
 						chance: 1
 					}]
 					for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 1000); sum <= rand; sum += options[choice].chance) choice++
-					res.write(options[choice].comment)
+					res.write(options[choice].comment+', Рюкзак '+occupiedSpace+'/'+user.backpackSize+'.')
 					
 					if ((function(){
 						for (i of user.inventory){
