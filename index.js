@@ -121,9 +121,21 @@ const server = http.createServer(function(req, res) {
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
 					for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
-					res.write('Всего: '+total+'$')
+					occupiedSpace = 0
+					for (i of user.inventory) occupiedSpace += i.quantity
+					res.write('Всего: '+total+'$, Место: '+occupiedSpace+'/'+user.backpackSize)
 				}
 				else if (['копать','шахта','шахтёр','работать','dig'].indexOf(action) != -1) await new Promise(function(resolve, reject){
+					if ((function(){
+						occupiedSpace = 0
+						for (i of user.inventory) occupiedSpace += i.quantity
+						return occupiedSpace
+					})() >= user.backpackSize){
+						res.write(' Рюкзак переполнен.')
+						res.end()
+						resolve()
+						return
+					}
 					options = [{
 						type: 'Камень',
 						comment: 'вскопал камень. (1$)',
@@ -220,6 +232,49 @@ const server = http.createServer(function(req, res) {
 					}
 					else {
 						res.write(" Вам нечего продавать, '!mine копать' для добычи.")
+						resolve()
+					}
+				})
+				else if (['улучшить','прокачать','апгрейд','upgrade','up'].indexOf(action) != -1) await new Promise(function(resolve, reject){
+					upgradingItem = url.domainToUnicode(pathname.split('/')[4]).toLowerCase()
+					if (['рюкзак','сумка','инвентарь','inventory','inv'].indexOf(upgradingItem) != -1){
+						if (user.backpackSize == 5) {
+							newBackpackSize = 10
+							price = 1000
+						}
+						else if (user.backpackSize == 10) {
+							newBackpackSize = 20
+							price = 3000
+						}
+						else if (user.backpackSize == 20) {
+							newBackpackSize = 50
+							price = 7500
+						}
+						else if (user.backpackSize == 50) {
+							newBackpackSize = 100
+							price = 15000
+						}
+						else if (user.backpackSize == 100){
+							res.write(' У вас максимальный уровень рюкзака.')
+							resolve()
+						}
+						if (user.gold >= price){
+							collection.updateOne(user,{$set: {gold: user.gold - price, backpackSize: newBackpackSize}}, function(error, result){
+								if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
+								else res.write('Вместимость рюкзака увеличена до: '+newBackpackSize+' за '+price+'$, оставшиеся деньги: '+user.gold - price)
+								resolve()
+							})
+						}
+						else {
+							res.write(' Для увеличения места в рюкзаке до '+newBackpackSize+' требуется '+price+'$')
+							resolve()
+						}
+					}
+					else if (['кирка','кирку','инструмент','pickaxe','pick'].indexOf(upgradingItem) != -1){
+						
+					}
+					else {
+						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'")
 						resolve()
 					}
 				})
