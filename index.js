@@ -502,7 +502,7 @@ const server = http.createServer(function(req, res) {
 						}
 					}
 					else {
-						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для улучшения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$.' : 'У вас максимальный уровень рюкзака')+'. '+((user.pickaxeLevel != 5) ? 'Для улучшения кирки до '+(user.pickaxeLevel+1)+' уровня необходимо '+pickaxePrices[user.pickaxeLevel]+'$.' : 'У вас максимальный уровень кирки.'))
+						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для увеличения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$.' : 'У вас максимальный уровень рюкзака')+'. '+((user.pickaxeLevel != 5) ? 'Для улучшения кирки до '+(user.pickaxeLevel+1)+' уровня необходимо '+pickaxePrices[user.pickaxeLevel]+'$.' : 'У вас максимальный уровень кирки.'))
 						resolve()
 					}
 				})
