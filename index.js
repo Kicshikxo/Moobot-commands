@@ -195,6 +195,7 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					})
 				})
+				else res.write("Доступные команды для бота: 'инфо','копать',''инвентарь,'продать','удалить'")
 			}
 			else await new Promise(function(resolve, reject){
 				collection.insertOne({name: name, gold: 100, inventory: []}, function(error, result){
