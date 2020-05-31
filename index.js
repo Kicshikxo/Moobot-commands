@@ -110,27 +110,28 @@ const server = http.createServer(function(req, res) {
 			
 			if ((function(){
 				for (i of data){
-					if (i.name == name) return true
-				}
-			})()) {
-				if (action == 'инфо'){
-					for (i of data){
-						if (i.name == name){
-							res.write(' \nИмя: '+i.name+' Золото: '+i.gold)
-						}
+					if (i.name == name) {
+						user = i
+						return true
 					}
 				}
-			}
-			else await new Promise(function(resolve, reject){
-					collection.insertOne({name: name, gold: 100}, function(err, result){
-						if(err){ 
-							res.write(' Ошибка создания аккаунта. Ошибка: '+error)
-							console.log(result)
-						}
-						res.write('Аккаунт создан')
+			})()) {
+				if (action == 'инфо') res.write(' \nИмя: '+user.name+' Золото: '+user.gold)
+				else if (action == 'удалить') await new Promise(function(resolve, reject){
+					collection.deleteOne({name: user.name, gold: user.gold}, function(error, obj){
+						if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
+						else res.write('Аккаунт удалён')
 						resolve()
 					})
 				})
+			}
+			else await new Promise(function(resolve, reject){
+				collection.insertOne({name: name, gold: 100}, function(error, result){
+					if(error) res.write(' Ошибка создания аккаунта. Ошибка: '+error)
+					else res.write('Аккаунт создан')
+					resolve()
+				})
+			})
 			
 			
 			
