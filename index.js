@@ -119,7 +119,7 @@ const server = http.createServer(function(req, res) {
 				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa','money','bank'].indexOf(action) != -1){
 					occupiedSpace = 0
 					for (i of user.inventory) occupiedSpace += i.quantity
-					res.write(' Имя: '+user.name+', Балланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+'/5.')
+					res.write(' Имя: '+user.name+', Балланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+'.')
 				}
 				else if (['инвентарь','инвент','карманы','сумка','рюкзак','вещи','ресурсы','inventory','inv'].indexOf(action) != -1) {
 					total = 0
