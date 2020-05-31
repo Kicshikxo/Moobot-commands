@@ -252,11 +252,11 @@ const server = http.createServer(function(req, res) {
 						}
 						else if (user.backpackSize == 20) {
 							newBackpackSize = 50
-							price = 7500
+							price = 5000
 						}
 						else if (user.backpackSize == 50) {
 							newBackpackSize = 100
-							price = 15000
+							price = 7500
 						}
 						else if (user.backpackSize == 100){
 							res.write(' У вас максимальный уровень рюкзака.')
