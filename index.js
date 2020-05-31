@@ -116,7 +116,7 @@ const server = http.createServer(function(req, res) {
 					}
 				}
 			})()) {
-				if (action == 'инфо') res.write(' \nИмя: '+user.name+', Золото: '+user.gold)
+				if (action == 'инфо') res.write(' Имя: '+user.name+', Золото: '+user.gold)
 				else if (action == 'инвентарь') {
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
@@ -178,14 +178,14 @@ const server = http.createServer(function(req, res) {
 					for (i of user.inventory) total += i.price * i.quantity
 					collection.updateOne({name: user.name},{$set: {gold: user.gold+total,inventory: []}}, function(error, result){
 						if(error) res.write(' Ошибка с продажей. Ошибка: '+error)
-						else res.write('Вы продали свои ресурсы за '+total+'$, текущий баланс: '+(total + user.gold)+'$')
+						else res.write(' Вы продали свои ресурсы за '+total+'$, текущий баланс: '+(total + user.gold)+'$')
 						resolve()
 					})
 				})
 				else if (action == 'удалить') await new Promise(function(resolve, reject){
 					collection.deleteOne(user, function(error, obj){
 						if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
-						else res.write('Аккаунт удалён')
+						else res.write(' Аккаунт удалён')
 						resolve()
 					})
 				})
@@ -193,7 +193,7 @@ const server = http.createServer(function(req, res) {
 			else await new Promise(function(resolve, reject){
 				collection.insertOne({name: name, gold: 100, inventory: []}, function(error, result){
 					if(error) res.write(' Ошибка создания аккаунта. Ошибка: '+error)
-					else res.write('Аккаунт создан')
+					else res.write(' Аккаунт создан')
 					resolve()
 				})
 			})
@@ -211,7 +211,7 @@ const server = http.createServer(function(req, res) {
 			res.write(characters.choiceOne())
 		else if (['событие','соба','ивент'].indexOf(style) != -1)
 			res.write(events.choiceOne())
-		else res.write('Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации? Выбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа). Например "!rpg персонаж"')
+		else res.write(' Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации? Выбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа). Например "!rpg персонаж"')
 		return res.end()
 	}
 	else {
