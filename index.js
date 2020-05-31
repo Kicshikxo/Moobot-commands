@@ -121,7 +121,7 @@ const server = http.createServer(function(req, res) {
 					for (i of user.inventory) occupiedSpace += i.quantity
 					res.write(' Имя: '+user.name+', Балланс: '+user.gold+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel)
 				}
-				else if (['инвентарь','карманы','сумка','рюкзак','вещи','ресурсы','inventory','inv'].indexOf(action) != -1) {
+				else if (['инвентарь','инвент','карманы','сумка','рюкзак','вещи','ресурсы','inventory','inv'].indexOf(action) != -1) {
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
 					for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
@@ -224,7 +224,7 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					})
 				})
-				else if (['продать','сбагрить','sell'].indexOf(action) != -1) await new Promise(function(resolve, reject){
+				else if (['продать', 'очистить','сбагрить','sell'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					total = 0
 					for (i of user.inventory) total += i.price * i.quantity
 					if (total > 0){
