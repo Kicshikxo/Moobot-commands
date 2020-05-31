@@ -223,7 +223,7 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					}
 				})
-				else if (['удалиться','delete','del'].indexOf(action) != -1) await new Promise(function(resolve, reject){
+				else if (['удалиться','delete','del','remove'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					collection.deleteOne(user, function(error, obj){
 						if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
 						else res.write(' Аккаунт удалён.')
