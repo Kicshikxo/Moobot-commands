@@ -225,7 +225,7 @@ const server = http.createServer(function(req, res) {
 									res.write(' Ошибка с передачей денег. Ошибка: '+error)
 									resolve()
 								}
-								else res.write(' Вы отдали @'+recipient+' '+value+'$, текущий баланс: '+(user.gold-value)+'$.')
+								else res.write(' Вы отдали '+recipient+' '+value+'$, текущий баланс: '+(user.gold-value)+'$.')
 							})
 							collection.updateOne(user,{$set: {gold: user.gold-value}}, function(error, result){
 								if(error) res.write(' Ошибка с пересчётом баланса. Ошибка: '+error)
