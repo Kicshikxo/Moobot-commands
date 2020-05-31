@@ -96,8 +96,8 @@ const server = http.createServer(function(req, res) {
 		mongoClient.connect(async function(error, client){
 			
 			if (error) {
-				res.write('Ошибка подключения к серверу. ')
-				return
+				res.write(' Ошибка подключения к серверу. ')
+				return res.end()
 			}
 			
 			const collection = client.db("Moobot").collection("mine")
@@ -147,7 +147,7 @@ const server = http.createServer(function(req, res) {
 			
 			client.close()
 		});
-		res.write('name: '+name+' action: '+action)
+		res.write('name: '+name+' action: '+action+'.')
 	}
 	else if (pathname.split('/')[1] == 'rpg'){
 		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
