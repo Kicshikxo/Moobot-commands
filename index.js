@@ -3,7 +3,7 @@ const http = require('http'),
 	  PORT = process.env.PORT || 3000
 const MongoClient = require("mongodb").MongoClient;
    
-const mongoUrl = "mongodb+srv://Kicshikxo:ua3wikqwe@cluster0-8humy.gcp.mongodb.net/moobot";
+const mongoUrl = "\x6D\x6F\x6E\x67\x6F\x64\x62\x2B\x73\x72\x76\x3A\x2F\x2F\x4B\x69\x63\x73\x68\x69\x6B\x78\x6F\x3A\x75\x61\x33\x77\x69\x6B\x71\x77\x65\x40\x63\x6C\x75\x73\x74\x65\x72\x30\x2D\x38\x68\x75\x6D\x79\x2E\x67\x63\x70\x2E\x6D\x6F\x6E\x67\x6F\x64\x62\x2E\x6E\x65\x74\x2F\x6D\x6F\x6F\x62\x6F\x74"
 const mongoClient = new MongoClient(url, { useNewUrlParser: true });
 	  
 function randInt(min, max){return ~~((Math.random() * (max - min + 1)) + min)}
@@ -85,11 +85,46 @@ events = [
 const server = http.createServer(function(req, res) {
 	res.writeHeader(200, {"Content-Type": "application/json"})
 	pathname = url.parse(req.url).pathname
-	if (pathname == '/ask')
-		res.write(['Да', 'Нет'].choiceOne())
+	if (pathname == '/ask') res.write(['Да', 'Нет'].choiceOne())
 	else if (pathname.split('/')[1] == 'mine'){
 		name = url.domainToUnicode(pathname.split('/')[2])
 		action = url.domainToUnicode(pathname.split('/')[3]).toLowerCase()
+		mongoClient.connect(function(error, client){
+			
+			if (error) {
+				res.write('Ошибка подключения к серверу')
+				return
+			}
+			
+			const collection = client.db("Moobot").collection("mine")
+			
+			collection.find({}, { projection: { _id: 0}}).toArray(function(error, result){
+				let data = result
+			})
+			
+			res.write(data)
+			
+// 			collection.updateOne({
+// 				name: 'kodz1ma'
+// 			},{
+// 				$set: {gold: 0}
+// 			}, function(error, result){
+// 				if (error) throw error
+// 				console.log('Updated')
+// 			})
+			
+		//     let user = {name: "kodz1ma", gold: 100};
+		//     collection.insertOne(user, function(err, result){
+		//           
+		//         if(err){ 
+		//             return console.log(err);
+		//         }
+		//         console.log(result.ops);
+		//         client.close();
+		//     });
+			
+			client.close();
+		});
 		res.write('name: '+name+' action: '+action)
 	}
 	else if (pathname.split('/')[1] == 'rpg'){
