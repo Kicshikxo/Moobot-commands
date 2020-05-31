@@ -102,8 +102,6 @@ const server = http.createServer(function(req, res) {
 				let data = result
 			})
 			
-			res.write(data)
-			
 // 			collection.updateOne({
 // 				name: 'kodz1ma'
 // 			},{
