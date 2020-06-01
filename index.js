@@ -327,12 +327,12 @@ const server = http.createServer(function(req, res) {
 						type: 'Долбанит',
 						comment: 'вскопал долбанит. (500$) PogChamp ',
 						price: 500,
-						chance: 9
+						chance: 8
 					},{
 						type: 'Нудесы Ани',
 						comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
 						price: 1000,
-						chance: 1
+						chance: 2
 					}]
 					level5 = [{
 						type: 'Камень',
@@ -383,12 +383,12 @@ const server = http.createServer(function(req, res) {
 						type: 'Долбанит',
 						comment: 'вскопал долбанит. (500$) PogChamp ',
 						price: 500,
-						chance: 9
+						chance: 8
 					},{
 						type: 'Нудесы Ани',
 						comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
 						price: 1000,
-						chance: 1
+						chance: 2
 					}]
 					if (user.pickaxeLevel == 1) options = level1
 					else if (user.pickaxeLevel == 2) options = level2
