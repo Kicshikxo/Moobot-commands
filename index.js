@@ -1,4 +1,4 @@
-const http = require('http'),
+н енconst http = require('http'),
 	  url  = require('url'),
 	  PORT = process.env.PORT || 3000
 const MongoClient = require("mongodb").MongoClient;
@@ -449,8 +449,8 @@ const server = http.createServer(function(req, res) {
 					backpackSizes = {
 						'5': 10,
 						'10': 20,
-						'20': 50,
-						'50': 100
+						'20': 35,
+						'35': 50
 					}
 					pickaxePrices = {
 						'1': 1000,
@@ -459,7 +459,7 @@ const server = http.createServer(function(req, res) {
 						'4': 10000
 					}
 					if (['рюкзак','сумка','сумку','инвентарь','inventory','inv'].indexOf(upgradingItem) != -1){
-						if (user.backpackSize == 100){
+						if (user.backpackSize == 50){
 							res.write(' У вас максимальный уровень рюкзака.')
 							res.end()
 							resolve()
