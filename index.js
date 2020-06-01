@@ -516,7 +516,7 @@ const server = http.createServer(function(req, res) {
 					})
 				})
 				else if (['передать','перевод','подарить','подарок','give'].indexOf(action) != -1) await new Promise(function(resolve, reject){
-					recipient = String(pathname.split('/')[4].replace('@','').replace('%40',''))
+					recipient = String(pathname.split('/')[4].replace('@','').replace('%40','')).toLowerCase()
 					value = parseInt(pathname.split('/')[5])
 					
 					if (!recipient || !value){
