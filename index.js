@@ -449,10 +449,10 @@ const server = http.createServer(function(req, res) {
 						'35': 7500
 					}
 					backpackSizes = {
-						'5': 10,
-						'10': 20,
-						'20': 35,
-						'35': 50
+						'3': 5,
+						'5': 7,
+						'7': 10,
+						'10': 15
 					}
 					pickaxePrices = {
 						'1': 1000,
@@ -574,7 +574,7 @@ const server = http.createServer(function(req, res) {
 				else res.write("Доступные команды для бота: 'инфо', 'пользователи', 'копать', ''инвентарь, 'продать', 'улучшить', 'передать', 'удалиться'")
 			}
 			else await new Promise(function(resolve, reject){
-				collection.insertOne({name: name, money: 0, inventory: [], backpackSize: 5, pickaxeLevel: 1}, function(error, result){
+				collection.insertOne({name: name, money: 0, inventory: [], backpackSize: 3, pickaxeLevel: 1}, function(error, result){
 					if(error) res.write(' Ошибка создания аккаунта. Ошибка: '+error)
 					else res.write(' Аккаунт создан, теперь вы можете пользоваться командами бота.')
 					resolve()
