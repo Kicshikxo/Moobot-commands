@@ -440,7 +440,7 @@ const server = http.createServer(function(req, res) {
 						resolve()
 					}
 				})
-				else if (['улучшить','прокачать','апгрейд','upgrade','up'].indexOf(action) != -1) await new Promise(function(resolve, reject){
+				else if (['улучшить','купить','прокачать','апгрейд','upgrade','up','buy'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					upgradingItem = url.domainToUnicode(pathname.split('/')[4]).toLowerCase()
 					backpackPrices = {
 						'3': 500,
