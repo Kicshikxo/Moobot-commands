@@ -119,7 +119,7 @@ const server = http.createServer(function(req, res) {
 				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa','money','bank'].indexOf(action) != -1){
 					occupiedSpace = 0
 					for (i of user.inventory) occupiedSpace += i.quantity
-					res.write(' Имя: '+user.name+', Балланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+'.')
+					res.write(' Имя: '+user.name+', Балланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+', '+((user.swordLevel > 0) ? 'Уровень меча: '+user.swordLevel : 'У вас нет меча')+'.')
 				}
 				else if (['инвентарь','инвент','карманы','сумка','рюкзак','вещи','ресурсы','inventory','inv'].indexOf(action) != -1) {
 					total = 0
@@ -574,7 +574,7 @@ const server = http.createServer(function(req, res) {
 				else res.write("Доступные команды для бота: 'инфо', 'пользователи', 'копать', ''инвентарь, 'продать', 'улучшить', 'передать', 'удалиться'")
 			}
 			else await new Promise(function(resolve, reject){
-				collection.insertOne({name: name, money: 0, inventory: [], backpackSize: 3, pickaxeLevel: 1}, function(error, result){
+				collection.insertOne({name: name, money: 0, inventory: [], backpackSize: 3, pickaxeLevel: 1, swordLevel: 0}, function(error, result){
 					if(error) res.write(' Ошибка создания аккаунта. Ошибка: '+error)
 					else res.write(' Аккаунт создан, теперь вы можете пользоваться командами бота.')
 					resolve()
