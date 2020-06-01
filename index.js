@@ -454,7 +454,7 @@ const server = http.createServer(function(req, res) {
 					}
 					pickaxePrices = {
 						'1': 1000,
-						'2': 2000,
+						'2': 2500,
 						'3': 5000,
 						'4': 10000
 					}
