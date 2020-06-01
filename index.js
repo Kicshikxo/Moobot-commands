@@ -444,7 +444,7 @@ const server = http.createServer(function(req, res) {
 						'5': 1000,
 						'10': 3000,
 						'20': 5000,
-						'50': 7500
+						'35': 7500
 					}
 					backpackSizes = {
 						'5': 10,
