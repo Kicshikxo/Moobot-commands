@@ -429,7 +429,7 @@ const server = http.createServer(function(req, res) {
 					if (total > 0){
 						collection.updateOne(user,{$set: {money: user.money+total,inventory: []}}, function(error, result){
 							if(error) res.write(' Ошибка с продажей. Ошибка: '+error)
-							else res.write(' Вы продали свои ресурсы за '+total+'$, текущий баланс: '+(total + user.money)+'$.')
+							else res.write(' Вы продали свои ресурсы за '+total+'$, текущий баланс: '+parseInt(total + user.money)+'$.')
 							resolve()
 						})
 					}
