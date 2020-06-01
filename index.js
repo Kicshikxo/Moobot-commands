@@ -1,4 +1,4 @@
-н енconst http = require('http'),
+const http = require('http'),
 	  url  = require('url'),
 	  PORT = process.env.PORT || 3000
 const MongoClient = require("mongodb").MongoClient;
