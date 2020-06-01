@@ -129,7 +129,7 @@ const server = http.createServer(function(req, res) {
 					for (i of user.inventory) occupiedSpace += i.quantity
 					res.write('Всего: '+total+'$, Место: '+occupiedSpace+'/'+user.backpackSize)
 				}
-				else if (['копать','шахта','шахтёр','работать','dig'].indexOf(action) != -1) await new Promise(function(resolve, reject){
+				else if (['копать','батрачить','шахта','шахтёр','работать','dig'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					if ((function(){
 						occupiedSpace = 0
 						for (i of user.inventory) occupiedSpace += i.quantity
