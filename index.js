@@ -131,7 +131,7 @@ const server = http.createServer(function(req, res) {
 				}
 				else if (['копать','шахта','шахтёр','работать','dig'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					if ((function(){
-						var occupiedSpace = 0
+						occupiedSpace = 0
 						for (i of user.inventory) occupiedSpace += i.quantity
 						return occupiedSpace
 					})() >= user.backpackSize){
@@ -396,7 +396,9 @@ const server = http.createServer(function(req, res) {
 					else if (user.pickaxeLevel == 4) options = level4
 					else if (user.pickaxeLevel == 5) options = level5
 					for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 1000); sum <= rand; sum += options[choice].chance) choice++
-					res.write(options[choice].comment+', Рюкзак '+parseInt(occupiedSpace+1)+'/'+user.backpackSize+'.')
+					occupiedSpace = 0
+					for (i of user.inventory) occupiedSpace += i.quantity
+					res.write(options[choice].comment+', Рюкзак '+(occupiedSpace+1)+'/'+user.backpackSize+'.')
 					
 					if ((function(){
 						for (i of user.inventory){
