@@ -443,10 +443,10 @@ const server = http.createServer(function(req, res) {
 				else if (['улучшить','прокачать','апгрейд','upgrade','up'].indexOf(action) != -1) await new Promise(function(resolve, reject){
 					upgradingItem = url.domainToUnicode(pathname.split('/')[4]).toLowerCase()
 					backpackPrices = {
-						'5': 1000,
-						'10': 3000,
-						'20': 5000,
-						'35': 7500
+						'3': 1000,
+						'5': 3000,
+						'7': 5000,
+						'10': 7500
 					}
 					backpackSizes = {
 						'3': 5,
