@@ -415,13 +415,13 @@ dungeonEventsLevel2 = [{
 		gold: 0
 	},{
 		text: ' в подземелье вы встретили разбойника. Его снаряжение было лучше вашего, поэтому он согласился вас отпустить за 150 золотых монет.',
-		good: ' Вы отдали ему 50 золотых монет и ушли из подземелья. Золото -150.',
+		good: ' Вы отдали ему 150 золотых монет и ушли из подземелья. Золото -150.',
 		bad:  ' Но у вас не оказалось при себе денег и разбойник вас убил. Аккаунт удалён.',
 		chance: 50,
 		gold: -150
 	},{
 		text: ' в подземелье вы встретили человека. У него был странный цвет кожи и манера говорить. Он попросил у вас 10 монет.',
-		good: ' Вы отдали ему 10 золотых монет, но вам стало не по себе и вы вышли из подземелья. Золото -50',
+		good: ' Вы отдали ему 10 золотых монет, но вам стало не по себе и вы вышли из подземелья. Золото -10',
 		bad:  ' Но у вас не оказалось при себе денег и человек превратился в чудовище, после чего с лёгкостью вас убил. Аккаунт удалён.',
 		chance: 50,
 		gold: -10
@@ -620,19 +620,16 @@ commands = {
 					resolve()
 				})
 			}
-			else {
-				if (options[choice].kill) collection.deleteOne(user, function(error, obj){
-					if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
-					resolve()
-				})
-				else collection.updateOne(user,{$set: {money: Math.max(0, user.money+options[choice].gold)}}, function(error, result){
-					if(error) res.write(' Ошибка с пересчётом денег. Ошибка: '+error)
-					else if (options[choice].good) res.write(options[choice].good)
-					resolve()
-				})
-			}
+			else collection.updateOne(user,{$set: {money: Math.max(0, user.money+options[choice].gold)}}, function(error, result){
+				if(error) res.write(' Ошибка с пересчётом денег. Ошибка: '+error)
+				else if (options[choice].good) res.write(options[choice].good)
+				resolve()
+			})
 		}
-		else resolve()
+		else if (options[choice].kill == true) collection.deleteOne(user, function(error, obj){
+			if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
+			resolve()
+		})
 	})},
 	sell: function(res, collection, user){return new Promise(function(resolve, reject){
 		total = 0
