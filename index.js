@@ -809,7 +809,7 @@ const server = http.createServer(function(req, res) {
 				else if (['пользователи','игроки','люди','users','players'].indexOf(action) != -1) commands.users(res, data)
 				else if (['удалиться','delete','del','remove'].indexOf(action) != -1) await commands.remove(res, collection, user)
 				else if (['передать','перевод','подарить','подарок','give'].indexOf(action) != -1) await commands.give(res, collection, user)
-				else res.write("Доступные команды для бота: 'инфо', 'пользователи', 'копать', ''инвентарь, 'продать', 'улучшить', 'передать', 'удалиться'")
+				else res.write("Доступные команды для бота: 'инфо', 'пользователи', 'копать', 'данж', 'инвентарь', 'продать', 'улучшить', 'передать', 'удалиться'")
 			}
 			else await commands.create(res, collection, name)
 			res.end()
