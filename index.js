@@ -332,13 +332,47 @@ level5 = [{
 	chance: 2
 }]
 dungeonEvents = [{
-		text: ' упал по пути к подземелью и вывихнул колено.',
-		chance: 50,
-		gold: 0,
+		text: ' вы упали по пути к подземелью и вывихнули колено, дальше идти не стали.',
+		chance: 100,
+		gold: 0
 	},{
-		text: ' на подходе к подземелью нашёл пару золотых монет, подобрав их решил вернуться обратно, золото +10.',
-		chance: 50,
+		text: ' войдя в подземелье нашёл на стенде красивую вазу, "Она выглядит дорогой" - подумали вы и вынесли её с собой. Золото +30.',
+		chance: 200,
+		gold: 30
+	},{
+		text: ' на подходе к подземелью лежали пару золотых монет. Подобрав их вы решили вернуться обратно. Золото +10.',
+		chance: 200,
 		gold: 10
+	},{
+		text: ' в подземелье вы встретили скелета. Он был слаб, поэтому вы без труда убили его своим мечом, после чего забрали кошель с монетами, висящий на его поясе, ушли из подземелья. Золото +50.',
+		chance: 75,
+		gold: 50
+	},{
+		text: ' в подземелье вы нашли труп человека. "Вот бедолага" - подумали вы, но увидев на его поясе кошель золота вы обобрали труп и вышли в страхе из подземелья. Золото +50.',
+		chance: 70,
+		gold: 50
+	},{
+		text: ' в подземелье вы стретили дикую собаку. Убить её у вас труда не составило, но и золота при ней не было.',
+		chance: 150,
+		gold: 0
+	},{
+		text: ' в подземелье вы встретили разбойника. Его снаряжение было лучше вашего, поэтому он согласился вас отпустить за 100 золотых монет.',
+		good: ' Вы отдали ему 100 золотых монет и ушли из подземелья. Золото -100.',
+		bad:  ' У вас не оказалось при себе денег и разбойник вас убил. Аккаунт удалён.',
+		chance: 50,
+		gold: -100
+	},{
+		text: ' в подземелье вы шли рядом с пропастью и оступились. Из вашего кошелька в пропасть упало несколько монет. Золото -20.',
+		chance: 100,
+		gold: -20
+	},{
+		text: ' в подземелье вы в песке увидели сверкающий камень. Вам стало интересно что это и вы раскопали его, это оказался алмаз. Золото +100.',
+		chance: 50,
+		gold: 100
+	},{
+		text: ' войдя в подземелье вы встретили огра. Едва заметив вас он кинул в вашу сторону большой валун и убил вас. Аккаунт удалён.',
+		chance: 5,
+		kill: true
 	}
 ]
 backpackPrices = {
@@ -360,9 +394,9 @@ pickaxePrices = {
 	'4': 10000
 }
 swordPrices = {
-	'0': 3000,
-	'1': 5000,
-	'2': 7500,
+	'0': 1000,
+	'1': 2500,
+	'2': 5000,
 }
 const commands = {
 	receiveData: function(collection){
@@ -434,19 +468,34 @@ const commands = {
 			res.write(' Для похода в подземелье вам необходим меч. \'!mine купить меч\' для покупки.')
 			return resolve()
 		}
-		for (sum = dungeonEvents[0].chance, choice = 0, rand = ~~(Math.random() * 100); sum <= rand; sum += dungeonEvents[choice].chance) choice++
+		for (sum = dungeonEvents[0].chance, choice = 0, rand = ~~(Math.random() * 1000); sum <= rand; sum += dungeonEvents[choice].chance) choice++
 		res.write(dungeonEvents[choice].text)
 		if (dungeonEvents[choice].gold){
-			collection.updateOne(user,{$set: {money: user.money+dungeonEvents[choice].gold}}, function(error, result){
-				if(error) res.write(' Ошибка с добавлением денег. Ошибка: '+error)
-			})
+			if (dungeonEvents[choice].good){
+				if (user.money >= Math.abs(dungeonEvents[choice].gold)) 
+					collection.updateOne(user,{$set: {money: Math.max(0, user.money+dungeonEvents[choice].gold)}}, function(error, result){
+						if(error) res.write(' Ошибка с пересчётом денег. Ошибка: '+error)
+						else res.write(dungeonEvents[choice].good)
+						resolve()
+				})
+				else collection.deleteOne(user, function(error, obj){
+					if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
+					else res.write(dungeonEvents[choice].bad)
+					resolve()
+				})
+			}
+			else {
+				collection.updateOne(user,{$set: {money: Math.max(0, user.money+dungeonEvents[choice].gold)}}, function(error, result){
+					if(error) res.write(' Ошибка с пересчётом денег. Ошибка: '+error)
+					else if (dungeonEvents[choice].good) res.write(dungeonEvents[choice].good)
+				})
+				if (dungeonEvents[choice].kill) collection.deleteOne(user, function(error, obj){
+					if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
+				})
+				resolve()
+			}
 		}
-		if (dungeonEvents[choice].kill){
-			collection.deleteOne(user, function(error, obj){
-				if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
-			})
-		}
-		resolve()
+		
 	})},
 	sell: function(res, collection, user){return new Promise(function(resolve, reject){
 		total = 0
