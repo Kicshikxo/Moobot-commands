@@ -331,6 +331,16 @@ level5 = [{
 	price: 1000,
 	chance: 2
 }]
+dungeonEvents = [{
+		text: ' упал по пути к подземелью и вывихнул колено.',
+		chance: 50,
+		gold: 0,
+	},{
+		text: ' на подходе к подземелью нашёл пару золотых монет, подобрав их решил вернуться обратно, золото +10.',
+		chance: 50,
+		gold: 10
+	}
+]
 backpackPrices = {
 	'3': 500,
 	'5': 2000,
@@ -348,6 +358,11 @@ pickaxePrices = {
 	'2': 2500,
 	'3': 5000,
 	'4': 10000
+}
+swordPrices = {
+	'0': 3000,
+	'1': 5000,
+	'2': 7500,
 }
 const commands = {
 	receiveData: function(collection){
@@ -414,6 +429,25 @@ const commands = {
 			resolve()
 		})
 	})},
+	dungeon: function(res, collection, user){return new Promise(function(resolve, reject){
+		if (user.swordLevel < 1){
+			res.write(' Для похода в подземелье вам необходим меч. \'!mine купить меч\' для покупки.')
+			return resolve()
+		}
+		for (sum = dungeonEvents[0].chance, choice = 0, rand = ~~(Math.random() * 100); sum <= rand; sum += dungeonEvents[choice].chance) choice++
+		res.write(dungeonEvents[choice].text)
+		if (dungeonEvents[choice].gold){
+			collection.updateOne(user,{$set: {money: user.money+dungeonEvents[choice].gold}}, function(error, result){
+				if(error) res.write(' Ошибка с добавлением денег. Ошибка: '+error)
+			})
+		}
+		if (dungeonEvents[choice].kill){
+			collection.deleteOne(user, function(error, obj){
+				if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
+			})
+		}
+		resolve()
+	})},
 	sell: function(res, collection, user){return new Promise(function(resolve, reject){
 		total = 0
 		for (i of user.inventory) total += i.price * i.quantity
@@ -460,7 +494,7 @@ const commands = {
 			else price = pickaxePrices[user.pickaxeLevel]
 			if (user.money >= price){
 				collection.updateOne(user,{$set: {money: user.money - price, pickaxeLevel: user.pickaxeLevel + 1}}, function(error, result){
-					if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
+					if(error) res.write(' Ошибка улучшения кирки. Ошибка: '+error)
 					else res.write('Уровень кирки увеличен до '+(user.pickaxeLevel+1)+' уровня за '+price+'$, оставшиеся деньги: '+(user.money-price)+'$.')
 					resolve()
 				})
@@ -470,8 +504,26 @@ const commands = {
 				resolve()
 			}
 		}
+		else if (['меч','оружие','данж','sword','sw'].indexOf(upgradingItem) != -1){
+			if (user.swordLevel == 3){
+				res.write(' У вас максимальный уровень меча.')
+				return resolve()
+			}
+			else price = swordPrices[user.swordLevel]
+			if (user.money >= price){
+				collection.updateOne(user,{$set: {money: user.money - price, swordLevel: user.swordLevel + 1}}, function(error, result){
+					if(error) res.write(' Ошибка улучшения меча. Ошибка: '+error)
+					else res.write('Уровень меча увеличен до '+(user.swordLevel+1)+' уровня за '+price+'$, оставшиеся деньги: '+(user.money-price)+'$.')
+					resolve()
+				})
+			}
+			else {
+				res.write(' Для увеличения уровня меча до '+(user.swordLevel+1)+' уровня требуется '+price+'$')
+				resolve()
+			}
+		}
 		else {
-			res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для увеличения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$.' : 'У вас максимальный уровень рюкзака')+'. '+((user.pickaxeLevel != 5) ? 'Для улучшения кирки до '+(user.pickaxeLevel+1)+' уровня необходимо '+pickaxePrices[user.pickaxeLevel]+'$.' : 'У вас максимальный уровень кирки.'))
+			res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для увеличения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$.' : 'У вас максимальный уровень рюкзака')+'. '+((user.pickaxeLevel != 5) ? 'Для улучшения кирки до '+(user.pickaxeLevel+1)+' уровня необходимо '+pickaxePrices[user.pickaxeLevel]+'$. ' : 'У вас максимальный уровень кирки.')+((user.swordLevel != 5) ? 'Для улучшения меча до '+(user.swordLevel+1)+' уровня необходимо '+swordPrices[user.swordLevel]+'$.' : 'У вас максимальный уровень меча.'))
 			resolve()
 		}
 	})},
@@ -541,11 +593,7 @@ const commands = {
 const server = http.createServer(function(req, res) {
 	res.writeHeader(200, {"Content-Type": "application/json"})
 	pathname = url.parse(req.url).pathname
-	if (pathname == '/ask') {
-		res.write(['Да', 'Нет'].choiceOne())
-		return res.end()
-	}
-	else if (pathname.split('/')[1] == 'mine'){
+	if (pathname.split('/')[1] == 'mine'){
 		name = url.domainToUnicode(pathname.split('/')[2])
 		action = url.domainToUnicode(pathname.split('/')[3]).toLowerCase()
 		
@@ -571,6 +619,7 @@ const server = http.createServer(function(req, res) {
 				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa','money','bank'].indexOf(action) != -1) commands.info(res, collection, user)
 				else if (['инвентарь','инвент','карманы','сумка','рюкзак','вещи','ресурсы','inventory','inv'].indexOf(action) != -1) commands.inventory(res, collection, user)
 				else if (['копать','батрачить','шахта','шахтёр','работать','dig'].indexOf(action) != -1) await commands.dig(res, collection, user)
+				else if (['данж','подземелье','испытание','dungeon','dunge'].indexOf(action) != -1) await commands.dungeon(res, collection, user)
 				else if (['продать', 'очистить','сбагрить','sell'].indexOf(action) != -1) await commands.sell(res, collection, user)
 				else if (['улучшить','купить','прокачать','апгрейд','upgrade','up','buy'].indexOf(action) != -1) await commands.upgrade(res, collection, user)
 				else if (['пользователи','игроки','люди','users','players'].indexOf(action) != -1) commands.users(res, data)
@@ -582,6 +631,10 @@ const server = http.createServer(function(req, res) {
 			res.end()
 			client.close()
 		})
+	}
+	else if (pathname == '/ask') {
+		res.write(['Да', 'Нет'].choiceOne())
+		return res.end()
 	}
 	else if (pathname.split('/')[1] == 'rpg'){
 		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
