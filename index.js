@@ -757,7 +757,7 @@ commands = {
 	users: function(res, data){
 		res.write(' Зарегистрированные пользователи: ')
 		data.sort(function(a,b){return b.money-a.money})
-		for (let user of data) res.write(user.name.replace(/\b\w/g, l => l.toUpperCase())+'('+i.money+'$) ')
+		for (let user of data) res.write(user.name.replace(/\b\w/g, l => l.toUpperCase())+'('+user.money+'$) ')
 	},
 	create: function(res, collection, name){return new Promise(function(resolve, reject){
 		collection.insertOne({name: name, money: 0, inventory: [], backpackSize: 3, pickaxeLevel: 1, swordLevel: 0}, function(error, result){
