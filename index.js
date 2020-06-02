@@ -332,7 +332,7 @@ level5 = [{
 	chance: 2
 }]
 dungeonEvents = [{
-		text: ' вы упали по пути к подземелью и вывихнули колено, дальше идти не стали.',
+		text: ' вы упали по пути к подземелью и вывихнули колено, дальше идти смысла не было.',
 		chance: 100,
 		gold: 0
 	},{
@@ -485,17 +485,18 @@ const commands = {
 				})
 			}
 			else {
-				collection.updateOne(user,{$set: {money: Math.max(0, user.money+dungeonEvents[choice].gold)}}, function(error, result){
-					if(error) res.write(' Ошибка с пересчётом денег. Ошибка: '+error)
-					else if (dungeonEvents[choice].good) res.write(dungeonEvents[choice].good)
-				})
 				if (dungeonEvents[choice].kill) collection.deleteOne(user, function(error, obj){
 					if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
+					resolve()
 				})
-				resolve()
+				else collection.updateOne(user,{$set: {money: Math.max(0, user.money+dungeonEvents[choice].gold)}}, function(error, result){
+					if(error) res.write(' Ошибка с пересчётом денег. Ошибка: '+error)
+					else if (dungeonEvents[choice].good) res.write(dungeonEvents[choice].good)
+					resolve()
+				})
 			}
 		}
-		
+		else resolve()
 	})},
 	sell: function(res, collection, user){return new Promise(function(resolve, reject){
 		total = 0
