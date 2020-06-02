@@ -630,6 +630,7 @@ commands = {
 			if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
 			resolve()
 		})
+		else resolve()
 	})},
 	sell: function(res, collection, user){return new Promise(function(resolve, reject){
 		total = 0
