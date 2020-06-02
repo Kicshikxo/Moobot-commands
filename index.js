@@ -81,6 +81,463 @@ events = [
 	'Гарпии. Самые обычные гарпии. Они хотят съесть всю партию. или хотя бы их запасы еды.',
 	'Скользкий на вид господин продает со своего ярко раскрашенного фургона чудо-эликсир исцеляющий от всего. В толпе виден сгорбленный страничек с палочкой, как только он принял образец эликсира, так он закричал от радости, отбросил трость и бодро шагает по улице.'
 ]
+level1 = [{
+	type: 'Камень',
+	comment: 'вскопал камень. (1$)',
+	price: 1,
+	chance: 500
+},{
+	type: 'Уголь',
+	comment: 'вскопал уголь. (5$)',
+	price: 5,
+	chance: 200
+},{
+	type: 'Оловянная руда',
+	comment: 'вскопал олово. (15$)',
+	price: 15,
+	chance: 100
+},{
+	type: 'Медная руда',
+	comment: 'вскопал медь. (15$)',
+	price: 15,
+	chance: 100
+},{
+	type: 'Железная руда',
+	comment: 'вскопал железо. (30$)',
+	price: 30,
+	chance: 50
+},{
+	type: 'Золотая руда',
+	comment: 'вскопал золото. (50$)',
+	price: 50,
+	chance: 50
+}]
+level2 = [{
+	type: 'Камень',
+	comment: 'вскопал камень. (1$)',
+	price: 1,
+	chance: 400
+},{
+	type: 'Уголь',
+	comment: 'вскопал уголь. (5$)',
+	price: 5,
+	chance: 200
+},{
+	type: 'Оловянная руда',
+	comment: 'вскопал олово. (15$)',
+	price: 15,
+	chance: 100
+},{
+	type: 'Медная руда',
+	comment: 'вскопал медь. (15$)',
+	price: 15,
+	chance: 100
+},{
+	type: 'Железная руда',
+	comment: 'вскопал железо. (30$)',
+	price: 30,
+	chance: 50
+},{
+	type: 'Золотая руда',
+	comment: 'вскопал золото. (50$)',
+	price: 50,
+	chance: 50
+},{
+	type: 'Рог единорога',
+	comment: 'подобрал рог единорога . (65$) Jebaited ',
+	price: 65,
+	chance: 40
+},{
+	type: 'Алмазная руда',
+	comment: 'вскопал алмазы. (100$) ResidentSleeper ',
+	price: 100,
+	chance: 30
+},{
+	type: 'Кокаин',
+	comment: 'нашёл кокаин. (250$) SeemsGood ',
+	price: 250,
+	chance: 20
+},{
+	type: 'Долбанит',
+	comment: 'вскопал долбанит. (500$) PogChamp ',
+	price: 500,
+	chance: 10
+}]
+level3 = [{
+	type: 'Камень',
+	comment: 'вскопал камень. (1$)',
+	price: 1,
+	chance: 350
+},{
+	type: 'Уголь',
+	comment: 'вскопал уголь. (5$)',
+	price: 5,
+	chance: 150
+},{
+	type: 'Оловянная руда',
+	comment: 'вскопал олово. (15$)',
+	price: 15,
+	chance: 80
+},{
+	type: 'Медная руда',
+	comment: 'вскопал медь. (15$)',
+	price: 15,
+	chance: 80
+},{
+	type: 'Железная руда',
+	comment: 'вскопал железо. (30$)',
+	price: 30,
+	chance: 100
+},{
+	type: 'Золотая руда',
+	comment: 'вскопал золото. (50$)',
+	price: 50,
+	chance: 140
+},{
+	type: 'Рог единорога',
+	comment: 'подобрал рог единорога . (65$) Jebaited ',
+	price: 65,
+	chance: 40
+},{
+	type: 'Алмазная руда',
+	comment: 'вскопал алмазы. (100$) ResidentSleeper ',
+	price: 100,
+	chance: 30
+},{
+	type: 'Кокаин',
+	comment: 'нашёл кокаин. (250$) SeemsGood ',
+	price: 250,
+	chance: 20
+},{
+	type: 'Долбанит',
+	comment: 'вскопал долбанит. (500$) PogChamp ',
+	price: 500,
+	chance: 9
+},{
+	type: 'Нудесы Ани',
+	comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
+	price: 1000,
+	chance: 1
+}]
+level4 = [{
+	type: 'Камень',
+	comment: 'вскопал камень. (1$)',
+	price: 1,
+	chance: 200
+},{
+	type: 'Уголь',
+	comment: 'вскопал уголь. (5$)',
+	price: 5,
+	chance: 200
+},{
+	type: 'Оловянная руда',
+	comment: 'вскопал олово. (15$)',
+	price: 15,
+	chance: 100
+},{
+	type: 'Медная руда',
+	comment: 'вскопал медь. (15$)',
+	price: 15,
+	chance: 100
+},{
+	type: 'Железная руда',
+	comment: 'вскопал железо. (30$)',
+	price: 30,
+	chance: 150
+},{
+	type: 'Золотая руда',
+	comment: 'вскопал золото. (50$)',
+	price: 50,
+	chance: 150
+},{
+	type: 'Рог единорога',
+	comment: 'подобрал рог единорога . (65$) Jebaited ',
+	price: 65,
+	chance: 40
+},{
+	type: 'Алмазная руда',
+	comment: 'вскопал алмазы. (100$) ResidentSleeper ',
+	price: 100,
+	chance: 30
+},{
+	type: 'Кокаин',
+	comment: 'нашёл кокаин. (250$) SeemsGood ',
+	price: 250,
+	chance: 20
+},{
+	type: 'Долбанит',
+	comment: 'вскопал долбанит. (500$) PogChamp ',
+	price: 500,
+	chance: 8
+},{
+	type: 'Нудесы Ани',
+	comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
+	price: 1000,
+	chance: 2
+}]
+level5 = [{
+	type: 'Камень',
+	comment: 'вскопал камень. (1$)',
+	price: 1,
+	chance: 100
+},{
+	type: 'Уголь',
+	comment: 'вскопал уголь. (5$)',
+	price: 5,
+	chance: 100
+},{
+	type: 'Оловянная руда',
+	comment: 'вскопал олово. (15$)',
+	price: 15,
+	chance: 100
+},{
+	type: 'Медная руда',
+	comment: 'вскопал медь. (15$)',
+	price: 15,
+	chance: 100
+},{
+	type: 'Железная руда',
+	comment: 'вскопал железо. (30$)',
+	price: 30,
+	chance: 200
+},{
+	type: 'Золотая руда',
+	comment: 'вскопал золото. (50$)',
+	price: 50,
+	chance: 200
+},{
+	type: 'Рог единорога',
+	comment: 'подобрал рог единорога . (65$) Jebaited ',
+	price: 65,
+	chance: 100
+},{
+	type: 'Алмазная руда',
+	comment: 'вскопал алмазы. (100$) ResidentSleeper ',
+	price: 100,
+	chance: 60
+},{
+	type: 'Кокаин',
+	comment: 'нашёл кокаин. (250$) SeemsGood ',
+	price: 250,
+	chance: 30
+},{
+	type: 'Долбанит',
+	comment: 'вскопал долбанит. (500$) PogChamp ',
+	price: 500,
+	chance: 8
+},{
+	type: 'Нудесы Ани',
+	comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
+	price: 1000,
+	chance: 2
+}]
+backpackPrices = {
+	'3': 500,
+	'5': 2000,
+	'7': 5000,
+	'10': 7500
+}
+backpackSizes = {
+	'3': 5,
+	'5': 7,
+	'7': 10,
+	'10': 15
+}
+pickaxePrices = {
+	'1': 1000,
+	'2': 2500,
+	'3': 5000,
+	'4': 10000
+}
+const commands = {
+	receiveData: function(collection){
+		return new Promise(function(resolve, reject){
+			collection.find({}, { projection: { _id: 0}}).toArray(function(error, result){
+				resolve(result)
+			})
+		})
+	},
+	info: function(res, collection, user){
+		occupiedSpace = 0
+		for (i of user.inventory) occupiedSpace += i.quantity
+		res.write(' Имя: '+user.name+', Балланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+', '+((user.swordLevel > 0) ? 'Уровень меча: '+user.swordLevel : 'У вас нет меча')+'.')
+	},
+	inventory: function(res, collection, user){
+		total = 0
+		for (i of user.inventory) total += i.price * i.quantity
+		for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
+		occupiedSpace = 0
+		for (i of user.inventory) occupiedSpace += i.quantity
+		res.write('Всего: '+total+'$, Место: '+occupiedSpace+'/'+user.backpackSize)
+	},
+	dig: function(res, collection, user){return new Promise(function(resolve, reject){
+		if ((function(){
+			occupiedSpace = 0
+			for (i of user.inventory) occupiedSpace += i.quantity
+			return occupiedSpace
+		})() >= user.backpackSize){
+			res.write(' Рюкзак переполнен.')
+			return resolve()
+		}
+		if (user.pickaxeLevel == 1) options = level1
+		else if (user.pickaxeLevel == 2) options = level2
+		else if (user.pickaxeLevel == 3) options = level3
+		else if (user.pickaxeLevel == 4) options = level4
+		else if (user.pickaxeLevel == 5) options = level5
+		for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 1000); sum <= rand; sum += options[choice].chance) choice++
+		occupiedSpace = 0
+		for (i of user.inventory) occupiedSpace += i.quantity
+		res.write(options[choice].comment+', Рюкзак '+(occupiedSpace+1)+'/'+user.backpackSize+'.')
+		
+		if ((function(){
+			for (i of user.inventory){
+				if (i.type == options[choice].type) return true
+			}
+		})()){
+			for (i of user.inventory){
+				if (i.type == options[choice].type){
+					i.quantity++
+				}
+			}
+		}
+		else 
+			user.inventory.push({
+			type: options[choice].type,
+			quantity: 1,
+			price: options[choice].price
+		})
+			
+		user.inventory.sort(function(a, b){return b.quantity - a.quantity})
+			
+		collection.updateOne({name: user.name},{$set: {inventory: user.inventory}}, function(error, result){
+			if(error) res.write(' Ошибка с добавлением в инвентарь. Ошибка: '+error)
+			resolve()
+		})
+	})},
+	sell: function(res, collection, user){return new Promise(function(resolve, reject){
+		total = 0
+		for (i of user.inventory) total += i.price * i.quantity
+		if (total > 0){
+			collection.updateOne(user,{$set: {money: user.money+total,inventory: []}}, function(error, result){
+				if(error) res.write(' Ошибка с продажей. Ошибка: '+error)
+				else res.write(' Вы продали свои ресурсы за '+total+'$, текущий баланс: '+parseInt(total + user.money)+'$.')
+				resolve()
+			})
+		}
+		else {
+			res.write(" Вам нечего продавать, '!mine копать' для добычи.")
+			resolve()
+		}
+	})},
+	upgrade: function(res, collection, user){return new Promise(function(resolve, reject){
+		upgradingItem = url.domainToUnicode(pathname.split('/')[4]).toLowerCase()
+		if (['рюкзак','сумка','сумку','инвентарь','inventory','inv'].indexOf(upgradingItem) != -1){
+			if (user.backpackSize == 50){
+				res.write(' У вас максимальный уровень рюкзака.')
+				return resolve()
+			}
+			else {
+				newBackpackSize = backpackSizes[user.backpackSize]
+				price = backpackPrices[user.backpackSize]
+			}
+			if (user.money >= price){
+				collection.updateOne(user,{$set: {money: user.money - price, backpackSize: newBackpackSize}}, function(error, result){
+					if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
+					else res.write('Вместимость рюкзака увеличена до '+newBackpackSize+' за '+price+'$, оставшиеся деньги: '+(user.money - price)+'$.')
+					resolve()
+				})
+			}
+			else {
+				res.write(' Для увеличения места в рюкзаке до '+newBackpackSize+' требуется '+price+'$')
+				resolve()
+			}
+		}
+		else if (['кирка','кирку','инструмент','pickaxe','pick'].indexOf(upgradingItem) != -1){
+			if (user.pickaxeLevel == 5){
+				res.write(' У вас максимальный уровень кирки.')
+				return resolve()
+			}
+			else price = pickaxePrices[user.pickaxeLevel]
+			if (user.money >= price){
+				collection.updateOne(user,{$set: {money: user.money - price, pickaxeLevel: user.pickaxeLevel + 1}}, function(error, result){
+					if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
+					else res.write('Уровень кирки увеличен до '+(user.pickaxeLevel+1)+' уровня за '+price+'$, оставшиеся деньги: '+(user.money-price)+'$.')
+					resolve()
+				})
+			}
+			else {
+				res.write(' Для увеличения уровня кирки до '+(user.pickaxeLevel+1)+' уровня требуется '+price+'$')
+				resolve()
+			}
+		}
+		else {
+			res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для увеличения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$.' : 'У вас максимальный уровень рюкзака')+'. '+((user.pickaxeLevel != 5) ? 'Для улучшения кирки до '+(user.pickaxeLevel+1)+' уровня необходимо '+pickaxePrices[user.pickaxeLevel]+'$.' : 'У вас максимальный уровень кирки.'))
+			resolve()
+		}
+	})},
+	give: function(res, collection, user){return new Promise(function(resolve, reject){
+		recipient = url.domainToUnicode(String(pathname.split('/')[4].replace('@','').replace('%40',''))).toLowerCase()
+		value = parseInt(pathname.split('/')[5])
+		
+		if (!recipient || !value){
+			res.write(" Команда '!mine передать' имеет структуру: '!mine передать пользователь сумма'.")
+			return resolve()
+		}
+		
+		if (user.name == recipient){
+			res.write(" Нельзя передавать деньги себе.")
+			return resolve()
+		}
+		
+		if ((function(){
+			for (i of data) if (i.name == recipient) {
+				recipientGold = i.money
+				return true
+			}
+		})()){
+			if (user.money >= value){
+				collection.updateOne({name: recipient},{$set: {money: recipientGold+value}}, function(error, result){
+					if(error) {
+						res.write(' Ошибка с передачей денег. Ошибка: '+error)
+						resolve()
+					}
+					else res.write(' Вы отдали @'+recipient+' '+value+'$, текущий баланс: '+(user.money-value)+'$.')
+				})
+				collection.updateOne(user,{$set: {money: user.money-value}}, function(error, result){
+					if(error) res.write(' Ошибка с пересчётом баланса. Ошибка: '+error)
+					resolve()
+				})
+			}
+			else {
+				res.write(' У вас недостаточно средств для перевода.')
+				resolve()
+			}
+		}
+		else {
+			res.write(' Пользователь '+recipient+' не зарегистрирован.')
+			resolve()
+		}
+	})},
+	users: function(res, data){
+		res.write(' Зарегистрированные пользователи: ')
+		data.sort(function(a,b){return b.money-a.money})
+		for (let user of data) res.write(user.name.replace(/\b\w/g, l => l.toUpperCase())+'('+i.money+'$) ')
+	},
+	create: function(res, collection, name){return new Promise(function(resolve, reject){
+		collection.insertOne({name: name, money: 0, inventory: [], backpackSize: 3, pickaxeLevel: 1, swordLevel: 0}, function(error, result){
+			if(error) res.write(' Ошибка создания аккаунта. Ошибка: '+error)
+			else res.write(' Аккаунт создан, теперь вы можете пользоваться командами бота.')
+			resolve()
+		})
+	})},
+	remove: function(res, collection, user){return new Promise(function(resolve, reject){
+		collection.deleteOne(user, function(error, obj){
+			if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
+			else res.write(" Аккаунт удалён, введите любое сообщение с '!mine' чтобы создать новый.")
+			resolve()
+		})
+	})}
+}
 const server = http.createServer(function(req, res) {
 	res.writeHeader(200, {"Content-Type": "application/json"})
 	pathname = url.parse(req.url).pathname
@@ -101,12 +558,7 @@ const server = http.createServer(function(req, res) {
 			}
 			
 			const collection = client.db("Moobot").collection("mine")
-			
-			data = await new Promise(function(resolve, reject){
-				collection.find({}, { projection: { _id: 0}}).toArray(function(error, result){
-					resolve(result)
-				})
-			})
+			data = await commands.receiveData(collection)
 			
 			if ((function(){
 				for (i of data){
@@ -116,475 +568,20 @@ const server = http.createServer(function(req, res) {
 					}
 				}
 			})()) {
-				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa','money','bank'].indexOf(action) != -1){
-					occupiedSpace = 0
-					for (i of user.inventory) occupiedSpace += i.quantity
-					res.write(' Имя: '+user.name+', Балланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+', '+((user.swordLevel > 0) ? 'Уровень меча: '+user.swordLevel : 'У вас нет меча')+'.')
-				}
-				else if (['инвентарь','инвент','карманы','сумка','рюкзак','вещи','ресурсы','inventory','inv'].indexOf(action) != -1) {
-					total = 0
-					for (i of user.inventory) total += i.price * i.quantity
-					for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
-					occupiedSpace = 0
-					for (i of user.inventory) occupiedSpace += i.quantity
-					res.write('Всего: '+total+'$, Место: '+occupiedSpace+'/'+user.backpackSize)
-				}
-				else if (['копать','батрачить','шахта','шахтёр','работать','dig'].indexOf(action) != -1) await new Promise(function(resolve, reject){
-					if ((function(){
-						occupiedSpace = 0
-						for (i of user.inventory) occupiedSpace += i.quantity
-						return occupiedSpace
-					})() >= user.backpackSize){
-						res.write(' Рюкзак переполнен.')
-						res.end()
-						resolve()
-						return
-					}
-					level1 = [{
-						type: 'Камень',
-						comment: 'вскопал камень. (1$)',
-						price: 1,
-						chance: 500
-					},{
-						type: 'Уголь',
-						comment: 'вскопал уголь. (5$)',
-						price: 5,
-						chance: 200
-					},{
-						type: 'Оловянная руда',
-						comment: 'вскопал олово. (15$)',
-						price: 15,
-						chance: 100
-					},{
-						type: 'Медная руда',
-						comment: 'вскопал медь. (15$)',
-						price: 15,
-						chance: 100
-					},{
-						type: 'Железная руда',
-						comment: 'вскопал железо. (30$)',
-						price: 30,
-						chance: 50
-					},{
-						type: 'Золотая руда',
-						comment: 'вскопал золото. (50$)',
-						price: 50,
-						chance: 50
-					}]
-					level2 = [{
-						type: 'Камень',
-						comment: 'вскопал камень. (1$)',
-						price: 1,
-						chance: 400
-					},{
-						type: 'Уголь',
-						comment: 'вскопал уголь. (5$)',
-						price: 5,
-						chance: 200
-					},{
-						type: 'Оловянная руда',
-						comment: 'вскопал олово. (15$)',
-						price: 15,
-						chance: 100
-					},{
-						type: 'Медная руда',
-						comment: 'вскопал медь. (15$)',
-						price: 15,
-						chance: 100
-					},{
-						type: 'Железная руда',
-						comment: 'вскопал железо. (30$)',
-						price: 30,
-						chance: 50
-					},{
-						type: 'Золотая руда',
-						comment: 'вскопал золото. (50$)',
-						price: 50,
-						chance: 50
-					},{
-						type: 'Рог единорога',
-						comment: 'подобрал рог единорога . (65$) Jebaited ',
-						price: 65,
-						chance: 40
-					},{
-						type: 'Алмазная руда',
-						comment: 'вскопал алмазы. (100$) ResidentSleeper ',
-						price: 100,
-						chance: 30
-					},{
-						type: 'Кокаин',
-						comment: 'нашёл кокаин. (250$) SeemsGood ',
-						price: 250,
-						chance: 20
-					},{
-						type: 'Долбанит',
-						comment: 'вскопал долбанит. (500$) PogChamp ',
-						price: 500,
-						chance: 10
-					}]
-					level3 = [{
-						type: 'Камень',
-						comment: 'вскопал камень. (1$)',
-						price: 1,
-						chance: 350
-					},{
-						type: 'Уголь',
-						comment: 'вскопал уголь. (5$)',
-						price: 5,
-						chance: 150
-					},{
-						type: 'Оловянная руда',
-						comment: 'вскопал олово. (15$)',
-						price: 15,
-						chance: 80
-					},{
-						type: 'Медная руда',
-						comment: 'вскопал медь. (15$)',
-						price: 15,
-						chance: 80
-					},{
-						type: 'Железная руда',
-						comment: 'вскопал железо. (30$)',
-						price: 30,
-						chance: 100
-					},{
-						type: 'Золотая руда',
-						comment: 'вскопал золото. (50$)',
-						price: 50,
-						chance: 140
-					},{
-						type: 'Рог единорога',
-						comment: 'подобрал рог единорога . (65$) Jebaited ',
-						price: 65,
-						chance: 40
-					},{
-						type: 'Алмазная руда',
-						comment: 'вскопал алмазы. (100$) ResidentSleeper ',
-						price: 100,
-						chance: 30
-					},{
-						type: 'Кокаин',
-						comment: 'нашёл кокаин. (250$) SeemsGood ',
-						price: 250,
-						chance: 20
-					},{
-						type: 'Долбанит',
-						comment: 'вскопал долбанит. (500$) PogChamp ',
-						price: 500,
-						chance: 9
-					},{
-						type: 'Нудесы Ани',
-						comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
-						price: 1000,
-						chance: 1
-					}]
-					level4 = [{
-						type: 'Камень',
-						comment: 'вскопал камень. (1$)',
-						price: 1,
-						chance: 200
-					},{
-						type: 'Уголь',
-						comment: 'вскопал уголь. (5$)',
-						price: 5,
-						chance: 200
-					},{
-						type: 'Оловянная руда',
-						comment: 'вскопал олово. (15$)',
-						price: 15,
-						chance: 100
-					},{
-						type: 'Медная руда',
-						comment: 'вскопал медь. (15$)',
-						price: 15,
-						chance: 100
-					},{
-						type: 'Железная руда',
-						comment: 'вскопал железо. (30$)',
-						price: 30,
-						chance: 150
-					},{
-						type: 'Золотая руда',
-						comment: 'вскопал золото. (50$)',
-						price: 50,
-						chance: 150
-					},{
-						type: 'Рог единорога',
-						comment: 'подобрал рог единорога . (65$) Jebaited ',
-						price: 65,
-						chance: 40
-					},{
-						type: 'Алмазная руда',
-						comment: 'вскопал алмазы. (100$) ResidentSleeper ',
-						price: 100,
-						chance: 30
-					},{
-						type: 'Кокаин',
-						comment: 'нашёл кокаин. (250$) SeemsGood ',
-						price: 250,
-						chance: 20
-					},{
-						type: 'Долбанит',
-						comment: 'вскопал долбанит. (500$) PogChamp ',
-						price: 500,
-						chance: 8
-					},{
-						type: 'Нудесы Ани',
-						comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
-						price: 1000,
-						chance: 2
-					}]
-					level5 = [{
-						type: 'Камень',
-						comment: 'вскопал камень. (1$)',
-						price: 1,
-						chance: 100
-					},{
-						type: 'Уголь',
-						comment: 'вскопал уголь. (5$)',
-						price: 5,
-						chance: 100
-					},{
-						type: 'Оловянная руда',
-						comment: 'вскопал олово. (15$)',
-						price: 15,
-						chance: 100
-					},{
-						type: 'Медная руда',
-						comment: 'вскопал медь. (15$)',
-						price: 15,
-						chance: 100
-					},{
-						type: 'Железная руда',
-						comment: 'вскопал железо. (30$)',
-						price: 30,
-						chance: 200
-					},{
-						type: 'Золотая руда',
-						comment: 'вскопал золото. (50$)',
-						price: 50,
-						chance: 200
-					},{
-						type: 'Рог единорога',
-						comment: 'подобрал рог единорога . (65$) Jebaited ',
-						price: 65,
-						chance: 100
-					},{
-						type: 'Алмазная руда',
-						comment: 'вскопал алмазы. (100$) ResidentSleeper ',
-						price: 100,
-						chance: 60
-					},{
-						type: 'Кокаин',
-						comment: 'нашёл кокаин. (250$) SeemsGood ',
-						price: 250,
-						chance: 30
-					},{
-						type: 'Долбанит',
-						comment: 'вскопал долбанит. (500$) PogChamp ',
-						price: 500,
-						chance: 8
-					},{
-						type: 'Нудесы Ани',
-						comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
-						price: 1000,
-						chance: 2
-					}]
-					if (user.pickaxeLevel == 1) options = level1
-					else if (user.pickaxeLevel == 2) options = level2
-					else if (user.pickaxeLevel == 3) options = level3
-					else if (user.pickaxeLevel == 4) options = level4
-					else if (user.pickaxeLevel == 5) options = level5
-					for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 1000); sum <= rand; sum += options[choice].chance) choice++
-					occupiedSpace = 0
-					for (i of user.inventory) occupiedSpace += i.quantity
-					res.write(options[choice].comment+', Рюкзак '+(occupiedSpace+1)+'/'+user.backpackSize+'.')
-					
-					if ((function(){
-						for (i of user.inventory){
-							if (i.type == options[choice].type) return true
-						}
-					})()){
-						for (i of user.inventory){
-							if (i.type == options[choice].type){
-								i.quantity++
-							}
-						}
-					}
-					else 
-						user.inventory.push({
-						type: options[choice].type,
-						quantity: 1,
-						price: options[choice].price
-					})
-						
-					user.inventory.sort(function(a, b){return b.quantity - a.quantity})
-						
-					collection.updateOne({name: user.name},{$set: {inventory: user.inventory}}, function(error, result){
-						if(error) res.write(' Ошибка с добавлением в инвентарь. Ошибка: '+error)
-						resolve()
-					})
-				})
-				else if (['продать', 'очистить','сбагрить','sell'].indexOf(action) != -1) await new Promise(function(resolve, reject){
-					total = 0
-					for (i of user.inventory) total += i.price * i.quantity
-					if (total > 0){
-						collection.updateOne(user,{$set: {money: user.money+total,inventory: []}}, function(error, result){
-							if(error) res.write(' Ошибка с продажей. Ошибка: '+error)
-							else res.write(' Вы продали свои ресурсы за '+total+'$, текущий баланс: '+parseInt(total + user.money)+'$.')
-							resolve()
-						})
-					}
-					else {
-						res.write(" Вам нечего продавать, '!mine копать' для добычи.")
-						resolve()
-					}
-				})
-				else if (['улучшить','купить','прокачать','апгрейд','upgrade','up','buy'].indexOf(action) != -1) await new Promise(function(resolve, reject){
-					upgradingItem = url.domainToUnicode(pathname.split('/')[4]).toLowerCase()
-					backpackPrices = {
-						'3': 500,
-						'5': 2000,
-						'7': 5000,
-						'10': 7500
-					}
-					backpackSizes = {
-						'3': 5,
-						'5': 7,
-						'7': 10,
-						'10': 15
-					}
-					pickaxePrices = {
-						'1': 1000,
-						'2': 2500,
-						'3': 5000,
-						'4': 10000
-					}
-					if (['рюкзак','сумка','сумку','инвентарь','inventory','inv'].indexOf(upgradingItem) != -1){
-						if (user.backpackSize == 50){
-							res.write(' У вас максимальный уровень рюкзака.')
-							res.end()
-							resolve()
-							return
-						}
-						else {
-							newBackpackSize = backpackSizes[user.backpackSize]
-							price = backpackPrices[user.backpackSize]
-						}
-						if (user.money >= price){
-							collection.updateOne(user,{$set: {money: user.money - price, backpackSize: newBackpackSize}}, function(error, result){
-								if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
-								else res.write('Вместимость рюкзака увеличена до '+newBackpackSize+' за '+price+'$, оставшиеся деньги: '+(user.money - price)+'$.')
-								resolve()
-							})
-						}
-						else {
-							res.write(' Для увеличения места в рюкзаке до '+newBackpackSize+' требуется '+price+'$')
-							resolve()
-						}
-					}
-					else if (['кирка','кирку','инструмент','pickaxe','pick'].indexOf(upgradingItem) != -1){
-						if (user.pickaxeLevel == 5){
-							res.write(' У вас максимальный уровень кирки.')
-							res.end()
-							resolve()
-							return
-						}
-						else price = pickaxePrices[user.pickaxeLevel]
-						if (user.money >= price){
-							collection.updateOne(user,{$set: {money: user.money - price, pickaxeLevel: user.pickaxeLevel + 1}}, function(error, result){
-								if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
-								else res.write('Уровень кирки увеличен до '+(user.pickaxeLevel+1)+' уровня за '+price+'$, оставшиеся деньги: '+(user.money-price)+'$.')
-								resolve()
-							})
-						}
-						else {
-							res.write(' Для увеличения уровня кирки до '+(user.pickaxeLevel+1)+' уровня требуется '+price+'$')
-							resolve()
-						}
-					}
-					else {
-						res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для увеличения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$.' : 'У вас максимальный уровень рюкзака')+'. '+((user.pickaxeLevel != 5) ? 'Для улучшения кирки до '+(user.pickaxeLevel+1)+' уровня необходимо '+pickaxePrices[user.pickaxeLevel]+'$.' : 'У вас максимальный уровень кирки.'))
-						resolve()
-					}
-				})
-				else if (['удалиться','delete','del','remove'].indexOf(action) != -1) await new Promise(function(resolve, reject){
-					collection.deleteOne(user, function(error, obj){
-						if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
-						else res.write(" Аккаунт удалён, введите любое сообщение с '!mine' чтобы создать новый.")
-						resolve()
-					})
-				})
-				else if (['передать','перевод','подарить','подарок','give'].indexOf(action) != -1) await new Promise(function(resolve, reject){
-					recipient = url.domainToUnicode(String(pathname.split('/')[4].replace('@','').replace('%40',''))).toLowerCase()
-					value = parseInt(pathname.split('/')[5])
-					
-					if (!recipient || !value){
-						res.write(" Команда '!mine передать' имеет структуру: '!mine передать пользователь сумма'.")
-						res.end()
-						return
-					}
-					
-					if (user.name == recipient){
-						res.write(" Нельзя передавать деньги себе.")
-						res.end()
-						return
-					}
-					
-					if ((function(){
-						for (i of data){
-							if (i.name == recipient) {
-								recipientGold = i.money
-								return true
-							}
-						}
-					})()){
-						if (user.money >= value){
-							collection.updateOne({name: recipient},{$set: {money: recipientGold+value}}, function(error, result){
-								if(error) {
-									res.write(' Ошибка с передачей денег. Ошибка: '+error)
-									resolve()
-								}
-								else res.write(' Вы отдали @'+recipient+' '+value+'$, текущий баланс: '+(user.money-value)+'$.')
-							})
-							collection.updateOne(user,{$set: {money: user.money-value}}, function(error, result){
-								if(error) res.write(' Ошибка с пересчётом баланса. Ошибка: '+error)
-								resolve()
-							})
-						}
-						else {
-							res.write(' У вас недостаточно средств для перевода.')
-							resolve()
-						}
-					}
-					else {
-						res.write(' Пользователь '+recipient+' не зарегистрирован.')
-						resolve()
-					}
-				})
-					
-				else if (['пользователи','игроки','люди','users','players'].indexOf(action) != -1){
-					res.write(' Зарегистрированные пользователи: ')
-					data.sort(function(a,b){return b.money-a.money})
-					for (i of data){
-						res.write(i.name.replace(/\b\w/g, l => l.toUpperCase())+'('+i.money+'$) ')
-					}
-				}
-				
+				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa','money','bank'].indexOf(action) != -1) commands.info(res, collection, user)
+				else if (['инвентарь','инвент','карманы','сумка','рюкзак','вещи','ресурсы','inventory','inv'].indexOf(action) != -1) commands.inventory(res, collection, user)
+				else if (['копать','батрачить','шахта','шахтёр','работать','dig'].indexOf(action) != -1) await commands.dig(res, collection, user)
+				else if (['продать', 'очистить','сбагрить','sell'].indexOf(action) != -1) await commands.sell(res, collection, user)
+				else if (['улучшить','купить','прокачать','апгрейд','upgrade','up','buy'].indexOf(action) != -1) await commands.upgrade(res, collection, user)
+				else if (['пользователи','игроки','люди','users','players'].indexOf(action) != -1) commands.users(res, data)
+				else if (['удалиться','delete','del','remove'].indexOf(action) != -1) await commands.remove(res, collection, user)
+				else if (['передать','перевод','подарить','подарок','give'].indexOf(action) != -1) await commands.give(res, collection, user)
 				else res.write("Доступные команды для бота: 'инфо', 'пользователи', 'копать', ''инвентарь, 'продать', 'улучшить', 'передать', 'удалиться'")
 			}
-			else await new Promise(function(resolve, reject){
-				collection.insertOne({name: name, money: 0, inventory: [], backpackSize: 3, pickaxeLevel: 1, swordLevel: 0}, function(error, result){
-					if(error) res.write(' Ошибка создания аккаунта. Ошибка: '+error)
-					else res.write(' Аккаунт создан, теперь вы можете пользоваться командами бота.')
-					resolve()
-				})
-			})
-			
+			else await commands.create(res, collection, name)
 			res.end()
 			client.close()
-		});
-// 		res.write('name: '+name+' action: '+action+'.   ')
+		})
 	}
 	else if (pathname.split('/')[1] == 'rpg'){
 		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
@@ -593,7 +590,7 @@ const server = http.createServer(function(req, res) {
 		else if (['событие','соба','ивент'].indexOf(style) != -1)
 			res.write(events.choiceOne())
 		else res.write(' Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации? Выбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа). Например "!rpg персонаж"')
-		return res.end()
+		res.end()
 	}
 	else {
 		res.writeHeader(200, {"Content-Type": "text/html"})
@@ -636,7 +633,7 @@ const server = http.createServer(function(req, res) {
 			<div class = 'button'><a href = "ask">ask</a></div>
 		</body>
 		`)
-		return res.end()
+		res.end()
 	}
 })
 server.listen(PORT)
