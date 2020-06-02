@@ -529,7 +529,7 @@ pickaxePrices = {
 swordPrices = {
 	'0': 1000,
 	'1': 2500,
-	'2': 5000,
+	'2': 4000,
 },
 commands = {
 	receiveData: function(collection){
