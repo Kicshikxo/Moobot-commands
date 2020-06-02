@@ -561,7 +561,7 @@ commands = {
 			res.write(' Рюкзак переполнен.')
 			return resolve()
 		}
-		if (user.pickaxeLevel == 1) options = level1
+		if (user.pickaxeLevel == 1) options = pickaxeLevel1
 		else if (user.pickaxeLevel == 2) options = pickaxeLevel2
 		else if (user.pickaxeLevel == 3) options = pickaxeLevel3
 		else if (user.pickaxeLevel == 4) options = pickaxeLevel4
