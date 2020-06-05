@@ -562,7 +562,7 @@ commands = {
 		}
 		occupiedSpace = 0
 		for (i of user.inventory) occupiedSpace += i.quantity
-		res.write(' Имя: '+user.name+', Балланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+', '+((user.swordLevel > 0) ? 'Уровень меча: '+user.swordLevel : 'У вас нет меча')+'.')
+		res.write(' Имя: '+user.name+', Балланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+', '+((user.swordLevel > 0) ? 'Уровень меча: '+user.swordLevel : 'Меча нет')+'.')
 	},
 	inventory: function(res, collection, user){
 		total = 0
