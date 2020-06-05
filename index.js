@@ -605,7 +605,7 @@ commands = {
 			price: options[choice].price
 		})
 			
-		user.inventory.sort(function(a, b){return b.quantity - a.quantity})
+		user.inventory.sort(function(a, b){return b.price - a.price})
 			
 		collection.updateOne({name: user.name},{$set: {inventory: user.inventory}}, function(error, result){
 			if(error) res.write(' Ошибка с добавлением в инвентарь. Ошибка: '+error)
