@@ -276,11 +276,6 @@ pickaxeLevel4 = [{
 	chance: 2
 }],
 pickaxeLevel5 = [{
-	type: 'Камень',
-	comment: 'вскопал камень. (1$)',
-	price: 1,
-	chance: 60
-},{
 	type: 'Уголь',
 	comment: 'вскопал уголь. (5$)',
 	price: 5,
@@ -304,12 +299,12 @@ pickaxeLevel5 = [{
 	type: 'Золотая руда',
 	comment: 'вскопал золото. (50$)',
 	price: 50,
-	chance: 200
+	chance: 250
 },{
 	type: 'Рог единорога',
 	comment: 'подобрал рог единорога . (65$) Jebaited ',
 	price: 65,
-	chance: 100
+	chance: 150
 },{
 	type: 'Алмазная руда',
 	comment: 'вскопал алмазы. (100$) ResidentSleeper ',
