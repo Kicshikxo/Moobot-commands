@@ -729,7 +729,7 @@ commands = {
 	})},
 	give: function(res, collection, user){return new Promise(function(resolve, reject){
 		recipient = url.domainToUnicode(String(pathname.split('/')[4].replace('@','').replace('%40',''))).toLowerCase()
-		value = parseInt(pathname.split('/')[5])
+		value = Math.abs(parseInt(pathname.split('/')[5]))
 		
 		if (!recipient || !value){
 			res.write(" Команда '!mine передать' имеет структуру: '!mine передать пользователь сумма'.")
