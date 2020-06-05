@@ -294,7 +294,7 @@ pickaxeLevel5 = [{
 	type: 'Железная руда',
 	comment: 'вскопал железо. (30$)',
 	price: 30,
-	chance: 200
+	chance: 250
 },{
 	type: 'Золотая руда',
 	comment: 'вскопал золото. (50$)',
@@ -304,7 +304,7 @@ pickaxeLevel5 = [{
 	type: 'Рог единорога',
 	comment: 'подобрал рог единорога . (65$) Jebaited ',
 	price: 65,
-	chance: 150
+	chance: 100
 },{
 	type: 'Алмазная руда',
 	comment: 'вскопал алмазы. (100$) ResidentSleeper ',
