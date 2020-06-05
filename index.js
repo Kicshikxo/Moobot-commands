@@ -842,7 +842,7 @@ const server = http.createServer(function(req, res) {
 		return res.end()
 	}
 	else if (pathname.split('/')[1] == 'choice'){
-		options = pathname.split('/').slice(2).split('+').map(function(element){
+		options = pathname.split('/')[2].split('+').map(function(element){
 			if (parseInt(element) == element) return element
 			else return url.domainToUnicode(element)
 		})
