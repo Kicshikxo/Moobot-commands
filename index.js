@@ -843,7 +843,7 @@ const server = http.createServer(function(req, res) {
 	}
 	else if (pathname.split('/')[1] == 'choice'){
 		options = pathname.split('/')[2].split('+').map(function(element){
-			if (parseInt(element) == element) return element
+			if (parseInt(element) == element || parseFloat(element) == element) return element
 			else return url.domainToUnicode(element)
 		})
 		if (options.length < 2) res.write('Количество вариантов должно быть больше одного. Варианты указываются после команды через пробел.')
