@@ -299,7 +299,7 @@ pickaxeLevel5 = [{
 	type: 'Золотая руда',
 	comment: 'вскопал золото. (50$)',
 	price: 50,
-	chance: 250
+	chance: 230
 },{
 	type: 'Рог единорога',
 	comment: 'подобрал рог единорога . (65$) Jebaited ',
@@ -314,7 +314,7 @@ pickaxeLevel5 = [{
 	type: 'Кокаин',
 	comment: 'нашёл кокаин. (250$) SeemsGood ',
 	price: 250,
-	chance: 30
+	chance: 50
 },{
 	type: 'Долбанит',
 	comment: 'вскопал долбанит. (500$) PogChamp ',
