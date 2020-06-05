@@ -846,7 +846,8 @@ const server = http.createServer(function(req, res) {
 			if (parseInt(element) == element) return element
 			else return url.domainToUnicode(element)
 		})
-		res.write(options.choiceOne())
+		if (options.length < 2) res.write('Количество вариантов должно быть больше одного. Варианты указываются после команды через пробел.')
+		else res.write(options.choiceOne())
 		res.end()
 	}
 	else if (pathname.split('/')[1] == 'rpg'){
