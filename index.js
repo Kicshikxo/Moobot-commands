@@ -556,6 +556,13 @@ commands = {
 		})
 	},
 	info: function(res, collection, user){
+		if (pathname.split('/')[4]){
+			for (i of data){
+				if (i.name == pathname.split('/')[4]) {
+					user = i
+				}
+			}
+		}
 		occupiedSpace = 0
 		for (i of user.inventory) occupiedSpace += i.quantity
 		res.write(' Имя: '+user.name+', Балланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+', '+((user.swordLevel > 0) ? 'Уровень меча: '+user.swordLevel : 'У вас нет меча')+'.')
