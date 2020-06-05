@@ -842,7 +842,11 @@ const server = http.createServer(function(req, res) {
 		return res.end()
 	}
 	else if (pathname.split('/')[1] == 'choice'){
-		res.write(pathname)
+		options = pathname.split('/').slice(2).map(function(element){
+			if (parseInt(element) == element) return element
+			else return url.domainToUnicode(element)
+		})
+		res.write(options.choiceOne())
 		res.end()
 	}
 	else if (pathname.split('/')[1] == 'rpg'){
