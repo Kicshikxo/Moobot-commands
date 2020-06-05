@@ -841,6 +841,10 @@ const server = http.createServer(function(req, res) {
 		res.write(['Да', 'Нет'].choiceOne())
 		return res.end()
 	}
+	else if (pathname.split('/')[1] == 'choice'){
+		res.write(pathname)
+		res.end()
+	}
 	else if (pathname.split('/')[1] == 'rpg'){
 		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
 		if (['персонаж','персонажи','перс','герой'].indexOf(style) != -1)
