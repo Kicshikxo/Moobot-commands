@@ -279,7 +279,7 @@ pickaxeLevel5 = [{
 	type: 'Камень',
 	comment: 'вскопал камень. (1$)',
 	price: 1,
-	chance: 100
+	chance: 60
 },{
 	type: 'Уголь',
 	comment: 'вскопал уголь. (5$)',
@@ -314,7 +314,7 @@ pickaxeLevel5 = [{
 	type: 'Алмазная руда',
 	comment: 'вскопал алмазы. (100$) ResidentSleeper ',
 	price: 100,
-	chance: 60
+	chance: 100
 },{
 	type: 'Кокаин',
 	comment: 'нашёл кокаин. (250$) SeemsGood ',
