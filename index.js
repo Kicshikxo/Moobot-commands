@@ -558,11 +558,7 @@ commands = {
 	info: function(res, collection, user){
 		if (pathname.split('/')[4]){
 			requestedUser = url.domainToUnicode(String(pathname.split('/')[4].replace('@','').replace('%40',''))).toLowerCase()
-			for (i of data){
-				if (i.name == requestedUser) {
-					user = i
-				}
-			}
+			for (i of data){if (i.name == requestedUser) user = i}
 		}
 		occupiedSpace = 0
 		for (i of user.inventory) occupiedSpace += i.quantity
