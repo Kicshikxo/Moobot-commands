@@ -728,7 +728,7 @@ commands = {
 			}
 		}
 		else {
-			res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирка)'. "+((user.backpackSize != 100) ? 'Для увеличения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$.' : 'У вас максимальный уровень рюкзака')+'. '+((user.pickaxeLevel != 5) ? 'Для улучшения кирки до '+(user.pickaxeLevel+1)+' уровня необходимо '+pickaxePrices[user.pickaxeLevel]+'$. ' : 'У вас максимальный уровень кирки.')+((user.swordLevel != 3) ? 'Для улучшения меча до '+(user.swordLevel+1)+' уровня необходимо '+swordPrices[user.swordLevel]+'$.' : 'У вас максимальный уровень меча.'))
+			res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирку/меч)'. "+((user.backpackSize != 100) ? 'Для увеличения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$.' : 'У вас максимальный уровень рюкзака')+'. '+((user.pickaxeLevel != 5) ? 'Для улучшения кирки до '+(user.pickaxeLevel+1)+' уровня необходимо '+pickaxePrices[user.pickaxeLevel]+'$. ' : 'У вас максимальный уровень кирки.')+((user.swordLevel != 3) ? 'Для улучшения меча до '+(user.swordLevel+1)+' уровня необходимо '+swordPrices[user.swordLevel]+'$.' : 'У вас максимальный уровень меча.'))
 			resolve()
 		}
 	})},
