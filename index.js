@@ -868,7 +868,10 @@ const server = http.createServer(function(req, res) {
 		else res.write(' Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации? Выбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа). Например "!rpg персонаж"')
 		res.end()
 	}
-	else res.end()
+	else {
+		res.write('Проверьте правильность настройки команды.')
+		res.end()
+	}
 })
 server.listen(PORT)
 console.log('Server started on port: '+PORT)
