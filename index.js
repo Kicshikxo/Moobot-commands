@@ -570,6 +570,10 @@ commands = {
 		res.write(' Имя: '+user.name+', Баланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+', '+((user.swordLevel > 0) ? 'Уровень меча: '+user.swordLevel : 'Меча нет')+'.')
 	},
 	inventory: function(res, collection, user){
+		if (!user.inventory){
+			res.write('В вашем рюкзаке ничего нет, \'!mine копать\' для добычи.')
+		}
+
 		total = 0
 		for (i of user.inventory) total += i.price * i.quantity
 		for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
