@@ -570,7 +570,7 @@ commands = {
 		res.write(' Имя: '+user.name+', Баланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+', '+((user.swordLevel > 0) ? 'Уровень меча: '+user.swordLevel : 'Меча нет')+'.')
 	},
 	inventory: function(res, collection, user){
-		if (!user.inventory){
+		if (user.inventory.length < 1){
 			res.write('В вашем рюкзаке ничего нет, \'!mine копать\' для добычи.')
 			return resolve()
 		}
