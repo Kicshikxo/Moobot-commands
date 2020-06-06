@@ -829,7 +829,7 @@ const server = http.createServer(function(req, res) {
 						return true
 					}
 				}
-			})()) {
+			})()){
 				if (['инфо','инфа','баланс','деньги','банк','имя','info','infa','money','bank'].indexOf(action) != -1) commands.info(res, collection, user)
 				else if (['инвентарь','инвент','карманы','сумка','рюкзак','вещи','ресурсы','inventory','inv'].indexOf(action) != -1) commands.inventory(res, collection, user)
 				else if (['копать','батрачить','шахта','шахтёр','работать','dig'].indexOf(action) != -1) await commands.dig(res, collection, user)
@@ -848,7 +848,7 @@ const server = http.createServer(function(req, res) {
 	}
 	else if (pathname == '/ask') {
 		res.write(['Да', 'Нет'].choiceOne())
-		return res.end()
+		res.end()
 	}
 	else if (pathname.split('/')[1] == 'choice'){
 		options = pathname.split('/')[2].split('+').map(function(element){
@@ -868,49 +868,7 @@ const server = http.createServer(function(req, res) {
 		else res.write(' Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации? Выбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа). Например "!rpg персонаж"')
 		res.end()
 	}
-	else {
-		res.writeHeader(200, {"Content-Type": "text/html"})
-		res.write(`
-		<style>
-			* {
-				margin: 0;
-				padding:0;
-				font-family: Arial;
-			}
-			body {
-				width: 100vw;
-				height: 100vh;
-				background: #2D2D2D;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-			a:visited,
-			a:active,
-			a:hover,
-			a {
-				text-decoration: none;
-				color: #FFF
-			}
-			.button {
-				background: #4D4D4D;
-				color: #FFF;
-				border: 2px solid #5D5D5D;
-				border-radius: 15px;
-				width: 100px;
-				height: 30px;
-				text-align: center;
-				font-size: 24px;
-				margin: 30px;
-			}
-		</style>
-		<body>
-			<div class = 'button'><a href = "rpg">rpg</a></div>
-			<div class = 'button'><a href = "ask">ask</a></div>
-		</body>
-		`)
-		res.end()
-	}
+	else res.end()
 })
 server.listen(PORT)
 console.log('Server started on port: '+PORT)
