@@ -2,9 +2,7 @@ const http = require('http'),
 	  url  = require('url'),
 	  PORT = process.env.PORT || 3000
 const MongoClient = require("mongodb").MongoClient;
-   
-const mongoUrl = "\x6D\x6F\x6E\x67\x6F\x64\x62\x2B\x73\x72\x76\x3A\x2F\x2F\x4B\x69\x63\x73\x68\x69\x6B\x78\x6F\x3A\x75\x61\x33\x77\x69\x6B\x71\x77\x65\x40\x63\x6C\x75\x73\x74\x65\x72\x30\x2D\x38\x68\x75\x6D\x79\x2E\x67\x63\x70\x2E\x6D\x6F\x6E\x67\x6F\x64\x62\x2E\x6E\x65\x74\x2F\x6D\x6F\x6F\x62\x6F\x74"
-	  
+
 function randInt(min, max){return ~~((Math.random() * (max - min + 1)) + min)}
 Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
 const characters = [
@@ -811,7 +809,7 @@ const server = http.createServer(function(req, res) {
 		name = url.domainToUnicode(pathname.split('/')[2])
 		action = url.domainToUnicode(pathname.split('/')[3]).toLowerCase()
 		
-		const mongoClient = new MongoClient(mongoUrl, {useNewUrlParser: true});
+		const mongoClient = new MongoClient("\x6D\x6F\x6E\x67\x6F\x64\x62\x2B\x73\x72\x76\x3A\x2F\x2F\x4B\x69\x63\x73\x68\x69\x6B\x78\x6F\x3A\x75\x61\x33\x77\x69\x6B\x71\x77\x65\x40\x63\x6C\x75\x73\x74\x65\x72\x30\x2D\x38\x68\x75\x6D\x79\x2E\x67\x63\x70\x2E\x6D\x6F\x6E\x67\x6F\x64\x62\x2E\x6E\x65\x74\x2F\x6D\x6F\x6F\x62\x6F\x74", {useNewUrlParser: true});
 		mongoClient.connect(async function(error, client){
 			
 			if (error) {
@@ -860,10 +858,10 @@ const server = http.createServer(function(req, res) {
 		res.end()
 	}
 	else if (pathname.split('/')[1] == 'rpg'){
-		style = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
-		if (['персонаж','персонажи','перс','герой'].indexOf(style) != -1)
+		type = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
+		if (['персонаж','персонажи','перс','герой'].indexOf(type) != -1)
 			res.write(characters.choiceOne())
-		else if (['событие','соба','ивент'].indexOf(style) != -1)
+		else if (['событие','соба','ивент'].indexOf(type) != -1)
 			res.write(events.choiceOne())
 		else res.write(' Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации? Выбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа). Например "!rpg персонаж"')
 		res.end()
