@@ -572,6 +572,7 @@ commands = {
 	inventory: function(res, collection, user){
 		if (!user.inventory){
 			res.write('В вашем рюкзаке ничего нет, \'!mine копать\' для добычи.')
+			return resolve()
 		}
 
 		total = 0
