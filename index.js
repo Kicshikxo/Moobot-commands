@@ -5,6 +5,7 @@ const MongoClient = require("mongodb").MongoClient;
 
 function randInt(min, max){return ~~((Math.random() * (max - min + 1)) + min)}
 Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
+
 const characters = [
 	'Я каменьщик, работаю три дня.',
 	'Я каменьщик, работаю три дня.',
