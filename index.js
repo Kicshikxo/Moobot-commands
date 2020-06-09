@@ -764,13 +764,13 @@ commands = {
 				collection.updateOne({name: recipient},{$set: {money: recipientGold+value}}, function(error, result){
 					if(error) {
 						res.write(' Ошибка с передачей денег. Ошибка: '+error)
-						resolve()
+						return resolve()
 					}
 					else res.write(' Вы отдали @'+recipient+' '+value+'$, текущий баланс: '+(user.money-value)+'$.')
 				})
 				collection.updateOne(user,{$set: {money: user.money-value}}, function(error, result){
 					if(error) res.write(' Ошибка с пересчётом баланса. Ошибка: '+error)
-					resolve()
+					return resolve()
 				})
 			}
 			else {
