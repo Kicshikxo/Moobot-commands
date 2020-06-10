@@ -323,12 +323,12 @@ pickaxeLevel5 = [{
 	type: 'Долбанит',
 	comment: 'вскопал долбанит. (500$) PogChamp ',
 	price: 500,
-	chance: 8
+	chance: 5
 },{
 	type: 'Нудесы Ани',
 	comment: 'увидел в инсте нудесы Ани. (1000$) NotLikeThis NotLikeThis NotLikeThis ',
 	price: 1000,
-	chance: 2
+	chance: 5
 }],
 dungeonEventsLevel1 = [{
 		text: ' вы упали по пути к подземелью и вывихнули колено, дальше идти смысла не было.',
