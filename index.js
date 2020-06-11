@@ -874,7 +874,7 @@ const server = http.createServer(function(req, res) {
 		res.write(['Да', 'Нет'].choiceOne())
 		res.end()
 	}
-	else if (pathname == '/joke') {
+	else if (pathname.split('/')[1] == '/joke') {
 		const Iconv = require('iconv').Iconv;
 		http.get({host: 'rzhunemogu.ru', port: 80, path: '/RandJSON.aspx?CType=1', method: 'GET', encoding: 'binary'}, function(result){
 			result.on('data', function(body){
