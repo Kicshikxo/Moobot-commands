@@ -91,7 +91,7 @@ gachi = [
 	'вас боится любой ♂slave♂.',
 	'ты хочешь меня ♂fuck♂-♂fuck♂-♂fuck♂ а я хочу ♂three hundred bucks♂.',
 	'это ♂fuck you♂ слегка, Просто ♂finger♂ щекочет ♂my ass♂.',
-	'вы берёте курс на ♂suck sone dick♂.',
+	'вы берёте курс на ♂suck some dick♂.',
 	'я ♂swallow♂ сейчас ♂my cum♂.',
 	'не так всё было, где же твое хвалёное ♂three hundred bucks♂?',
 	'awaken my ♂dungeon master♂.',
