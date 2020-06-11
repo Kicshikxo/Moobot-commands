@@ -90,7 +90,7 @@ gachi = [
 	'вы согласитесь на что угодно за ♂THREE HUNDRED BUCKS♂.',
 	'вас боятся все ♂FUCKING SLAVES♂.',
 	'ты хочешь меня ♂FUCK♂-♂FUCK♂-♂FUCK♂ а я хочу ♂THREE HUNDRED BUCKS♂.',
-	'это ♂fuck you♂ слегка, Просто ♂FUNGER♂ щекочет ♂MY ASS♂.',
+	'это ♂FUCK YOU♂ слегка, Просто ♂FUNGER♂ щекочет ♂MY ASS♂.',
 	'вы берёте курс на ♂SUCK SOME DICKS♂.',
 	'я ♂SWALLOW♂ сейчас ♂MY CUM♂.',
 	'не так всё было, где же твое хвалёное ♂THREE HUNDRED BUCKS♂?',
