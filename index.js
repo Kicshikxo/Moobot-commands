@@ -86,17 +86,17 @@ events = [
 	'Скользкий на вид господин продает со своего ярко раскрашенного фургона чудо-эликсир исцеляющий от всего. В толпе виден сгорбленный страничек с палочкой, как только он принял образец эликсира, так он закричал от радости, отбросил трость и бодро шагает по улице.'
 ],
 gachi = [
-	'вы настоящий ♂dungeon master♂.',
-	'вы согласитесь на что угодно за ♂three hundred bucks♂.',
-	'вас боятся все ♂fucking slaves♂.',
-	'ты хочешь меня ♂fuck♂-♂fuck♂-♂fuck♂ а я хочу ♂three hundred bucks♂.',
-	'это ♂fuck you♂ слегка, Просто ♂finger♂ щекочет ♂my ass♂.',
-	'вы берёте курс на ♂suck some dick♂.',
-	'я ♂swallow♂ сейчас ♂my cum♂.',
-	'не так всё было, где же твое хвалёное ♂three hundred bucks♂?',
-	'awaken my ♂dungeon master♂.',
-	'ведьмаку заплатите ♂three hundred bucks♂.',
-	'♂Ass we can!♂'
+	'вы настоящий ♂DUNGEON MASTER♂.',
+	'вы согласитесь на что угодно за ♂THREE HUNDRED BUCKS♂.',
+	'вас боятся все ♂FUCKING SLAVES♂.',
+	'ты хочешь меня ♂FUCK♂-♂FUCK♂-♂FUCK♂ а я хочу ♂THREE HUNDRED BUCKS♂.',
+	'это ♂fuck you♂ слегка, Просто ♂FUNGER♂ щекочет ♂MY ASS♂.',
+	'вы берёте курс на ♂SUCK SOME DICKS♂.',
+	'я ♂SWALLOW♂ сейчас ♂MY CUM♂.',
+	'не так всё было, где же твое хвалёное ♂THREE HUNDRED BUCKS♂?',
+	'awaken my ♂DUNGEON MASTER♂.',
+	'ведьмаку заплатите ♂THREE HUNDRED BUCKS♂.',
+	'♂ASS WE CAN!♂'
 ]
 pickaxeLevel1 = [{
 	type: 'Камень',
@@ -368,7 +368,7 @@ dungeonEventsLevel1 = [{
 		chance: 130,
 		money: 0
 	},{
-		text: ' вы вошли в подземелье и встретили ♂dungeon master♂, который за ♂three hundred bucks♂ согласился на ♂fisting♂. Баланс -300.',
+		text: ' вы вошли в подземелье и встретили ♂DUNGEON MASTER♂, который за ♂THREE HUNDRED BUCKS♂ согласился на ♂FISTING♂. Баланс -300.',
 		chance: 20,
 		money: -300
 	},{
@@ -430,7 +430,7 @@ dungeonEventsLevel2 = [{
 		chance: 80,
 		money: 0
 	},{
-		text: ' вы вошли в подземелье и встретили ♂dungeon master♂, который за ♂three hundred bucks♂ согласился на ♂fisting♂. Баланс -300.',
+		text: ' вы вошли в подземелье и встретили ♂DUNGEON MASTER♂, который за ♂THREE HUNDRED BUCKS♂ согласился на ♂FISTING♂. Баланс -300.',
 		chance: 20,
 		money: -300
 	},{
@@ -494,7 +494,7 @@ dungeonEventsLevel3 = [{
 		chance: 50,
 		money: 20
 	},{
-		text: ' вы вошли в подземелье и встретили ♂dungeon master♂, который за ♂three hundred bucks♂ согласился на ♂fisting♂. Баланс -300.',
+		text: ' вы вошли в подземелье и встретили ♂DUNGEON MASTER♂, который за ♂THREE HUNDRED BUCKS♂ согласился на ♂FISTING♂. Баланс -300.',
 		chance: 50,
 		money: -300
 	},{
