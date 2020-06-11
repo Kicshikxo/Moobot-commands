@@ -874,6 +874,18 @@ const server = http.createServer(function(req, res) {
 		res.write(['Да', 'Нет'].choiceOne())
 		res.end()
 	}
+	else if (pathname == '/joke') {
+		const Iconv = require('iconv').Iconv;
+		http.get({host: 'rzhunemogu.ru', port: 80, path: '/RandJSON.aspx?CType=1', method: 'GET', encoding: 'binary'}, function(result){
+			result.on('data', function(body){
+				body = new Buffer(body, 'binary');
+				conv = Iconv('windows-1251', 'utf8');
+				body = conv.convert(body).toString();
+				res.write(body)
+				res.end()
+			});
+		});
+	}
 	else if (pathname.split('/')[1] == 'choice'){
 		options = pathname.split('/')[2].split('+').map(function(element){
 			if (parseInt(element) == element || parseFloat(element) == element) return element
