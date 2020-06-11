@@ -88,7 +88,7 @@ events = [
 gachi = [
 	'вы настоящий ♂dungeon master♂.',
 	'вы согласитесь на что угодно за ♂three hundred bucks♂.',
-	'вас боится любой ♂slave♂.',
+	'вас боятся все ♂fucking slaves♂.',
 	'ты хочешь меня ♂fuck♂-♂fuck♂-♂fuck♂ а я хочу ♂three hundred bucks♂.',
 	'это ♂fuck you♂ слегка, Просто ♂finger♂ щекочет ♂my ass♂.',
 	'вы берёте курс на ♂suck some dick♂.',
