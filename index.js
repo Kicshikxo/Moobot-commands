@@ -96,7 +96,8 @@ gachi = [
 	'не так всё было, где же твое хвалёное ♂THREE HUNDRED BUCKS♂?',
 	'awaken my ♂DUNGEON MASTER♂.',
 	'ведьмаку заплатите ♂THREE HUNDRED BUCKS♂.',
-	'♂ASS WE CAN!♂'
+	'♂ASS WE CAN!♂',
+	'Владимир Путин М♂л♂дец'
 ]
 pickaxeLevel1 = [{
 	type: 'Камень',
