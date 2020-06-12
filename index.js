@@ -903,7 +903,7 @@ const server = http.createServer(function(req, res) {
 			res.write(' Доступные категории для поиска: \'анекдот\', \'рассказ\', \'стих\', \'афоризма\', \'цитата\', \'тост\', \'статус\'. Для поиска 18+ после категории напишите \'18+\'. Например: \'!найти анек 18+\'')
 			return res.end()
 		}
-		if (pathname.split('/')[3] == '18+') type += 10
+		if (['18+', '+', '18', '81+'].indexOf(pathname.split('/')[3]) != -1) type += 10
 		commands.search(res, type)
 	}
 	else if (pathname.split('/')[1] == 'choice'){
