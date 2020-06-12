@@ -198,7 +198,7 @@ commands = {
 		}
 	})},
 	give: function(response, collection, user){return new Promise(function(resolve, reject){
-		recipient = queryArguments[3].replace('@','').toLowerCase()
+		recipient = queryArguments[3].toLowerCase()
 		value = Math.abs(parseInt(queryArguments[4]))
 		
 		if (!recipient || !value){
