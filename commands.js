@@ -105,7 +105,7 @@ commands = {
 		if (total > 0){
 			collection.updateOne(user,{$set: {money: user.money+total,inventory: []}}, function(error, result){
 				if (error) response.write(' Ошибка с продажей. Ошибка: '+error)
-				else response.write(` Вы продали свои ресурсы за ${total}$, текущий баланс: ${parseInt(total + user.money)}$`)
+				else response.write(` Вы продали свои ресурсы за ${total}$, текущий баланс: ${parseInt(total + user.money)}$.`)
 				resolve()
 			})
 		}
