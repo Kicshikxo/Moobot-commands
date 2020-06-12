@@ -10,8 +10,8 @@ commands = {
 		})
 	},
 	info: function(res, collection, user){
-		if (pathname.split('/')[4]){
-			requestedUser = url.domainToUnicode(String(pathname.split('/')[4].replace('@','').replace('%40',''))).toLowerCase()
+		if (queryArguments[3]){
+			requestedUser = queryArguments[3].replace('@','').toLowerCase()
 			for (i of data){if (i.name == requestedUser) user = i}
 		}
 		occupiedSpace = 0
@@ -27,8 +27,10 @@ commands = {
 		total = 0
 		for (i of user.inventory) total += i.price * i.quantity
 		for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
+		
 		occupiedSpace = 0
 		for (i of user.inventory) occupiedSpace += i.quantity
+			
 		res.write('Всего: '+total+'$, Место: '+occupiedSpace+'/'+user.backpackSize)
 	},
 	dig: function(res, collection, user){return new Promise(function(resolve, reject){
@@ -127,8 +129,8 @@ commands = {
 		}
 	})},
 	upgrade: function(res, collection, user){return new Promise(function(resolve, reject){
-		upgradingItem = url.domainToUnicode(pathname.split('/')[4]).toLowerCase()
-		if (['рюкзак','сумка','сумку','инвентарь','inventory','inv'].indexOf(upgradingItem) != -1){
+		upgradingItem = queryArguments[3].toLowerCase()
+		if (upgradingItem(['рюкзак','сумка','сумку','инвентарь','inventory','inv'])){
 			if (user.backpackSize == 50){
 				res.write(' У вас максимальный уровень рюкзака.')
 				return resolve()
@@ -149,7 +151,7 @@ commands = {
 				resolve()
 			}
 		}
-		else if (['кирка','кирку','инструмент','pickaxe','pick'].indexOf(upgradingItem) != -1){
+		else if (upgradingItem.in(['кирка','кирку','инструмент','pickaxe','pick'])){
 			if (user.pickaxeLevel == 5){
 				res.write(' У вас максимальный уровень кирки.')
 				return resolve()
@@ -167,7 +169,7 @@ commands = {
 				resolve()
 			}
 		}
-		else if (['меч','оружие','данж','sword','sw'].indexOf(upgradingItem) != -1){
+		else if (upgradingItem(['меч','оружие','данж','sword','sw'])){
 			if (user.swordLevel == 3){
 				res.write(' У вас максимальный уровень меча.')
 				return resolve()
@@ -191,8 +193,8 @@ commands = {
 		}
 	})},
 	give: function(res, collection, user){return new Promise(function(resolve, reject){
-		recipient = url.domainToUnicode(String(pathname.split('/')[4].replace('@','').replace('%40',''))).toLowerCase()
-		value = Math.abs(parseInt(pathname.split('/')[5]))
+		recipient = queryArguments[3].replace('@','').toLowerCase()
+		value = Math.abs(parseInt(queryArguments[4]))
 		
 		if (!recipient || !value){
 			res.write(" Команда '!mine передать' имеет структуру: '!mine передать пользователь сумма'.")
