@@ -835,7 +835,8 @@ commands = {
 					res.write(result)
 					res.end()
 				}
-				else res.write(commands.joke(res))
+				else try {res.write(commands.joke(res))}
+				catch {}
 			});
 		});
 	}
