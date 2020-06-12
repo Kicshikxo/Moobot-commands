@@ -9,37 +9,38 @@ commands = {
 			})
 		})
 	},
-	info: function(res, collection, user){
+	info: function(response, collection, user){
 		if (queryArguments[3]){
 			requestedUser = queryArguments[3].replace('@','').toLowerCase()
 			for (i of data){if (i.name == requestedUser) user = i}
 		}
 		occupiedSpace = 0
 		for (i of user.inventory) occupiedSpace += i.quantity
-		res.write(' Имя: '+user.name+', Баланс: '+user.money+'$, Рюкзак: '+occupiedSpace+'/'+user.backpackSize+', Уровень кирки: '+user.pickaxeLevel+', '+((user.swordLevel > 0) ? 'Уровень меча: '+user.swordLevel : 'Меча нет')+'.')
+		response.write(` Имя: ${user.name}, Баланс: ${user.money}, Рюкзак: ${occupiedSpace}/${user.backpackSize}, Уровень кирки: ${user.pickaxeLevel}, ${(user.swordLevel > 0) ? `Уровень меча: ${user.swordLevel}` : 'Меча нет'}.`)
 	},
-	inventory: function(res, collection, user){
+	inventory: function(response, collection, user){
 		if (user.inventory.length < 1){
-			res.write('В вашем рюкзаке ничего нет, \'!mine копать\' для добычи.')
-			return res.end()
+			response.write(' В вашем рюкзаке ничего нет, \'!mine копать\' для добычи.')
+			return response.end()
 		}
 
 		total = 0
-		for (i of user.inventory) total += i.price * i.quantity
-		for (i of user.inventory){res.write(i.type+' ('+((i.quantity > 1) ? +i.quantity+'×' : '')+i.price+'$), ')}
+		for (item of user.inventory) total += item.price * item.quantity
+		for (item of user.inventory){
+			response.write(`${item.type} (${(item.quantity > 1) ? `${item.quantity}×` : ''}${item.price}$), `)
+		}
 		
 		occupiedSpace = 0
 		for (i of user.inventory) occupiedSpace += i.quantity
-			
-		res.write('Всего: '+total+'$, Место: '+occupiedSpace+'/'+user.backpackSize)
+		response.write(` Всего: ${total}$, Место: ${occupiedSpace}/${user.backpackSize}.`)
 	},
-	dig: function(res, collection, user){return new Promise(function(resolve, reject){
+	dig: function(response, collection, user){return new Promise(function(resolve, reject){
 		if ((function(){
 			occupiedSpace = 0
 			for (i of user.inventory) occupiedSpace += i.quantity
 			return occupiedSpace
 		})() >= user.backpackSize){
-			res.write(' Рюкзак переполнен.')
+			response.write(' Рюкзак переполнен.')
 			return resolve()
 		}
 		if (user.pickaxeLevel == 1) options = config.pickaxeLevel1
@@ -50,7 +51,7 @@ commands = {
 		for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 1000); sum <= rand; sum += options[choice].chance) choice++
 		occupiedSpace = 0
 		for (i of user.inventory) occupiedSpace += i.quantity
-		res.write(options[choice].comment+', Рюкзак '+(occupiedSpace+1)+'/'+user.backpackSize+'.')
+		response.write(` ${options[choice].comment}, Рюкзак: ${occupiedSpace+1}/${user.backpackSize}.`)
 		
 		if ((function(){
 			for (i of user.inventory){
@@ -73,196 +74,197 @@ commands = {
 		user.inventory.sort(function(a, b){return b.price - a.price})
 			
 		collection.updateOne({name: user.name},{$set: {inventory: user.inventory}}, function(error, result){
-			if(error) res.write(' Ошибка с добавлением в инвентарь. Ошибка: '+error)
+			if(error) response.write(` Ошибка с добавлением в инвентарь. Ошибка: ${error}`)
 			resolve()
 		})
 	})},
-	dungeon: function(res, collection, user){return new Promise(function(resolve, reject){
+	dungeon: function(response, collection, user){return new Promise(function(resolve, reject){
 		if (user.swordLevel < 1){
-			res.write(' Для похода в подземелье вам необходим меч. \'!mine купить меч\' для покупки.')
+			response.write(' Для похода в подземелье вам необходим меч. \'!mine купить меч\' для покупки.')
 			return resolve()
 		}
 		if (user.swordLevel == 1) options = config.dungeonEventsLevel1
 		else if (user.swordLevel == 2) options = config.dungeonEventsLevel2
 		else if (user.swordLevel == 3) options = config.dungeonEventsLevel3
 		for (sum = options[0].chance, choice = 0, rand = ~~(Math.random() * 1000); sum <= rand; sum += options[choice].chance) choice++
-		res.write(options[choice].text)
+		response.write(options[choice].text)
 		if (options[choice].money){
 			if (options[choice].good){
 				if (user.money >= Math.abs(options[choice].money)) 
 					collection.updateOne(user,{$set: {money: Math.max(0, user.money+options[choice].money)}}, function(error, result){
-						if(error) res.write(' Ошибка с пересчётом денег. Ошибка: '+error)
-						else res.write(options[choice].good)
+						if(error) response.write(` Ошибка с пересчётом денег. Ошибка: ${error}`)
+						else response.write(options[choice].good)
 						resolve()
 				})
 				else collection.deleteOne(user, function(error, obj){
-					if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
-					else res.write(options[choice].bad)
+					if(error) response.write(` Ошибка удаления аккаунта. Ошибка: ${error}`)
+					else response.write(options[choice].bad)
 					resolve()
 				})
 			}
 			else collection.updateOne(user,{$set: {money: Math.max(0, user.money+options[choice].money)}}, function(error, result){
-				if(error) res.write(' Ошибка с пересчётом денег. Ошибка: '+error)
-				else if (options[choice].good) res.write(options[choice].good)
+				if(error) response.write(` Ошибка с пересчётом денег. Ошибка: ${error}`)
+				else if (options[choice].good) response.write(options[choice].good)
 				resolve()
 			})
 		}
 		else if (options[choice].kill == true) collection.deleteOne(user, function(error, obj){
-			if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
+			if(error) response.write(` Ошибка удаления аккаунта. Ошибка: ${error}`)
 			resolve()
 		})
 		else resolve()
 	})},
-	sell: function(res, collection, user){return new Promise(function(resolve, reject){
+	sell: function(response, collection, user){return new Promise(function(resolve, reject){
 		total = 0
 		for (i of user.inventory) total += i.price * i.quantity
 		if (total > 0){
 			collection.updateOne(user,{$set: {money: user.money+total,inventory: []}}, function(error, result){
-				if(error) res.write(' Ошибка с продажей. Ошибка: '+error)
-				else res.write(' Вы продали свои ресурсы за '+total+'$, текущий баланс: '+parseInt(total + user.money)+'$.')
+				if(error) response.write(' Ошибка с продажей. Ошибка: '+error)
+				else response.write(` Вы продали свои ресурсы за ${total}$, текущий баланс: ${parseInt(total + user.money)}$`)
 				resolve()
 			})
 		}
 		else {
-			res.write(" Вам нечего продавать, '!mine копать' для добычи.")
+			response.write(' Вам нечего продавать, \'!mine копать\' для добычи.')
 			resolve()
 		}
 	})},
-	upgrade: function(res, collection, user){return new Promise(function(resolve, reject){
-		upgradingItem = queryArguments[3].toLowerCase()
-		if (upgradingItem(['рюкзак','сумка','сумку','инвентарь','inventory','inv'])){
+	upgrade: function(response, collection, user){return new Promise(function(resolve, reject){
+		upgradingItem = (queryArguments[3] || '').toLowerCase()
+		if (upgradingItem.in(['рюкзак','сумка','сумку','инвентарь','inventory','inv'])){
+			
 			if (user.backpackSize == 50){
-				res.write(' У вас максимальный уровень рюкзака.')
+				response.write(' У вас максимальный уровень рюкзака.')
 				return resolve()
 			}
 			else {
 				newBackpackSize = config.backpackSizes[user.backpackSize]
 				price = config.backpackPrices[user.backpackSize]
 			}
+			
 			if (user.money >= price){
 				collection.updateOne(user,{$set: {money: user.money - price, backpackSize: newBackpackSize}}, function(error, result){
-					if(error) res.write(' Ошибка улучшения рюкзака. Ошибка: '+error)
-					else res.write('Вместимость рюкзака увеличена до '+newBackpackSize+' за '+price+'$, оставшиеся деньги: '+(user.money - price)+'$.')
+					if(error) response.write(` Ошибка улучшения рюкзака. Ошибка: ${error}`)
+					else response.write(` Вместимость рюкзака увеличена до ${newBackpackSize} за ${price}$, оставшиеся деньги: ${user.money - price}.`)
 					resolve()
 				})
 			}
 			else {
-				res.write(' Для увеличения места в рюкзаке до '+newBackpackSize+' требуется '+price+'$')
+				response.write(` Для увеличения места в рюкзаке до ${newBackpackSize} требуется ${price}$.`)
 				resolve()
 			}
 		}
 		else if (upgradingItem.in(['кирка','кирку','инструмент','pickaxe','pick'])){
+			
 			if (user.pickaxeLevel == 5){
-				res.write(' У вас максимальный уровень кирки.')
+				response.write(' У вас максимальный уровень кирки.')
 				return resolve()
 			}
 			else price = config.pickaxePrices[user.pickaxeLevel]
+				
 			if (user.money >= price){
 				collection.updateOne(user,{$set: {money: user.money - price, pickaxeLevel: user.pickaxeLevel + 1}}, function(error, result){
-					if(error) res.write(' Ошибка улучшения кирки. Ошибка: '+error)
-					else res.write('Уровень кирки увеличен до '+(user.pickaxeLevel+1)+' уровня за '+price+'$, оставшиеся деньги: '+(user.money-price)+'$.')
+					if(error) response.write(` Ошибка улучшения кирки. Ошибка: ${error}`)
+					else response.write(` Уровень кирки увеличен до ${user.pickaxeLevel+1} уровня за ${price}$, оставшиеся деньги: ${user.money-price}$.`)
 					resolve()
 				})
 			}
 			else {
-				res.write(' Для увеличения уровня кирки до '+(user.pickaxeLevel+1)+' уровня требуется '+price+'$')
+				response.write(` Для увеличения уровня кирки до ${user.pickaxeLevel+1} требуется ${price}$.`)
 				resolve()
 			}
 		}
-		else if (upgradingItem(['меч','оружие','данж','sword','sw'])){
+		else if (upgradingItem.in(['меч','оружие','данж','sword','sw'])){
+			
 			if (user.swordLevel == 3){
-				res.write(' У вас максимальный уровень меча.')
+				response.write(' У вас максимальный уровень меча.')
 				return resolve()
 			}
 			else price = config.swordPrices[user.swordLevel]
+				
 			if (user.money >= price){
 				collection.updateOne(user,{$set: {money: user.money - price, swordLevel: user.swordLevel + 1}}, function(error, result){
-					if(error) res.write(' Ошибка улучшения меча. Ошибка: '+error)
-					else res.write('Уровень меча увеличен до '+(user.swordLevel+1)+' уровня за '+price+'$, оставшиеся деньги: '+(user.money-price)+'$.')
+					if(error) response.write(` Ошибка улучшения меча. Ошибка: ${error}`)
+					else response.write(` Уровень меча увеличен до ${user.swordLevel+1} уровня за ${price}$, оставшиеся деньги: ${user.money-price}$.`)
 					resolve()
 				})
 			}
 			else {
-				res.write(' Для увеличения уровня меча до '+(user.swordLevel+1)+' уровня требуется '+price+'$')
+				response.write(` Для увленичения уровня меча до ${user.swordLevel+1} уровня требуется ${price}$.`)
 				resolve()
 			}
 		}
 		else {
-			res.write(" Команда '!mine улучшить' имеею структуру: '!mine улучшить (рюкзак/кирку/меч)'. "+((user.backpackSize != 15) ? 'Для увеличения рюкзака до '+backpackSizes[user.backpackSize]+' необходимо '+backpackPrices[user.backpackSize]+'$.' : 'У вас максимальный уровень рюкзака')+'. '+((user.pickaxeLevel != 5) ? 'Для улучшения кирки до '+(user.pickaxeLevel+1)+' уровня необходимо '+pickaxePrices[user.pickaxeLevel]+'$. ' : 'У вас максимальный уровень кирки.')+((user.swordLevel != 3) ? 'Для улучшения меча до '+(user.swordLevel+1)+' уровня необходимо '+swordPrices[user.swordLevel]+'$.' : 'У вас максимальный уровень меча.'))
+			response.write(` Команда '!mine улучшить' имеет структуру: '!mine улучшить (рюкзак/кирку/меч)'. ${(user.backpackSize != 15) ? `Для увеличения рюкзака до ${config.backpackSizes[user.backpackSize]} необходимо ${config.backpackPrices[user.backpackSize]}$` : 'У вас максимальный уровень рюкзака'}. ${(user.pickaxeLevel != 5) ? `Для улучшение кирки до ${user.pickaxeLevel+1} уровня необходимо ${config.pickaxePrices[user.pickaxeLevel]}$` : 'У вас максимальный уровень кирки'}. ${(user.swordLevel != 3) ? `Для улучшения меча до ${user.swordLevel+1} уровня необходимо ${config.swordPrices[user.swordLevel]}` : 'У вас максимальный уровень меча'}.`)
 			resolve()
 		}
 	})},
-	give: function(res, collection, user){return new Promise(function(resolve, reject){
+	give: function(response, collection, user){return new Promise(function(resolve, reject){
 		recipient = queryArguments[3].replace('@','').toLowerCase()
 		value = Math.abs(parseInt(queryArguments[4]))
 		
 		if (!recipient || !value){
-			res.write(" Команда '!mine передать' имеет структуру: '!mine передать пользователь сумма'.")
+			response.write(' Команда \'!mine передать\' имеет структуру: \'!mine передать {пользователь} {сумма}\'.')
 			return resolve()
 		}
 		
 		if (user.name == recipient){
-			res.write(" Нельзя передавать деньги себе.")
+			response.write(' Нельзя передавать деньги себе.')
 			return resolve()
 		}
 		
-		if ((function(){
-			for (i of data) if (i.name == recipient) {
-				recipientGold = i.money
-				return true
-			}
-		})()){
+		if ((function(){for (_ of data){if (_.name == recipient)return recipientGold = _.money}})()){
 			if (user.money >= value){
 				collection.updateOne({name: recipient},{$set: {money: recipientGold+value}}, function(error, result){
 					if(error) {
-						res.write(' Ошибка с передачей денег. Ошибка: '+error)
+						response.write( `Ошибка с передачей денег. Ошибка: ${error}`)
 						return resolve()
 					}
-					else res.write(' Вы отдали @'+recipient+' '+value+'$, текущий баланс: '+(user.money-value)+'$.')
+					else response.write(` Вы отдали @${recipient} ${value}$, текущий баланс: ${user.money-value}$`)
 				})
 				collection.updateOne(user,{$set: {money: user.money-value}}, function(error, result){
-					if(error) res.write(' Ошибка с пересчётом баланса. Ошибка: '+error)
+					if(error) response.write(` Ошибка с пересчётом баланса. Ошибка: ${error}`)
 					return resolve()
 				})
 			}
 			else {
-				res.write(' У вас недостаточно средств для перевода.')
+				response.write(' У вас недостаточно средств для перевода.')
 				resolve()
 			}
 		}
 		else {
-			res.write(' Пользователь '+recipient+' не зарегистрирован.')
+			response.write(` Пользователь ${recipient} не зарегистрирован.`)
 			resolve()
 		}
 	})},
-	users: function(res, data){
-		res.write(' Зарегистрированные пользователи: ')
+	users: function(response, data){
+		response.write(' Зарегистрированные пользователи: ')
 		data.sort(function(a,b){return b.money-a.money})
-		for (let user of data) res.write(user.name.replace(/\b\w/g, l => l.toUpperCase())+'('+user.money+'$) ')
+		for (let user of data) response.write(user.name.replace(/\b\w/g, l => l.toUpperCase()) + `(${user.money}$) `)
 	},
-	create: function(res, collection, name){return new Promise(function(resolve, reject){
+	create: function(response, collection, name){return new Promise(function(resolve, reject){
 		collection.insertOne({name: name, money: 0, inventory: [], backpackSize: 3, pickaxeLevel: 1, swordLevel: 0}, function(error, result){
-			if(error) res.write(' Ошибка создания аккаунта. Ошибка: '+error)
-			else res.write(' Аккаунт создан, теперь вы можете пользоваться командами бота.')
+			if(error) response.write(` Ошибка создания аккаунта. Ошибка: ${error}`)
+			else response.write(' Аккаунт создан, теперь вы можете пользоваться командами бота.')
 			resolve()
 		})
 	})},
-	remove: function(res, collection, user){return new Promise(function(resolve, reject){
+	remove: function(response, collection, user){return new Promise(function(resolve, reject){
 		collection.deleteOne(user, function(error, obj){
-			if(error) res.write(' Ошибка удаления аккаунта. Ошибка: '+error)
-			else res.write(" Аккаунт удалён, введите любое сообщение с '!mine' чтобы создать новый.")
+			if(error) response.write(` Ошибка удаления аккаунта. Ошибка: ${error}`)
+			else response.write(" Аккаунт удалён, введите любое сообщение с '!mine' чтобы создать новый.")
 			resolve()
 		})
 	})},
-	search: function(res, type){
-		http.get({host: 'rzhunemogu.ru', port: 80, path: '/RandJSON.aspx?CType='+type, method: 'GET', encoding: 'binary'}, function(response){
-			response.on('data', function(body){
+	search: function(response, type){
+		http.get({host: 'rzhunemogu.ru', port: 80, path: '/RandJSON.aspx?CType='+type, method: 'GET', encoding: 'binary'}, function(res){
+			res.on('data', function(body){
 				result = require('iconv').Iconv('windows-1251', 'utf8').convert(new Buffer(body, 'binary')).toString().slice(12, -2)
 				if (result.length <= 400) {
-					res.write(result)
-					res.end()
+					response.write(result)
+					response.end()
 				}
-				else commands.search(res, type)
+				else commands.search(response, type)
 			})
 		})
 	}

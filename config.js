@@ -62,7 +62,7 @@ pickaxeLevel2 = [{
 		chance: 50
 	},{
 		type: 'Рог единорога',
-		comment: 'подобрал рог единорога . (65$) Jebaited ',
+		comment: 'подобрал рог единорога. (65$) Jebaited ',
 		price: 65,
 		chance: 40
 	},{
@@ -114,7 +114,7 @@ pickaxeLevel3 = [{
 		chance: 140
 	},{
 		type: 'Рог единорога',
-		comment: 'подобрал рог единорога . (65$) Jebaited ',
+		comment: 'подобрал рог единорога. (65$) Jebaited ',
 		price: 65,
 		chance: 40
 	},{
@@ -171,7 +171,7 @@ pickaxeLevel4 = [{
 		chance: 150
 	},{
 		type: 'Рог единорога',
-		comment: 'подобрал рог единорога . (65$) Jebaited ',
+		comment: 'подобрал рог единорога. (65$) Jebaited ',
 		price: 65,
 		chance: 40
 	},{
@@ -223,7 +223,7 @@ pickaxeLevel5 = [{
 		chance: 230
 	},{
 		type: 'Рог единорога',
-		comment: 'подобрал рог единорога . (65$) Jebaited ',
+		comment: 'подобрал рог единорога. (65$) Jebaited ',
 		price: 65,
 		chance: 100
 	},{

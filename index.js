@@ -98,12 +98,16 @@ const server = http.createServer(function(request, response) {
 	}
 	else if (queryArguments[0] == 'rpg'){
 		type = queryArguments[1].toLowerCase()
+		
 		if (type.in(['персонаж','персонажи','перс','герой']))
 			response.write(texts.characters.choiceOne())
+			
 		else if (type.in(['событие','соба','ивент']))
 			response.write(texts.events.choiceOne())
+			
 		else if (type.in(['гачи','gachi']))
 			response.write(texts.gachi.choiceOne())
+			
 		else response.write(' Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации? Выбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа). Например "!rpg персонаж"')
 		response.end()
 	}
