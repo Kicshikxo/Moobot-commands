@@ -87,7 +87,7 @@ const server = http.createServer(function(request, response) {
 			response.write(' Доступные категории для поиска: \'анекдот\', \'рассказ\', \'стих\', \'афоризма\', \'цитата\', \'тост\', \'статус\'. Для поиска 18+ (толком не отличается от обычного) после категории напишите \'18+\'. Например: \'!найти анек 18+\'')
 			return response.end()
 		}
-		if (queryArguments[2].in(['18+', '+', '18', '81+'])) type += 10
+		if (queryArguments[2] && queryArguments[2].in(['18+', '+', '18', '81+'])) type += 10
 		commands.search(response, type)
 	}
 	else if (queryArguments[0] == 'choice'){
