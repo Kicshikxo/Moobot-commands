@@ -832,8 +832,7 @@ commands = {
 			response.on('data', function(body){
 				result = require('iconv').Iconv('windows-1251', 'utf8').convert(new Buffer(body, 'binary')).toString().slice(12, -2)
 				console.log(result)
-				if (result == 'Ошибка обращения к БД. Необходимо обратиться к разработчику: Support@RzhuNeMogu.ru') return res.end()
-				else if (result.length <= 400) {
+				if (result.length <= 400) {
 					res.write(result)
 					res.end()
 				}
@@ -901,7 +900,7 @@ const server = http.createServer(function(req, res) {
 		else if (['тост', 'тосты'].indexOf(query) != -1) type = 6
 		else if (['статус', 'статусы'].indexOf(query) != -1) type = 8
 		if (type == 0){
-			res.write(' Доступные категории для поиска: анекдот, рассказ, стих, афоризма, цитата, тост, статус. Для поиска 18+ после категории напишите \'18+\'')
+			return res.write(' Доступные категории для поиска: анекдот, рассказ, стих, афоризма, цитата, тост, статус. Для поиска 18+ после категории напишите \'18+\'.')
 		}
 		if (pathname.split('/')[3] == '18+') type += 10
 		commands.search(res, type)
