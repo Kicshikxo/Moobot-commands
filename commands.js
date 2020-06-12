@@ -46,19 +46,10 @@ commands = {
 
 		response.write(` ${options[choice].comment}, Рюкзак: ${occupiedSpace+1}/${user.backpackSize}.`)
 		
-		if ((function(){
-			for (i of user.inventory){
-				if (i.type == options[choice].type) return true
-			}
-		})()){
-			for (i of user.inventory){
-				if (i.type == options[choice].type){
-					i.quantity++
-				}
-			}
+		if ((function(){for (i of user.inventory){if (i.type == options[choice].type) return true}})()){
+			for (i of user.inventory){if (i.type == options[choice].type){i.quantity++}}
 		}
-		else 
-			user.inventory.push({
+		else user.inventory.push({
 			type: options[choice].type,
 			quantity: 1,
 			price: options[choice].price
