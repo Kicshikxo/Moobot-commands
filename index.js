@@ -878,9 +878,7 @@ const server = http.createServer(function(req, res) {
 		const Iconv = require('iconv').Iconv;
 		http.get({host: 'rzhunemogu.ru', port: 80, path: '/RandJSON.aspx?CType=1', method: 'GET', encoding: 'binary'}, function(result){
 			result.on('data', function(body){
-				body = new Buffer(body, 'binary');
-				conv = Iconv('windows-1251', 'utf8');
-				body = conv.convert(body).toString();
+				body = Iconv('windows-1251', 'utf8').convert(new Buffer(body, 'binary')).toString()
 				res.write(body.slice(12, -2))
 				res.end()
 			});
