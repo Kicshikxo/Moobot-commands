@@ -17,8 +17,7 @@ const server = http.createServer(function(request, response) {
 	queryArguments.shift()
 	queryArguments = queryArguments.map(function(element){
 		if (parseInt(element) == element || parseFloat(element) == element) return element
-		else if (element.slice(0,1).in(['@','%40'])) return url.domainToUnicode(element.slice(1))
-		else return url.domainToUnicode(element)
+		return url.domainToUnicode(element.replace('@','').replace('%40',''))
 	})
 	
 	if (queryArguments[0] == 'mine'){
