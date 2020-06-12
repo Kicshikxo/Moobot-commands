@@ -201,6 +201,8 @@ commands = {
 		recipient = queryArguments[3].toLowerCase()
 		value = Math.abs(parseInt(queryArguments[4]))
 		
+		response.write(JSON.stringify(queryArguments))
+		
 		if (!recipient || !value){
 			response.write(' Команда \'!mine передать\' имеет структуру: \'!mine передать {пользователь} {сумма}\'.')
 			return resolve()
