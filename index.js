@@ -827,15 +827,15 @@ commands = {
 			resolve()
 		})
 	})},
-	joke: function(res){
-		http.get({host: 'rzhunemogu.ru', port: 80, path: '/RandJSON.aspx?CType=1', method: 'GET', encoding: 'binary'}, function(response){
+	search: function(res, type){
+		http.get({host: 'rzhunemogu.ru', port: 80, path: '/RandJSON.aspx?CType='+type, method: 'GET', encoding: 'binary'}, function(response){
 			response.on('data', function(body){
 				result = require('iconv').Iconv('windows-1251', 'utf8').convert(new Buffer(body, 'binary')).toString().slice(12, -2)
 				if (result.length <= 400) {
 					res.write(result)
 					res.end()
 				}
-				else try {res.write(commands.joke(res))}
+				else try {res.write(commands.search(res))}
 				catch {}
 			});
 		});
@@ -888,7 +888,19 @@ const server = http.createServer(function(req, res) {
 		res.write(['Да', 'Нет'].choiceOne())
 		res.end()
 	}
-	else if (pathname.split('/')[1] == 'joke') commands.joke(res)
+	else if (pathname.split('/')[1] == 'search') {
+		query = url.domainToUnicode(pathname.split('/')[2]).toLowerCase()
+		type = 1
+		if (['анек', 'анекдот', 'joke'].indexOf(query) != -1) type = 1
+		else if (['рассказ', 'сказ'].indexOf(query) != -1) type = 2
+		else if (['стих', 'стишок', 'стихи', 'стишки'].indexOf(query) != -1) type = 3
+		else if (['афоризмы', 'афоризма'].indexOf(query) != -1) type = 4
+		else if (['цитата', 'цитаты'].indexOf(query) != -1) type = 5
+		else if (['тост', 'тосты'].indexOf(query) != -1) type = 6
+		else if (['статус', 'статусы'].indexOf(query) != -1) type = 8
+		if (pathname.split('/')[3] == '18+') type += 10
+		commands.search(res, type)
+	}
 	else if (pathname.split('/')[1] == 'choice'){
 		options = pathname.split('/')[2].split('+').map(function(element){
 			if (parseInt(element) == element || parseFloat(element) == element) return element
