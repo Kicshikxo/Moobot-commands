@@ -831,7 +831,9 @@ commands = {
 		http.get({host: 'rzhunemogu.ru', port: 80, path: '/RandJSON.aspx?CType='+type, method: 'GET', encoding: 'binary'}, function(response){
 			response.on('data', function(body){
 				result = require('iconv').Iconv('windows-1251', 'utf8').convert(new Buffer(body, 'binary')).toString().slice(12, -2)
-				if (result.length <= 400) {
+				console.log(result)
+				if (result = 'Ошибка обращения к БД. Необходимо обратиться к разработчику: Support@RzhuNeMogu.ru') return res.end()
+				else if (result.length <= 400) {
 					res.write(result)
 					res.end()
 				}
