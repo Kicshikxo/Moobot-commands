@@ -881,7 +881,7 @@ const server = http.createServer(function(req, res) {
 				body = new Buffer(body, 'binary');
 				conv = Iconv('windows-1251', 'utf8');
 				body = conv.convert(body).toString();
-				res.write(body.slice(10))
+				res.write(body.slice(12, -2))
 				res.end()
 			});
 		});
