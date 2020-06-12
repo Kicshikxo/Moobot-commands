@@ -826,8 +826,21 @@ commands = {
 			else res.write(" Аккаунт удалён, введите любое сообщение с '!mine' чтобы создать новый.")
 			resolve()
 		})
-	})}
+	})},
+	joke: function(res){
+		http.get({host: 'rzhunemogu.ru', port: 80, path: '/RandJSON.aspx?CType=1', method: 'GET', encoding: 'binary'}, function(response){
+			response.on('data', function(body){
+				result = require('iconv').Iconv('windows-1251', 'utf8').convert(new Buffer(body, 'binary')).toString().slice(12, -2)
+				if (result.length <= 400) {
+					res.write(result)
+					res.end()
+				}
+				else res.write(commands.joke(res))
+			});
+		});
+	}
 }
+
 const server = http.createServer(function(req, res) {
 	res.writeHeader(200, {"Content-Type": "application/json"})
 	pathname = url.parse(req.url).pathname
@@ -874,16 +887,7 @@ const server = http.createServer(function(req, res) {
 		res.write(['Да', 'Нет'].choiceOne())
 		res.end()
 	}
-	else if (pathname.split('/')[1] == 'joke') {
-		const Iconv = require('iconv').Iconv;
-		http.get({host: 'rzhunemogu.ru', port: 80, path: '/RandJSON.aspx?CType=1', method: 'GET', encoding: 'binary'}, function(result){
-			result.on('data', function(body){
-				body = Iconv('windows-1251', 'utf8').convert(new Buffer(body, 'binary')).toString()
-				res.write(body.slice(12, -2))
-				res.end()
-			});
-		});
-	}
+	else if (pathname.split('/')[1] == 'joke') commands.joke(res)
 	else if (pathname.split('/')[1] == 'choice'){
 		options = pathname.split('/')[2].split('+').map(function(element){
 			if (parseInt(element) == element || parseFloat(element) == element) return element
