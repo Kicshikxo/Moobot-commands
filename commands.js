@@ -26,12 +26,10 @@ commands = {
 
 		total = 0
 		for (item of user.inventory) total += item.price * item.quantity
-		for (item of user.inventory){
-			response.write(`${item.type} (${(item.quantity > 1) ? `${item.quantity}×` : ''}${item.price}$), `)
-		}
+		for (item of user.inventory) response.write(`${item.type} (${(item.quantity > 1) ? `${item.quantity}×` : ''}${item.price}$), `)
 		
 		occupiedSpace = 0
-		for (i of user.inventory) occupiedSpace += i.quantity
+		for (item of user.inventory) occupiedSpace += item.quantity
 		response.write(` Всего: ${total}$, Место: ${occupiedSpace}/${user.backpackSize}.`)
 	},
 	dig: function(response, collection, user){return new Promise(function(resolve, reject){
