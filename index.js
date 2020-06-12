@@ -896,7 +896,7 @@ const server = http.createServer(function(req, res) {
 		else if (['рассказ', 'рассказы', 'сказ'].indexOf(query) != -1) type = 2
 		else if (['стих', 'стишок', 'стихи', 'стишки'].indexOf(query) != -1) type = 3
 		else if (['афоризмы', 'афоризма', 'афоризму'].indexOf(query) != -1) type = 4
-		else if (['цитата', 'цитаты'].indexOf(query) != -1) type = 5
+		else if (['цитата', 'цитаты', 'цитату'].indexOf(query) != -1) type = 5
 		else if (['тост', 'тосты'].indexOf(query) != -1) type = 6
 		else if (['статус', 'статусы'].indexOf(query) != -1) type = 8
 		if (type == 0){
