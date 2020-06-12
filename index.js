@@ -836,8 +836,7 @@ commands = {
 					res.write(result)
 					res.end()
 				}
-				else try {res.write(commands.search(res, type))}
-				catch {}
+				else commands.search(res, type)
 			});
 		});
 	}
