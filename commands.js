@@ -250,7 +250,7 @@ commands = {
 	remove: function(response, collection, user){return new Promise(function(resolve, reject){
 		collection.deleteOne(user, function(error, obj){
 			if(error) response.write(` Ошибка удаления аккаунта. Ошибка: ${error}`)
-			else response.write(" Аккаунт удалён, введите любое сообщение с '!mine' чтобы создать новый.")
+			else response.write(' Аккаунт удалён, введите любое сообщение с \'!mine\' чтобы создать новый.')
 			resolve()
 		})
 	})},
