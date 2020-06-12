@@ -113,7 +113,7 @@ commands = {
 	})},
 	upgrade: function(response, collection, user){return new Promise(function(resolve, reject){
 		
-		upgradingItem = (queryArguments[3] || '').toLowerCase()
+		upgradingItem = queryArguments[3].toLowerCase()
 		
 		if (upgradingItem.in(['рюкзак','сумка','сумку','инвентарь','inventory','inv'])){
 			
