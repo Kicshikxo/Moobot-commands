@@ -116,7 +116,7 @@ const server = http.createServer(function(request, response) {
 		response.write(queryArguments[1]+' | ')
 		if (queryArguments[1])
 			try {
-				response.write(eval(queryArguments[1].replace('+','')).toString())
+				response.write(eval(queryArguments[1].replace('++','#').replace('+++','#').replace('+','').replace('#','+')).toString())
 			}
 			catch (error) {
 				response.write(` Ошибка: ${error}`)
