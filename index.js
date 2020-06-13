@@ -112,7 +112,7 @@ const server = http.createServer(function(request, response) {
 		else response.write(' Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации? Выбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа). Например "!rpg персонаж"')
 		response.end()
 	}
-	else if (queryArguments[0] == 'eval'){')
+	else if (queryArguments[0] == 'eval'){
 		if (queryArguments[1] != '')
 			try {
 				command = queryArguments[1].replace(/date/g, 'Date').replace(/math/g, 'Math')
