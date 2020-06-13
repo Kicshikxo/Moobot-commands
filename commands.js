@@ -215,7 +215,7 @@ commands = {
 					response.end()
 					return result
 				}
-				else commands.search(response, type)
+				else return commands.search(response, type)
 			})
 		})
 	}
