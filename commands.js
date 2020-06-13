@@ -213,6 +213,7 @@ commands = {
 				if (result.length <= 400) {
 					response.write(result)
 					response.end()
+					return result
 				}
 				else commands.search(response, type)
 			})
