@@ -113,7 +113,6 @@ const server = http.createServer(function(request, response) {
 		response.end()
 	}
 	else if (queryArguments[0] == 'eval'){
-		response.write(queryArguments[1]+' | ')
 		if (queryArguments[1].length > 0)
 			try {
 				command = queryArguments[1]
@@ -121,10 +120,8 @@ const server = http.createServer(function(request, response) {
 				command = command.replace(/\+\*\*\+/g,'с').replace(/\*\*\+/g,'с').replace(/\+\*\*/g,'с').replace(/\*\*/g,'с')
 				command = command.replace(/\+\*\+/g,'у').replace(/\*\+/g,'у').replace(/\+\*/g,'у').replace(/\*/g,'у')
 				command = command.replace(/\+\/\+/g,'д').replace(/\/\+/g,'д').replace(/\+\//g,'д').replace(/\//g,'д')
-				response.write(command + ' | ')
 				command = command.replace(/\+\+\+/g,'+').replace(/\+\+/g,'+')
 				command = command.replace(/м/g,'-').replace(/у/g,'*').replace(/с/g,'**').replace(/д/g,'/')
-				response.write(command + ' | ')
 				response.write(eval(command).toString().replace('true','').replace('false',''))
 			}
 			catch (error) {
