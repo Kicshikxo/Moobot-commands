@@ -120,8 +120,8 @@ const server = http.createServer(function(request, response) {
 				command = command.replace('-+','м').replace('+-','м').replace('+-+','м')
 				command = command.replace('*+','у').replace('+*','у').replace('+*+','у')
 				command = command.replace('/+','д').replace('+/','д').replace('+/+','д')
-				command = command.replace('**+','с').replace('+**','с').replace('+**+','с').replace('с','**').replace('+',' ')
-				command = command.replace('п','+').replace('м','-').replace('у','*').replace('д','/')
+				command = command.replace('**+','с').replace('+**','с').replace('+**+','с').replace('+',' ')
+				command = command.replace('п','+').replace('м','-').replace('у','*').replace('д','/').replace('с','**')
 				response.write(command + ' | ')
 				response.write(eval(command).toString().replace('true','').replace('false',''))
 			}
