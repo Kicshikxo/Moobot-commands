@@ -116,11 +116,12 @@ const server = http.createServer(function(request, response) {
 // 		response.write(queryArguments[1]+' | ')
 		if (queryArguments[1])
 			try {
-				command = queryArguments[1].replace('++','№').replace('+++','№').replace('+',' ').replace('№','+')
-				command = command.replace('-+','№').replace('+-','№').replace('+-+','№').replace('+',' ').replace('№','-')
-				command = command.replace('*+','№').replace('+*','№').replace('+*+','№').replace('+',' ').replace('№','*')
-				command = command.replace('/+','№').replace('+/','№').replace('+/+','№').replace('+',' ').replace('№','/')
-				command = command.replace('**+','№').replace('+**','№').replace('+**+','№').replace('+',' ').replace('№','**')
+				command = queryArguments[1].replace('++','п').replace('+++','п')
+				command = command.replace('-+','м').replace('+-','м').replace('+-+','м')
+				command = command.replace('*+','у').replace('+*','у').replace('+*+','у')
+				command = command.replace('/+','д').replace('+/','д').replace('+/+','д')
+				command = command.replace('**+','с').replace('+**','с').replace('+**+','с').replace('с','**').replace('+',' ')
+				command = command.replace('п','+').replace('м','-').replace('у','*').replace('д','/')
 				response.write(command + ' | ')
 				response.write(eval(command).toString().replace('true','').replace('false',''))
 			}
