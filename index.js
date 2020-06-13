@@ -117,9 +117,9 @@ const server = http.createServer(function(request, response) {
 		if (queryArguments[1])
 			try {
 				command = queryArguments[1].replace('++','п').replace('+++','п')
-				command = command.replace('-+','м').replace('+-','м').replace('+-+','м')
-				command = command.replace('*+','у').replace('+*','у').replace('+*+','у')
-				command = command.replace('/+','д').replace('+/','д').replace('+/+','д')
+				command = command.replace('-','м')
+				command = command.replace('*','у')
+				command = command.replace('/','д')
 				command = command.replace('+',' ')
 				command = command.replace('п','+').replace('м','-').replace('у','*').replace('д','/').replace('с','**')
 				response.write(command + ' | ')
