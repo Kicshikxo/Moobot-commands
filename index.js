@@ -117,10 +117,10 @@ const server = http.createServer(function(request, response) {
 		if (queryArguments[1])
 			try {
 				command = queryArguments[1].replace('++','№').replace('+++','№').replace('+',' ').replace('№','+')
-				command = command.replace('-+','№').replace('+-','№').replace('+-+','№').replace('+',' ').replace('№','-')
-				command = command.replace('*+','№').replace('+*','№').replace('+*+','№').replace('+',' ').replace('№','*')
-				command = command.replace('/+','№').replace('+/','№').replace('+/+','№').replace('+',' ').replace('№','/')
-				command = command.replace('**+','№').replace('+**','№').replace('+**+','№').replace('+',' ').replace('№','**')
+// 				command = command.replace('-+','№').replace('+-','№').replace('+-+','№').replace('+',' ').replace('№','-')
+// 				command = command.replace('*+','№').replace('+*','№').replace('+*+','№').replace('+',' ').replace('№','*')
+// 				command = command.replace('/+','№').replace('+/','№').replace('+/+','№').replace('+',' ').replace('№','/')
+// 				command = command.replace('**+','№').replace('+**','№').replace('+**+','№').replace('+',' ').replace('№','**')
 				console.log(command + ' | ')
 				response.write(eval(command).toString().replace('true','').replace('false',''))
 			}
