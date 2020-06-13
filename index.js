@@ -122,7 +122,7 @@ const server = http.createServer(function(request, response) {
 				command = command.replace(/\+\/\+/g,'/').replace(/\/\+/g,'/').replace(/\+\//g,'/').replace(/\//g,'/')
 				command = command.replace(/\+\+\+/g,'+').replace(/\+\+/g,'+')
 // 				command = command.replace(/м/g,'-').replace(/у/g,'*').replace(/с/g,'**').replace(/д/g,'/')
-				response.write(eval(command))
+				response.write(JSON.stringify(eval(command)))
 			}
 			catch (error) {
 				response.write(` Ошибка: ${error}`)
