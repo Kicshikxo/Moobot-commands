@@ -117,10 +117,10 @@ const server = http.createServer(function(request, response) {
 		if (queryArguments[1].length > 0)
 			try {
 				command = queryArguments[1]
-				command = command.replace(/\+\-\+/g,'м').replace(/\-/g,'м').replace(/\-\+/g,'м').replace(/\+\-/g,'м')
-				command = command.replace(/\+\*\*\+/g,'с').replace(/\*\*/g,'с').replace(/\*\*\+/g,'с').replace(/\+\*\*/g,'с')
-				command = command.replace(/\+\*\+/g,'у').replace(/\*/g,'у').replace(/\*\+/g,'у').replace(/\+\*/g,'у')
-				command = command.replace(/\+\/\+/g,'д').replace(/\//g,'д').replace(/\/\+/g,'д').replace(/\+\//g,'д')
+				command = command.replace(/\+\-\+/g,'м').replace(/\-\+/g,'м').replace(/\+\-/g,'м').replace(/\-/g,'м')
+				command = command.replace(/\+\*\*\+/g,'с').replace(/\*\*\+/g,'с').replace(/\+\*\*/g,'с').replace(/\*\*/g,'с')
+				command = command.replace(/\+\*\+/g,'у').replace(/\*\+/g,'у').replace(/\+\*/g,'у').replace(/\*/g,'у')
+				command = command.replace(/\+\/\+/g,'д').replace(/\/\+/g,'д').replace(/\+\//g,'д').replace(/\//g,'д')
 				response.write(command + ' | ')
 				command = command.replace(/\+\+\+/g,'+').replace(/\+\+/g,'+')
 				command = command.replace(/м/g,'-').replace(/у/g,'*').replace(/с/g,'**').replace(/д/g,'/')
