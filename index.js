@@ -17,7 +17,7 @@ const server = http.createServer(function(request, response) {
 	queryArguments.shift()
 	queryArguments = queryArguments.map(function(element){
 		if (parseInt(element) == element || parseFloat(element) == element) return element
-		return url.domainToUnicode(element.replace('@','').replace('%40',''))
+		return url.domainToUnicode(element.replace('@','').replace('%40','').replace(/%2F/g,'/'))
 	})
 	for (i = 0; i <= 5 - queryArguments.length; i++) queryArguments.push('')
 	
