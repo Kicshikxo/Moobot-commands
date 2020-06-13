@@ -129,8 +129,7 @@ const server = http.createServer(function(request, response) {
 				response.write(` Ошибка: ${error}`)
 				response.end()
 			}
-		else
-			response.write(' Введите аргументы.')
+		else response.write(` Введите пример. Например '!calc 2+2' или '!calc 123 **3 - 123456/ 2'`)
 		response.end()
 	}
 	else {
