@@ -118,7 +118,7 @@ const server = http.createServer(function(request, response) {
 			try {
 				command = queryArguments[1]
 				command = command.replace(/\-/g,'м').replace(/\-\+/g,'м').replace(/\+\-/g,'м').replace(/\+\-\+/g,'м')
-				command = command.replace(/\**/g,'с').replace(/\**\+/g,'с').replace(/\+\**/g,'с').replace(/\+\**\+/g,'с')
+				command = command.replace(/\*\*/g,'с').replace(/\*\*\+/g,'с').replace(/\+\*\*/g,'с').replace(/\+\*\*\+/g,'с')
 				command = command.replace(/\*/g,'у').replace(/\*\+/g,'у').replace(/\+\*/g,'у').replace(/\+\*\+/g,'у')
 				command = command.replace(/\//g,'д').replace(/\/\+/g,'д').replace(/\+\//g,'д').replace(/\+\/\+/g,'д')
 				response.write(command + ' | ')
