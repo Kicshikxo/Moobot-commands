@@ -113,7 +113,7 @@ const server = http.createServer(function(request, response) {
 		response.end()
 	}
 	else if (queryArguments[0] == 'eval'){
-		if (queryArguments[1].length > 0)
+		if (queryArguments[1] != '')
 			try {
 				command = queryArguments[1]
 				command = command.replace(/\+\-\+/g,'-').replace(/\-\+/g,'-').replace(/\+\-/g,'-').replace(/\-/g,'-')
