@@ -115,7 +115,6 @@ const server = http.createServer(function(request, response) {
 		response.end()
 	}
 	else if (queryArguments[0] == 'eval'){
-		response.write(queryArguments + ' | ')
 		if (queryArguments[1] != '')
 			try {
 				command = queryArguments[1].replace(/date/g, 'Date').replace(/math/g, 'Math').replace(/pi/g, 'PI')
