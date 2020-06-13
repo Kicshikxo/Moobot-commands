@@ -113,6 +113,7 @@ const server = http.createServer(function(request, response) {
 		response.end()
 	}
 	else if (queryArguments[0] == 'eval'){
+		response.write(pathname + ' | ' + queryArguments + ' | ')
 		if (queryArguments[1] != '')
 			try {
 				command = queryArguments[1]
