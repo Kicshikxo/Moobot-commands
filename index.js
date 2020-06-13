@@ -13,15 +13,7 @@ const server = http.createServer(function(request, response) {
 	
 	pathname = url.parse(request.url).pathname
 	
-	queryArguments = pathname.split('/')
-	queryArguments.shift()
-	queryArguments = queryArguments.map(function(element){
-		if (parseInt(element) == element || parseFloat(element) == element) return element
-		return decodeURIComponent(element).replace(/\@/g,'')
-// 		return (url.domainToUnicode(element.replace(/\x20/g,' ')) || decodeURI(element.replace(/\x20/g,' '))).replace(/\@/g,'').replace(/%2C/g,',')
-		//return url.domainToUnicode(element.replace('@','').replace('%40','').replace(/%2F/g,'slash').replace(/%5C/g,'back')).replace(/back/g,'\\').replace(/slash/g,'/')
-	})
-	for (i = 0; i <= 5 - queryArguments.length; i++) queryArguments.push('')
+	queryArguments = decodeURIComponent(pathname).split('/').slice(1).concat(['','',''])
 	
 	if (queryArguments[0] == 'mine'){
 		name   = queryArguments[1]
