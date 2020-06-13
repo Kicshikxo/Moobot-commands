@@ -116,7 +116,12 @@ const server = http.createServer(function(request, response) {
 		response.write(queryArguments[1]+' | ')
 		if (queryArguments[1])
 			try {
-				response.write(eval(queryArguments[1].replace('++','#').replace('+++','#').replace('+',' ').replace('#','+')).toString().replace('true','').replace('false',''))
+				command = queryArguments[1].replace('++','№').replace('+++','№').replace('+',' ').replace('№','+')
+				command = command.replace('-+','№').replace('+-','№').replace('+-+','№').replace('+',' ').replace('№','-')
+				command = command.replace('*+','№').replace('+*','№').replace('+*+','№').replace('+',' ').replace('№','*')
+				command = command.replace('/+','№').replace('+/','№').replace('+/+','№').replace('+',' ').replace('№','/')
+				command = command.replace('**+','№').replace('+**','№').replace('+**+','№').replace('+',' ').replace('№','**')
+				response.write(eval(command).toString().replace('true','').replace('false',''))
 			}
 			catch (error) {
 				response.write(` Ошибка: ${error}`)
