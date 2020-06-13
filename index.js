@@ -121,6 +121,7 @@ const server = http.createServer(function(request, response) {
 				command = command.replace(/\**/g,'с').replace(/\**\+/g,'с').replace(/\+\**/g,'с').replace(/\+\**\+/g,'с')
 				command = command.replace(/\*/g,'у').replace(/\*\+/g,'у').replace(/\+\*/g,'у').replace(/\+\*\+/g,'у')
 				command = command.replace(/\//g,'д').replace(/\/\+/g,'д').replace(/\+\//g,'д').replace(/\+\/\+/g,'д')
+				response.write(command + ' | ')
 				command = command.replace(/\+\+/g,'+').replace(/\+\+\+/g,'+')
 				command = command.replace(/м/g,'-').replace(/у/g,'*').replace(/с/g,'**').replace(/д/g,'/')
 				response.write(command + ' | ')
