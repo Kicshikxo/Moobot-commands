@@ -120,12 +120,28 @@ const server = http.createServer(function(request, response) {
 	else if (queryArguments[0] == 'translate'){
 		query = queryArguments[1].split('+')
 		lang = query.shift()
-		text = query.join(' ')
+		text = encodeURIComponent(query.join(' '))
 		if (!lang.in(['en', 'ru'])){
 			response.write(' Доступные языки для перевода: en ru')
 			return response.end()
 		}
-		response.write('lang: '+lang+' text: '+text)
+		
+		XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
+		xhr = new XMLHttpRequest()
+		
+		xhr.onreadystatechange = function() {
+			if (this.readyState === 4) {
+				result = JSON.parse(this.responseText)
+				if (result.code == 200) response.write(result.text)
+				else response.write(' Ошибка перевода.')
+			}
+		}
+		
+		url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T152328Z.ac1fea9447bfc10e.2fc4303594266a5551f3346c55fb58a5f796e977&text=${text}&lang=${lang}`
+		
+		xhr.open("GET", trans, false);
+		xhr.send();
+		
 		response.end()
 	}
 	else if (queryArguments[0] == 'eval'){
