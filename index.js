@@ -125,8 +125,8 @@ const server = http.createServer(function(request, response) {
 
 		text = encodeURIComponent(query.join(' '))
 		
-		if (!lang.in(['en', 'ru'])){
-			response.write(` Доступные языки для перевода: 'en', 'ru'. Например '!transl en Привет' или '!transl ru Hello'`)
+		if (!lang.in(['en', 'ru', 'de', 'uk', 'fr'])){
+			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'uk' (Украинский), 'de' (Немецкий) 'fr' (Французский). Язык ввода определяется автоматически. Примеры: '!transl en Привет', '!transl ru Hello'`)
 			return response.end()
 		}
 		
