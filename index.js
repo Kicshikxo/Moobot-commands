@@ -87,7 +87,7 @@ const server = http.createServer(function(request, response) {
 	}
 	else if (queryArguments[0] == 'choice'){
 		options = queryArguments[1].split('+')
-		if (options.length < 2) response.write('Количество вариантов должно быть больше одного. Варианты указываются после команды через пробел.')
+		if (options.length < 2) response.write(' Количество вариантов должно быть больше одного. Варианты указываются после команды через пробел.')
 		else response.write(options.choiceOne())
 		response.end()
 	}
