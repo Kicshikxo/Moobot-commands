@@ -124,7 +124,7 @@ const server = http.createServer(function(request, response) {
 		text = encodeURI(query.join(' '))
 		
 		if (!lang.in(['en', 'ru'])){
-			response.write(' Доступные языки для перевода: en ru')
+			response.write(` Доступные языки для перевода: 'en', 'ru'. Например '!transl en Привет' или '!transl ru Hello'`)
 			return response.end()
 		}
 		
