@@ -115,7 +115,7 @@ const server = http.createServer(function(request, response) {
 			response.write(base64.base64encode(text))
 		}
 		else if (type.in(['decode']) && text){
-			response.write(base64.base64decode(text))
+			response.write(base64.base64decode(text.concat(queryArguments.slice(2).join(''))))
 		}
 		else response.write(` Введите действие. Доступные варианты 'decode' 'encode'. Например '!base64 encode Всем привет'`)
 		response.end()
