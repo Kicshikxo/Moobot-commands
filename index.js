@@ -136,7 +136,7 @@ const server = http.createServer(function(request, response) {
 		xhr = new XMLHttpRequest()
 		
 		xhr.onreadystatechange = function() {
-			if (this.readyState === 4) {
+			if (this.readyState == 4) {
 				result = JSON.parse(this.responseText)
 				if (result.code == 200) response.write(result.text[0])
 				else response.write(` Ошибка перевода. Ошибка: ${result.code} ${result.message}`)
