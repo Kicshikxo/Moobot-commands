@@ -109,7 +109,7 @@ const server = http.createServer(function(request, response) {
 	else if (queryArguments[0] == 'base64'){
 		base64 = require('nodejs-base64')
 		if (queryArguments[1].in(['encode']) && queryArguments[2].length > 0){
-			response.write(base64.base64encode(queryArguments[2].replace(/\+/g, ' ')))
+			response.write(base64.base64encode(queryArguments[2].split('+').slice(1).join(' ')))
 		}
 		else if (queryArguments[1].in(['decode']) && queryArguments[2].length > 0){
 			response.write(base64.base64decode(queryArguments[2]))
