@@ -106,6 +106,16 @@ const server = http.createServer(function(request, response) {
 		else response.write(' Добро пожаловать в наш волшебный мир! Хочешь поучаствовать и узнать больше информации? Выбери категорию: персонаж (чтобы узнать, кто ты по жизни), событие (что происходит вокруг твоего персонажа). Например "!rpg персонаж"')
 		response.end()
 	}
+	else if (queryArguments[0] == 'base64'){
+		if (queryArguments[1].in(['encode'])){
+			response.write(require('nodejs-base64').base64encode(queryArguments[1].replace(/\+/g, ' ')))
+		}
+		else if (queryArguments[1].in(['decode'])){
+			response.write(require('nodejs-base64').base64decode(queryArguments[1])))
+		}
+		else response.write(` Введите действие. Доступные варианты 'decode' 'encode'. Например '!base64 encode Всем привет'`)
+		response.end()
+	}
 	else if (queryArguments[0] == 'eval'){
 		try {
 			if (queryArguments[1])
