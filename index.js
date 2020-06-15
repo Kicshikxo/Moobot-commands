@@ -117,6 +117,13 @@ const server = http.createServer(function(request, response) {
 		else response.write(` Введите действие. Доступные варианты 'decode' 'encode'. Например '!base64 encode Всем привет'`)
 		response.end()
 	}
+	else if (queryArguments[0] == 'translate'){
+		query = queryArguments[1].split('+')
+		lang = query.shift()
+		text = query.join(' ')
+		response.write('lang: '+lang+' text: '+text)
+		response.end()
+	}
 	else if (queryArguments[0] == 'eval'){
 		try {
 			if (queryArguments[1])
