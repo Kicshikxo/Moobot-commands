@@ -121,7 +121,7 @@ const server = http.createServer(function(request, response) {
 		try {
 			if (queryArguments[1])
 			try {
-					command = queryArguments[1].replace(/date/g, 'Date').replace(/math/g, 'Math').replace(/Math.pi/g, 'Math.PI')
+					command = queryArguments[1]
 					command = command.replace(/\+\-\+/g,'-').replace(/\-\+/g,'-').replace(/\+\-/g,'-').replace(/\-/g,'-')
 					command = command.replace(/\+\*\*\+/g,'**').replace(/\*\*\+/g,'**').replace(/\+\*\*/g,'**').replace(/\*\*/g,'**')
 					command = command.replace(/\+\*\+/g,'*').replace(/\*\+/g,'*').replace(/\+\*/g,'*').replace(/\*/g,'*')
