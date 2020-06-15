@@ -130,7 +130,7 @@ const server = http.createServer(function(request, response) {
 			return response.end()
 		}
 		
-		APIUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T152328Z.ac1fea9447bfc10e.2fc4303594266a5551f3346c55fb58a5f796e977&text='+text+'&lang='+lang
+		APIUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T152328Z.ac1fea9447bfc10e.2fc4303594266a5551f3346c55fb58a5f796e977&text='+text+'&lang=as'+lang
 		
 		XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
 		xhr = new XMLHttpRequest()
