@@ -116,7 +116,7 @@ const server = http.createServer(function(request, response) {
 		else if (type.in(['decode']) && query.length > 0){
 			response.write(base64.base64decode(queryArguments.slice(1).join('/').slice(7, -1)))
 		}
-		else response.write(` Введите действие. Доступные варианты 'decode' 'encode'. Например '!base64 encode Всем привет'`)
+		else response.write(` Введите действие. Доступные варианты 'decode' 'encode'. Например '!base64 encode Всем привет' или '!base64 decode 0JLRgdC10Lwg0L/RgNC40LLQtdGC'`)
 		response.end()
 	}
 	else if (queryArguments[0] == 'translate'){
