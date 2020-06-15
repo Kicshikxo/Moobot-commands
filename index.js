@@ -130,7 +130,7 @@ const server = http.createServer(function(request, response) {
 			return response.end()
 		}
 		
-		APIUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T152328Z.ac1fea9447bfc10e.2fc4303594266a5551f3346c55fb58a5f796e977&text='+text+'&lang=as'+lang
+		APIUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T152328Z.ac1fea9447bfc10e.2fc4303594266a5551f3346c55fb58a5f796e977&text='+text+'&lang='+lang
 		
 		XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
 		xhr = new XMLHttpRequest()
@@ -139,7 +139,7 @@ const server = http.createServer(function(request, response) {
 			if (this.readyState === 4) {
 				result = JSON.parse(this.responseText)
 				if (result.code == 200) response.write(result.text[0])
-				else response.write(' Ошибка перевода. Код: '+result.code+' '+result.message)
+				else response.write(' Ошибка перевода. Ошибка: '+result.code+' '+result.message)
 			}
 		}
 		
