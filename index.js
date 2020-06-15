@@ -107,11 +107,12 @@ const server = http.createServer(function(request, response) {
 		response.end()
 	}
 	else if (queryArguments[0] == 'base64'){
+		base64 = require('nodejs-base64')
 		if (queryArguments[1].in(['encode'])){
-			response.write(require('nodejs-base64').base64encode(queryArguments[1].replace(/\+/g, ' ')))
+			response.write(base64.base64encode(queryArguments[1].split('+').slice(1).join(' ')))
 		}
 		else if (queryArguments[1].in(['decode'])){
-			response.write(require('nodejs-base64').base64decode(queryArguments[1])))
+			response.write(base64.base64decode(queryArguments[1]))
 		}
 		else response.write(` Введите действие. Доступные варианты 'decode' 'encode'. Например '!base64 encode Всем привет'`)
 		response.end()
