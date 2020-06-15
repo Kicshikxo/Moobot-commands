@@ -123,7 +123,7 @@ const server = http.createServer(function(request, response) {
 		query = queryArguments[1].split('+')
 		lang = query.shift()
 
-		text = encodeURI(query.join(' '))
+		text = encodeURIComponent(query.join(' '))
 		
 		if (!lang.in(['en', 'ru'])){
 			response.write(` Доступные языки для перевода: 'en', 'ru'. Например '!transl en Привет' или '!transl ru Hello'`)
