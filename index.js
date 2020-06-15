@@ -121,6 +121,10 @@ const server = http.createServer(function(request, response) {
 		query = queryArguments[1].split('+')
 		lang = query.shift()
 		text = query.join(' ')
+		if (!lang.in(['en', 'ru'])){
+			response.write(' Доступные языки для перевода: en ru')
+			return response.end()
+		}
 		response.write('lang: '+lang+' text: '+text)
 		response.end()
 	}
