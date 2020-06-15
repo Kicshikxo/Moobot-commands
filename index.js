@@ -107,22 +107,25 @@ const server = http.createServer(function(request, response) {
 		response.end()
 	}
 	else if (queryArguments[0] == 'eval'){
-		if (queryArguments[1])
+		try {
+			if (queryArguments[1])
 			try {
-				command = queryArguments[1].replace(/date/g, 'Date').replace(/math/g, 'Math').replace(/Math.pi/g, 'Math.PI').replace(/Math.e/g, 'Math.E')
-				command = command.replace(/\+\-\+/g,'-').replace(/\-\+/g,'-').replace(/\+\-/g,'-').replace(/\-/g,'-')
-				command = command.replace(/\+\*\*\+/g,'**').replace(/\*\*\+/g,'**').replace(/\+\*\*/g,'**').replace(/\*\*/g,'**')
-				command = command.replace(/\+\*\+/g,'*').replace(/\*\+/g,'*').replace(/\+\*/g,'*').replace(/\*/g,'*')
-				command = command.replace(/\+\/\+/g,'/').replace(/\/\+/g,'/').replace(/\+\//g,'/').replace(/\//g,'/')
-				command = command.replace(/\+\+\+/g,'+').replace(/\+\+/g,'+')
-				response.write(JSON.stringify(eval(command)).replace(/true/g,''))
-			}
-			catch (error) {
-				response.write(` Ошибка: ${error.toString().split(' ').slice(1).join(' ')}`)
-				response.end()
-			}
-		else response.write(` Введите пример. Например '!calc 2+2' или '!calc 123 **3 - 123456/ 2'`)
-		response.end()
+					command = queryArguments[1].replace(/date/g, 'Date').replace(/math/g, 'Math').replace(/Math.pi/g, 'Math.PI').replace(/Math.e/g, 'Math.E')
+					command = command.replace(/\+\-\+/g,'-').replace(/\-\+/g,'-').replace(/\+\-/g,'-').replace(/\-/g,'-')
+					command = command.replace(/\+\*\*\+/g,'**').replace(/\*\*\+/g,'**').replace(/\+\*\*/g,'**').replace(/\*\*/g,'**')
+					command = command.replace(/\+\*\+/g,'*').replace(/\*\+/g,'*').replace(/\+\*/g,'*').replace(/\*/g,'*')
+					command = command.replace(/\+\/\+/g,'/').replace(/\/\+/g,'/').replace(/\+\//g,'/').replace(/\//g,'/')
+					command = command.replace(/\+\+\+/g,'+').replace(/\+\+/g,'+')
+					response.write(JSON.stringify(eval(command)).replace(/true/g,''))
+				}
+				catch (error) {
+					response.write(` Ошибка: ${error.toString().split(' ').slice(1).join(' ')}`)
+					response.end()
+				}
+			else response.write(` Введите пример. Например '!calc 2+2' или '!calc 123 **3 - 123456/ 2'`)
+			response.end()
+		}
+		catch {}
 	}
 	else {
 		response.write(' Проверьте правильность настройки команды.')
