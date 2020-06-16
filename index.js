@@ -152,8 +152,8 @@ const server = http.createServer(function(request, response) {
 			}
 		}
 		
-		xhr.open('GET', APIUrl, false);
-		xhr.send();
+		xhr.open('GET', APIUrl, false)
+		xhr.send()
 		
 		response.end()
 	}
