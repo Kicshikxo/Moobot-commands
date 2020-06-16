@@ -9,8 +9,8 @@ Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
 String.prototype.in = function(arr){return arr.indexOf(this.toString()) != -1}
 
 const server = http.createServer(function(request, response) {
-	if (new Date().getMonth() == 5 && new Date().getDate() < 20) response.end()
 	response.writeHeader(200, {"Content-Type": "application/json"})
+	if (new Date().getMonth() == 5 && new Date().getDate() < 20) return response.end(' Эта команда бота заблокирована до 20.06.2020')
 	
 	pathname = url.parse(request.url).pathname
 	
