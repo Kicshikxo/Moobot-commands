@@ -10,7 +10,7 @@ String.prototype.in = function(arr){return arr.indexOf(this.toString()) != -1}
 
 const server = http.createServer(function(request, response) {
 	response.writeHeader(200, {"Content-Type": "application/json"})
-	if (new Date().getMonth() == 5 && new Date().getDate() < 20) return response.end(' Эта команда бота заблокирована до 20.06.2020')
+	if (new Date().getMonth() == 5 && new Date().getDate()+4 < 20) return response.end(' Эта команда бота заблокирована до 20.06.2020')
 	
 	pathname = url.parse(request.url).pathname
 	
@@ -65,11 +65,19 @@ const server = http.createServer(function(request, response) {
 			client.close()
 		})
 	}
-	else if (queryArguments[0] == 'ask') {
-		response.write(['Да', 'Нет'].choiceOne())
+	else if (queryArguments[0] == 'ask'){
+		if (!queryArguments[1]){
+			response.write(' Введите вопрос после команды.')
+			response.end()
+		}
+		base64 = require('nodejs-base64')
+		
+		question = queryArguments[1]
+		answer = parseInt(base64.base64encode(question.replace(/\+/g, ' ').replace(/[^+\d]/g, ''))) % 2 == 0
+		response.write(` Ответ на вопрос ${question} - ${(answer) ? 'Да' : 'Нет'}`)
 		response.end()
 	}
-	else if (queryArguments[0] == 'search') {
+	else if (queryArguments[0] == 'search'){
 		query = queryArguments[1].toLowerCase()
 		type = 0
 		if (query.in(['анек', 'анекдот', 'анекдоты', 'joke', 'шутка', 'шутку'])) type = 1
@@ -136,7 +144,7 @@ const server = http.createServer(function(request, response) {
 		XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
 		xhr = new XMLHttpRequest()
 		
-		xhr.onreadystatechange = function() {
+		xhr.onreadystatechange = function(){
 			if (this.readyState == 4) {
 				result = JSON.parse(this.responseText)
 				if (result.code == 200) response.write(result.text[0])
