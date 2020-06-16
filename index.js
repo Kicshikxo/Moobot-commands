@@ -73,8 +73,8 @@ const server = http.createServer(function(request, response) {
 		base64 = require('nodejs-base64')
 		
 		question = queryArguments[1].replace(/\+/g, ' ')
-		answer = parseInt(base64.base64encode(question.replace(/[^+\d]/g, ''))) % 2 == 0
-		response.write(` Ответ на вопрос '${question}' - ${(answer) ? 'Да' : 'Нет'}`)
+		answer = parseInt(base64.base64encode(question).replace(/[^+\d]/g, '')) % 2 == 0
+		response.write(` Ответ на вопрос ${question} - ${(answer) ? 'Да' : 'Нет'}`)
 		response.end()
 	}
 	else if (queryArguments[0] == 'search'){
