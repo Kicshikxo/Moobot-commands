@@ -16,7 +16,7 @@ commands = {
 		}
 		occupiedSpace = 0
 		for (i of user.inventory) occupiedSpace += i.quantity
-		response.write(` Имя: ${user.name}, Баланс: ${user.money}, Рюкзак: ${occupiedSpace}/${user.backpackSize}, Уровень кирки: ${user.pickaxeLevel}, ${(user.swordLevel > 0) ? `Уровень меча: ${user.swordLevel}` : 'Меча нет'}.`)
+		response.write(` Имя: ${user.name}, Баланс: ${user.money}$, Рюкзак: ${occupiedSpace}/${user.backpackSize}, Уровень кирки: ${user.pickaxeLevel}, ${(user.swordLevel > 0) ? `Уровень меча: ${user.swordLevel}` : 'Меча нет'}.`)
 	},
 	inventory: function(response, collection, user){
 		if (user.inventory.length < 1) return response.write(' В вашем рюкзаке ничего нет, \'!mine копать\' для добычи.')
