@@ -9,6 +9,7 @@ Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
 String.prototype.in = function(arr){return arr.indexOf(this.toString()) != -1}
 
 const server = http.createServer(function(request, response) {
+	return response.end()
 	response.writeHeader(200, {"Content-Type": "application/json"})
 	
 	pathname = url.parse(request.url).pathname
@@ -126,7 +127,7 @@ const server = http.createServer(function(request, response) {
 		text = encodeURIComponent(query.join(' '))
 		
 		if (!lang.in(['en', 'ru', 'de', 'uk', 'fr'])){
-			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'uk' (Украинский), 'de' (Немецкий) 'fr' (Французский). Язык ввода определяется автоматически. Примеры: '!transl en Привет', '!transl ru Hello'`)
+			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'uk' (Украинский), 'de' (Немецкий), 'fr' (Французский). Язык ввода определяется автоматически. Примеры: '!transl en Привет', '!transl ru Hello'`)
 			return response.end()
 		}
 		
