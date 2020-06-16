@@ -161,10 +161,10 @@ const server = http.createServer(function(request, response) {
 					command = command.replace(/\+\+\+/g,'+').replace(/\+\+/g,'+')
 					response.write(JSON.stringify(eval(command)).replace(/true/g,''))
 				}
-				catch (error) {
+				catch (error){
 					response.write(` Ошибка: ${error.toString().split(' ').slice(1).join(' ')}`)
 					response.end()
-				}
+			}
 			else response.write(` Введите пример. Например '!calc 2+2' или '!calc 123 **3 - 123456/ 2'`)
 			response.end()
 		}
