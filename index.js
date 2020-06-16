@@ -9,7 +9,6 @@ Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
 String.prototype.in = function(arr){return arr.indexOf(this.toString()) != -1}
 
 const server = http.createServer(function(request, response) {
-	return response.end()
 	response.writeHeader(200, {"Content-Type": "application/json"})
 	
 	pathname = url.parse(request.url).pathname
@@ -168,7 +167,7 @@ const server = http.createServer(function(request, response) {
 			else response.write(` Введите пример. Например '!calc 2+2' или '!calc 123 **3 - 123456/ 2'`)
 			response.end()
 		}
-		catch {}
+		catch {response.end()}
 	}
 	else {
 		response.write(' Проверьте правильность настройки команды.')
