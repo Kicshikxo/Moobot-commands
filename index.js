@@ -108,7 +108,7 @@ const server = http.createServer(function(request, response) {
 		response.end()
 	}
 	else if (queryArguments[0] == 'hug'){
-		if (!queryArguments[2]){
+		if (!queryArguments[2] || queryArguments[2].charAt(0) != '@'){
 			return response.end(' Введите имя пользователя которого хотите обнять.')
 		}
 		response.end(`обнимает ${queryArguments[2].replace(/@/g,'')} <3 `)
