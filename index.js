@@ -111,8 +111,7 @@ const server = http.createServer(function(request, response) {
 		if (!queryArguments[2]){
 			return response.end(' Введите имя пользователя которого хотите обнять.')
 		}
-		
-		response.end(` ${queryArguments[1]} обнимает ${queryArguments[2]}`)
+		response.end(` ${queryArguments[1]} обнимает ${queryArguments[2]} <3 `)
 	}
 	else if (queryArguments[0] == 'rpg'){
 		type = queryArguments[1].toLowerCase()
