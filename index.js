@@ -30,7 +30,7 @@ const server = http.createServer(function(request, response) {
 			async function(error, client){
 			
 			if (error) {
-				response.write(` Ошибка подключения к серверу. Ошибка: ${error}`)
+				response.write(` Ошибка подключения к базе данных. Ошибка: ${error}`)
 				return response.end()
 			}
 			
