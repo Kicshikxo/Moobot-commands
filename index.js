@@ -16,8 +16,7 @@ const server = http.createServer(function(request, response) {
 		tsec=today%60; today=Math.floor(today/60); if(tsec<10)tsec='0'+tsec;
 		tmin=today%60; today=Math.floor(today/60); if(tmin<10)tmin='0'+tmin;
 		thour=today%24; today=Math.floor(today/24);
-		
-		if (today + thour + tmin + tsec == 0) return response.end(` Эта команда бота заблокирована до 20.06.2020, ещё осталось: ${today} дней ${thour} часов ${tmin} минут ${tsec} секунд...`)
+		if (parseInt(today) + parseInt(thour) + parseInt(tmin) + parseInt(tsec) > 0) return response.end(` Эта команда бота заблокирована до 20.06.2020, ещё осталось: ${today} дней ${thour} часов ${tmin} минут ${tsec} секунд...`)
 	
 	pathname = url.parse(request.url).pathname
 	
