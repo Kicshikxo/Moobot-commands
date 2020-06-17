@@ -10,7 +10,15 @@ String.prototype.in = function(arr){return arr.indexOf(this.toString()) != -1}
 
 const server = http.createServer(function(request, response) {
 	response.writeHeader(200, {"Content-Type": "application/json"})
-	if (new Date().getMonth() == 5 && new Date().getDate() < 20) return response.end(' Эта команда бота заблокирована до 20.06.2020')
+	if (new Date().getMonth() == 5 && new Date().getDate() < 20){
+		timeend= new Date(2020, 5, 20, 0, 0);
+		today = new Date();
+		today = Math.floor((timeend-today)/1000);
+		tsec=today%60; today=Math.floor(today/60); if(tsec<10)tsec='0'+tsec;
+		tmin=today%60; today=Math.floor(today/60); if(tmin<10)tmin='0'+tmin;
+		thour=today%24; today=Math.floor(today/24);
+		return response.end(` Эта команда бота заблокирована до 20.06.2020, ещё осталось: ${today} дней ${thour} часов ${tmin} минут ${tsec} секунд...`)
+	}
 	
 	pathname = url.parse(request.url).pathname
 	
