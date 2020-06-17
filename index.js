@@ -17,7 +17,7 @@ const server = http.createServer(function(request, response) {
 	tsec=today%60; today=Math.floor(today/60); if(tsec<10)tsec='0'+tsec;
 	tmin=today%60; today=Math.floor(today/60); if(tmin<10)tmin='0'+tmin;
 	thour=today%24; today=Math.floor(today/24);
-	if (parseInt(today) + parseInt(thour) + parseInt(tmin) + parseInt(tsec) > 0) return response.end(` Эта команда бота заблокирована до 20.06.2020, ещё осталось: ${today} дней ${thour} часов ${tmin} минут ${tsec} секунд...`)
+// 	if (parseInt(today) + parseInt(thour) + parseInt(tmin) + parseInt(tsec) > 0) return response.end(` Эта команда бота заблокирована до 20.06.2020, ещё осталось: ${today} дней ${thour} часов ${tmin} минут ${tsec} секунд...`)
 	
 	pathname = url.parse(request.url).pathname
 	
@@ -106,6 +106,13 @@ const server = http.createServer(function(request, response) {
 		if (options.length < 2) response.write(' Количество вариантов должно быть больше одного. Варианты указываются после команды через пробел.')
 		else response.write(options.choiceOne())
 		response.end()
+	}
+	else if (queryArguments[0] == 'hug'){
+		if (!queryArguments[2]){
+			return response.end(' Введите имя пользователя которого хотите обнять.')
+		}
+		
+		response.end(` ${queryArguments[1]} обнимает ${queryArguments[2]}`)
 	}
 	else if (queryArguments[0] == 'rpg'){
 		type = queryArguments[1].toLowerCase()
