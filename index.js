@@ -11,7 +11,7 @@ String.prototype.in = function(arr){return arr.indexOf(this.toString()) != -1}
 const server = http.createServer(function(request, response) {
 	response.writeHeader(200, {"Content-Type": "application/json"})
 		timeend= new Date(2020, 5, 19, 21, 0);
-		today = new Date(2020, 5, 19, 21, 0);
+		today = new Date();
 		today = Math.floor((timeend-today)/1000);
 		tsec=today%60; today=Math.floor(today/60); if(tsec<10)tsec='0'+tsec;
 		tmin=today%60; today=Math.floor(today/60); if(tmin<10)tmin='0'+tmin;
