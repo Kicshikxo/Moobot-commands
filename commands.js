@@ -163,7 +163,7 @@ commands = {
 		else resolve(response.write(` Команда '!mine улучшить' имеет структуру: '!mine улучшить (рюкзак/кирку/меч)'. ${(user.backpackSize != 15) ? `Для увеличения рюкзака до ${config.backpackSizes[user.backpackSize]} необходимо ${config.backpackPrices[user.backpackSize]}$` : 'У вас максимальный уровень рюкзака'}. ${(user.pickaxeLevel != 5) ? `Для улучшение кирки до ${user.pickaxeLevel+1} уровня необходимо ${config.pickaxePrices[user.pickaxeLevel]}$` : 'У вас максимальный уровень кирки'}. ${(user.swordLevel != 3) ? `Для улучшения меча до ${user.swordLevel+1} уровня необходимо ${config.swordPrices[user.swordLevel]}` : 'У вас максимальный уровень меча'}.`))
 	})},
 	give: function(response, collection, user){return new Promise(function(resolve, reject){
-		recipient = queryArguments[3].toLowerCase()
+		recipient = queryArguments[3].replace(/@/g,'').toLowerCase()
 		value = Math.abs(parseInt(queryArguments[4]))
 		
 		if (!recipient || !value) return resolve(response.write(' Команда \'!mine передать\' имеет структуру: \'!mine передать {пользователь} {сумма}\'.'))
