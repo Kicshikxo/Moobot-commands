@@ -184,7 +184,7 @@ const server = http.createServer(function(request, response) {
 		catch {response.end()}
 	}
 	else if (queryArguments[0] == 'repeat'){
-		response.end(queryArguments[1].replace(/\+/g,''))
+		response.end(queryArguments[1].replace(/\+/g,' '))
 	}
 	else {
 		response.write(' Проверьте правильность настройки команды.')
