@@ -170,11 +170,14 @@ commands = {
 		
 		if (user.name == recipient) return resolve(response.write(' Нельзя передавать деньги себе.'))
 			
-		if ((function(){for (_ of data) 
-			if (_.name == recipient){
-				recipientGold = _.money
-				return true
-			})()){
+		if ((function(){
+			for (_ of data) 
+				if (_.name == recipient){
+					recipientGold = _.money
+					return true
+				}
+			}
+		)()){
 			if (user.money >= value){
 				collection.updateOne({name: recipient},{$set: {money: recipientGold+value}}, function(error, result){
 					if (error) {
