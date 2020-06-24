@@ -186,7 +186,7 @@ const server = http.createServer(function(request, response) {
 	}
 	else if (queryArguments[0] == 'repeat'){
 		if (queryArguments[1])
-			response.end(queryArguments[1].replace(/\+/g,' ').toString())
+			response.end(queryArguments[1].replace(/\+/g,' '))
 		else
 			response.end('Введите текст для повторения.')
 	}
