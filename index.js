@@ -139,8 +139,8 @@ const server = http.createServer(function(request, response) {
 
 		text = encodeURIComponent(query.join(' '))
 		
-		if (!lang.in(['en', 'ru', 'uk', 'tt', 'de', 'fr'])){
-			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'uk' (Украинский), 'tt' (Татарский), 'de' (Немецкий), 'fr' (Французский). Язык ввода определяется автоматически. Примеры: '!transl en Привет', '!transl ru Hello'`)
+		if (!lang.in(['en', 'ru', 'uk', 'tt', 'kk', 'de', 'fr', 'ja', 'zh'])){
+			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'uk' (Украинский), 'tt' (Татарский), 'kk' (Казахский), 'de' (Немецкий), 'fr' (Французский), 'ja' (Японский), 'zh' (Китайский). Язык ввода определяется автоматически. Примеры: '!transl en Привет', '!transl ru Hello'`)
 			return response.end()
 		}
 		
