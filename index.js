@@ -72,7 +72,7 @@ const server = http.createServer(function(request, response) {
 		sha256 = require('sha256')
 		
 		question = queryArguments[1].replace(/\+/g, ' ').toLowerCase()
-		answer = sha256(question).replace(/[^\d]/g, '').split('').map(parseFloat).reduce((a, b) => a + b) % 2 == 0
+		answer = sha256(queryArguments[2]+question).replace(/[^\d]/g, '').split('').map(parseFloat).reduce((a, b) => a + b) % 2 == 0
 		response.write(` Ответ на вопрос ${question} - ${(answer) ? 'Да' : 'Нет'}`)
 		response.end()
 	}
