@@ -167,11 +167,11 @@ const server = http.createServer(function(request, response) {
 			if (queryArguments[1])
 				try {
 					command = queryArguments[1].replace(/new\+/g,'new ')
-					command = command.replace(/\+\-\+/g,'-').replace(/\-\+/g,'-').replace(/\+\-/g,'-').replace(/\-/g,'-')
+					command = command.replace(/\+\-\+/g,'-').replace(/\-\+/g,'-').replace(/\+\-/g,'-')
 					command = command.replace(/\+\*\*\+/g,'**').replace(/\*\*\+/g,'**').replace(/\+\*\*/g,'**')
 					command = command.replace(/\+\^\+/g,'**').replace(/\^\+/g,'**').replace(/\+\^/g,'**').replace(/\^/g,'**')
-					command = command.replace(/\+\*\+/g,'*').replace(/\*\+/g,'*').replace(/\+\*/g,'*').replace(/\*/g,'*')
-					command = command.replace(/\+\/\+/g,'/').replace(/\/\+/g,'/').replace(/\+\//g,'/').replace(/\//g,'/')
+					command = command.replace(/\+\*\+/g,'*').replace(/\*\+/g,'*').replace(/\+\*/g,'*')
+					command = command.replace(/\+\/\+/g,'/').replace(/\/\+/g,'/').replace(/\+\//g,'/')
 					command = command.replace(/\+\+\+/g,'+').replace(/\+\+/g,'+')
 					response.write(JSON.stringify(eval(command)).replace(/true/g,''))
 				}
