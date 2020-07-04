@@ -139,8 +139,8 @@ const server = http.createServer(function(request, response) {
 
 		text = encodeURIComponent(query.join(' '))
 		
-		if (!lang.in(['en', 'ru', 'uk', 'tt', 'kk', 'be', 'de', 'fr', 'ja', 'zh', 'ko'])){
-			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'uk' (Украинский), 'tt' (Татарский), 'kk' (Казахский), 'be' (Белорусский), 'de' (Немецкий), 'fr' (Французский), 'ja' (Японский), 'zh' (Китайский), 'ko' (Корейский). Язык ввода определяется автоматически. Примеры: '!transl en Привет', '!transl ru Hello'`)
+		if (!lang.in(['az', 'ml', 'sq', 'mt', 'am', 'mk', 'en', 'mi', 'ar', 'mr', 'hy', 'mhr', 'af', 'mn', 'eu', 'de', 'ba', 'ne', 'be', 'no', 'bn', 'pa', 'my', 'pap', 'bg', 'fa', 'bs', 'pl', 'cy', 'pt', 'hu', 'ro', 'vi', 'ru', 'ht', 'ceb', 'gl', 'sr', 'nl', 'si', 'mrj', 'sk', 'el', 'sl', 'ka', 'sw', 'gu', 'su', 'da', 'tg', 'he', 'th', 'yi', 'tl', 'id', 'ta', 'ga', 'tt', 'it', 'te', 'is', 'tr', 'es', 'udm', 'kk', 'uz', 'kn', 'uk', 'ca', 'ur', 'ky', 'fi', 'zh', 'fr', 'ko', 'hi', 'xh', 'hr', 'km', 'cs', 'lo', 'sv', 'la', 'gd', 'lv', 'et', 'lt', 'eo', 'lb', 'jv', 'mg', 'ja', 'ms'])){
+			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'uk' (Украинский), 'tt' (Татарский), 'kk' (Казахский), 'be' (Белорусский), 'de' (Немецкий), 'fi' (Финский), 'fr' (Французский), 'ja' (Японский), 'zh' (Китайский), 'ko' (Корейский). Язык ввода определяется автоматически. Примеры: '!transl en Привет', '!transl ru Hello'`)
 			return response.end()
 		}
 		
