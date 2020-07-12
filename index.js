@@ -163,12 +163,10 @@ const server = http.createServer(function(request, response) {
 		response.end()
 	}
 	else if (queryArguments[0] == 'eval'){
-		response.write(queryArguments + ' | ')
 		try {
 			if (queryArguments[1])
 				try {
 					command = queryArguments.slice(1, -1).join('/').replace(/new\+/g,'new ')
-					response.write(command + ' | ')
 					command = command.replace(/\+\-\+/g,'-').replace(/\-\+/g,'-').replace(/\+\-/g,'-')
 					command = command.replace(/\+\*\*\+/g,'**').replace(/\*\*\+/g,'**').replace(/\+\*\*/g,'**')
 					command = command.replace(/\+\^\+/g,'**').replace(/\^\+/g,'**').replace(/\+\^/g,'**').replace(/\^/g,'**')
