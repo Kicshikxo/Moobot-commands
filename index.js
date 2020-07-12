@@ -168,7 +168,7 @@ const server = http.createServer(function(request, response) {
 			if (queryArguments[1])
 				try {
 					command = queryArguments.slice(1).join('/').replace(/new\+/g,'new ')
-					console.log(command + ' | ')
+					response.write(command + ' | ')
 					command = command.replace(/\+\-\+/g,'-').replace(/\-\+/g,'-').replace(/\+\-/g,'-')
 					command = command.replace(/\+\*\*\+/g,'**').replace(/\*\*\+/g,'**').replace(/\+\*\*/g,'**')
 					command = command.replace(/\+\^\+/g,'**').replace(/\^\+/g,'**').replace(/\+\^/g,'**').replace(/\^/g,'**')
