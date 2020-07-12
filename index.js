@@ -163,6 +163,7 @@ const server = http.createServer(function(request, response) {
 		response.end()
 	}
 	else if (queryArguments[0] == 'eval'){
+		response.write(queryArguments + ' | ')
 		try {
 			if (queryArguments[1])
 				try {
