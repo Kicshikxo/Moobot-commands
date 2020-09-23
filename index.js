@@ -109,16 +109,23 @@ const server = http.createServer(function(request, response) {
 	}
 	else if (queryArguments[0] == 'deepai'){
 		if (queryArguments[1] == '') return response.end(' Введите текст для преобразования его в картинку.')
+		else if (queryArguments[1] == '--raw-link') {
+			var raw = true
+			queryArguments.splice(0,1)
+		}
 		deepai.setApiKey('06ebd50a-42aa-402e-b6c3-7f3257e92553');
 		(async function() {
 			var resp = await deepai.callStandardApi("text2img", {
 				text: queryArguments[1].replace(/\+/g,' ')
 			})
-			requestify.get(`https://clck.ru/--?url=${resp.output_url}`)
-				.then(function(res){
-					return response.end(` Картинка из текста "${queryArguments[1].replace(/\+/g,' ')}": ${res.getBody()}`)
-				}
-			)
+			if (!raw){
+				requestify.get(`https://clck.ru/--?url=${resp.output_url}`)
+					.then(function(res){
+						return response.end(` Картинка из текста "${queryArguments[1].replace(/\+/g,' ')}": ${res.getBody()}`)
+					}
+				)
+			}
+			else return response.end(` Картинка из текста "${queryArguments[1].replace(/\+/g,' ')}": ${resp.output_url}`)
 		})()
 	}
 	else if (queryArguments[0] == 'rpg'){
