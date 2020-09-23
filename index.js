@@ -2,6 +2,7 @@ const http = require('http'),
 	  url  = require('url'),
 	  mongo = require("mongodb"),
 	  deepai = require('deepai'),
+	  requestify = require('requestify'),
 	  texts = require('./texts.js'),
 	  commands = require('./commands.js')
 
@@ -109,12 +110,15 @@ const server = http.createServer(function(request, response) {
 	else if (queryArguments[0] == 'deepai'){
 		if (queryArguments[1] == '') return response.end(' Введите текст для преобразования его в картинку.')
 		deepai.setApiKey('06ebd50a-42aa-402e-b6c3-7f3257e92553');
-
 		(async function() {
 			var resp = await deepai.callStandardApi("text2img", {
 				text: queryArguments[1].replace(/\+/g,' ')
 			});
-			return response.end(` Картинка из текста "${queryArguments[1].replace(/\+/g,' ')}": ${resp.output_url}`)
+			requestify.get(`https://clck.ru/--?url=${resp.output_url}`)
+				.then(function(res){
+					return response.end(` Картинка из текста "${queryArguments[1].replace(/\+/g,' ')}": ${res.getBody()}`)
+				}
+			);
 		})()
 	}
 	else if (queryArguments[0] == 'rpg'){
