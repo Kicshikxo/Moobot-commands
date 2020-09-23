@@ -9,9 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "deepai": "^1.0.15",
     "iconv": "^3.0.0",
     "mongodb": "^3.5.8",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "nodejs-base64": "^1.0.3",
     "sha256": "^0.2.0",
     "xmlhttprequest": "^1.8.0"

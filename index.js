@@ -1,6 +1,7 @@
 const http = require('http'),
 	  url  = require('url'),
 	  mongo = require("mongodb"),
+	  deepai = require('deepai'),
 	  texts = require('./texts.js'),
 	  commands = require('./commands.js')
 
@@ -104,6 +105,18 @@ const server = http.createServer(function(request, response) {
 			return response.end(', Введите имя пользователя которого хотите обнять.')
 		}
 		response.end(`обнимает ${queryArguments[2].replace(/@/g,'')} <3 `)
+	}
+	else if (queryArguments[0] == 'deepai'){
+		if (queryArguments.length[1] == '') return response.end(' Введите текст для преобразования его в картинку.')
+		
+		deepai.setApiKey('06ebd50a-42aa-402e-b6c3-7f3257e92553');
+
+		(async function() {
+			var resp = await deepai.callStandardApi("text2img", {
+				text: queryArguments.slice(1).join(' ')
+			});
+			return response.end(` Картинка из текста: ${resp.output_url}`)
+		})()
 	}
 	else if (queryArguments[0] == 'rpg'){
 		type = queryArguments[1].toLowerCase()
