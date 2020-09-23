@@ -113,12 +113,12 @@ const server = http.createServer(function(request, response) {
 		(async function() {
 			var resp = await deepai.callStandardApi("text2img", {
 				text: queryArguments[1].replace(/\+/g,' ')
-			});
+			})
 			requestify.get(`https://clck.ru/--?url=${resp.output_url}`)
 				.then(function(res){
 					return response.end(` Картинка из текста "${queryArguments[1].replace(/\+/g,' ')}": ${res.getBody()}`)
 				}
-			);
+			)
 		})()
 	}
 	else if (queryArguments[0] == 'rpg'){
