@@ -117,7 +117,7 @@ const server = http.createServer(function(request, response) {
 		deepai.setApiKey('06ebd50a-42aa-402e-b6c3-7f3257e92553');
 		(async function() {
 			var resp = await deepai.callStandardApi("text2img", {
-				text: queryArguments[1].replace(/\+/g,' ')
+				text: queryArguments[1].replace(/\+/g,' ').trim()
 			})
 			if (!raw){
 				requestify.get(`https://clck.ru/--?url=${resp.output_url}`)
