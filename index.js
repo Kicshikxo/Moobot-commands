@@ -122,11 +122,11 @@ const server = http.createServer(function(request, response) {
 			if (!raw){
 				requestify.get(`https://clck.ru/--?url=${resp.output_url}`)
 					.then(function(res){
-						return response.end(` Картинка из текста "${queryArguments[1].replace(/\+/g,' ')}": ${res.getBody()}`)
+						return response.end(` Картинка из текста "${queryArguments[1].replace(/\+/g,' ').trim()}": ${res.getBody()}`)
 					}
 				)
 			}
-			else return response.end(` Картинка из текста "${queryArguments[1].replace(/\+/g,' ')}": ${resp.output_url}`)
+			else return response.end(` Картинка из текста "${queryArguments[1].replace(/\+/g,' ').trim()}": ${resp.output_url}`)
 		})()
 	}
 	else if (queryArguments[0] == 'rpg'){
