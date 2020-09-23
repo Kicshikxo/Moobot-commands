@@ -116,7 +116,7 @@ const server = http.createServer(function(request, response) {
 			var resp = await deepai.callStandardApi("text2img", {
 				text: queryArguments.slice(1).join(' ')
 			});
-			return response.end(resp.output_url)
+			return response.end(` Картинка из текста: ${resp.output_url}`)
 		})()
 	}
 	else if (queryArguments[0] == 'rpg'){
