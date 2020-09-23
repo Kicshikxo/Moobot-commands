@@ -3,6 +3,7 @@ const http = require('http'),
 	  mongo = require("mongodb"),
 	  deepai = require('deepai'),
 	  requestify = require('requestify'),
+	  
 	  texts = require('./texts.js'),
 	  commands = require('./commands.js')
 
@@ -111,7 +112,7 @@ const server = http.createServer(function(request, response) {
 		if (queryArguments[1] == '') return response.end(' Введите текст для преобразования его в картинку.')
 		else if (queryArguments[1] == '--raw-link') {
 			var raw = true
-			queryArguments.splice(0,1)
+			queryArguments.shift()
 		}
 		deepai.setApiKey('06ebd50a-42aa-402e-b6c3-7f3257e92553');
 		(async function() {
