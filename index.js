@@ -204,7 +204,7 @@ const server = http.createServer(function(request, response) {
 						command = command.replace(/\+\+\+/g,'+').replace(/\+\+/g,'+')
 						
 						result = await eval(command)
-						response.write(JSON.stringify(result || "").replace(/true/g,''))
+						response.write(JSON.stringify(result || "").replace(/\"/g, '').replace(/true/g,''))
 						response.end()
 						
 // 						new Promise(function(resolve, reject){
