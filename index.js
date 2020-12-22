@@ -228,8 +228,10 @@ const server = http.createServer(function(request, response) {
 						response.end()
 					}
 				}
-				else response.write(` Введите пример. Например '!calc 2+2' или '!calc 123 **3 - 123456/ 2'`)
-				
+				else {
+					response.write(` Введите пример. Например '!calc 2+2' или '!calc 123 **3 - 123456/ 2'`)
+					response.end()
+				}
 			}
 			func()
 		}
