@@ -191,7 +191,7 @@ const server = http.createServer(function(request, response) {
 	else if (queryArguments[0] == 'eval'){
 		try {
 			async function func(){
-				if (queryArguments[1])
+				if (queryArguments[1]) {
 					try {
 						command = queryArguments.slice(1, -1).join('/').replace(/new\+/g,'new ')
 						command = command.replace(/\+\-\+/g,'-').replace(/\-\+/g,'-').replace(/\+\-/g,'-')
@@ -200,18 +200,34 @@ const server = http.createServer(function(request, response) {
 						command = command.replace(/\+\*\+/g,'*').replace(/\*\+/g,'*').replace(/\+\*/g,'*')
 						command = command.replace(/\+\/\+/g,'/').replace(/\/\+/g,'/').replace(/\+\//g,'/')
 						command = command.replace(/\+\+\+/g,'+').replace(/\+\+/g,'+')
-						async function writeQuery(){
-							result = await JSON.stringify(eval(command)).replace(/true/g,'')
-							response.write(result)
-						}
-						await writeQuery()
+						
+						result = await eval(command)
+						response.write(JSON.stringify(result || "").replace(/true/g,''))
+						response.end()
+						
+// 						new Promise(function(resolve, reject){
+// 							console.log("я тут")
+// 							resolve(eval(command))
+// 							resolve(JSON.stringify(eval(command)).replace(/true/g,''))
+// 						}).then((result) => {
+// 							console.log('а всё')
+// 							response.write(JSON.stringify(result).replace(/true/g,''))
+// 							response.end()
+// 						})
+// 							resolve(response.write(JSON.stringify(eval(command)).replace(/true/g,'')))
+						
+// 						result = await JSON.stringify(eval(command)).replace(/true/g,'')
+// 						await response.write(result)
+						
+// 						response.end()
 					}
 					catch (error){
 						response.write(` Ошибка: ${error.toString().split(' ').slice(1).join(' ')}`)
 						response.end()
+					}
 				}
 				else response.write(` Введите пример. Например '!calc 2+2' или '!calc 123 **3 - 123456/ 2'`)
-				response.end()
+				
 			}
 			func()
 		}
