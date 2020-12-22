@@ -199,7 +199,11 @@ const server = http.createServer(function(request, response) {
 					command = command.replace(/\+\*\+/g,'*').replace(/\*\+/g,'*').replace(/\+\*/g,'*')
 					command = command.replace(/\+\/\+/g,'/').replace(/\/\+/g,'/').replace(/\+\//g,'/')
 					command = command.replace(/\+\+\+/g,'+').replace(/\+\+/g,'+')
-					response.write(JSON.stringify(eval(command)).replace(/true/g,''))
+					async function writeQuery(){
+						result = await JSON.stringify(eval(command)).replace(/true/g,'')
+						response.write(result)
+					}
+					writeQuery()
 				}
 				catch (error){
 					response.write(` Ошибка: ${error.toString().split(' ').slice(1).join(' ')}`)
