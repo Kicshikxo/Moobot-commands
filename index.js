@@ -18,7 +18,7 @@ const server = http.createServer(function(request, response) {
 	
 	queryArguments = decodeURIComponent(pathname.replace(/\?/g, '%3F')).replace(/%3F/g, '?').split('/').slice(1).concat([''])
 	
-	console.log(queryArguments)
+// 	console.log(queryArguments)
 	
 	if (queryArguments[0] == 'mine'){
 		name   = queryArguments[1]
