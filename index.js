@@ -18,8 +18,6 @@ const server = http.createServer(function(request, response) {
 	
 	queryArguments = decodeURIComponent(pathname.replace(/\?/g, '%3F')).replace(/%3F/g, '?').split('/').slice(1).concat([''])
 	
-// 	console.log(queryArguments)
-	
 	if (queryArguments[0] == 'mine'){
 		name   = queryArguments[1]
 		action = queryArguments[2].toLowerCase()
@@ -206,22 +204,6 @@ const server = http.createServer(function(request, response) {
 						result = await eval(command)
 						response.write(JSON.stringify(result || "").replace(/^\"+|\"+$/g, '').replace(/true/g,''))
 						response.end()
-						
-// 						new Promise(function(resolve, reject){
-// 							console.log("я тут")
-// 							resolve(eval(command))
-// 							resolve(JSON.stringify(eval(command)).replace(/true/g,''))
-// 						}).then((result) => {
-// 							console.log('а всё')
-// 							response.write(JSON.stringify(result).replace(/true/g,''))
-// 							response.end()
-// 						})
-// 							resolve(response.write(JSON.stringify(eval(command)).replace(/true/g,'')))
-						
-// 						result = await JSON.stringify(eval(command)).replace(/true/g,'')
-// 						await response.write(result)
-						
-// 						response.end()
 					}
 					catch (error){
 						response.write(` Ошибка: ${error.toString().split(' ').slice(1).join(' ')}`)
