@@ -104,7 +104,8 @@ gachi = [
 	'Те ♂CUM♂, которые вы бросаете на пол ♂SLAVES♂ думают, что это ♂COCK♂.И когда хотят ♂SUCK♂ его, то ♂CUM♂ прилипает к ♂ANAL♂, ♂SLAVE♂ не может ни ♂SUCK♂ ни ♂FISTING♂ и умирает! Берегите ♂GYM♂!!!',
 	'Однажды ♂BOSS OF THE GYM♂ сказал двум ♂BOY NEXT DOOR♂, что за съёмки в ♂GAY PORN♂ заплатят ♂THREE HUNDRED BUCKS♂. Обманули ♂FUCKING SLAVES♂ на четыре ♂FISTING ASS♂!',
 	'Только хотел рассчитаться на кассе, как сзади голос: "♂OH SHIT♂, Я оплачу". ♂FUCKING SLAVE♂ какой-то. Говорит: "Я в ♂GYM♂ работаю. "Мы возле ♂LOCKER ROOM♂ ♂FUCK YOU♂". Потом в сторону отвёл, протянул ♂THREE HUNDRED BUCKS♂: "Когда всё начнётся, замолви за меня словечко перед ♂DUNGEON MASTER♂. "Не хочу ♂STICK FINGER IN MY ASS♂". И ♂CUM♂.',
-	'♂DUNGEON MASTER♂ заходит в ♂DUNGEON♂. Видит маленькую бронзовую фигурку ♂FUNCKING SLAVE♂. На ценнике написано: "♂FUNCKING SLAVE♂ - 1000 рублей, ♂FISTING♂ - 300$". - Я могу купить ♂FUNCKING SLAVE♂ без ♂FISTING♂? - спрашивает он ♂LEATHERMAN♂. - Конечно, - отвечает ♂LEATHERMAN♂, - Но за ♂FISTING♂ вы всё равно вернётесь.'
+	'♂DUNGEON MASTER♂ заходит в ♂DUNGEON♂. Видит маленькую бронзовую фигурку ♂FUNCKING SLAVE♂. На ценнике написано: "♂FUNCKING SLAVE♂ - 1000 рублей, ♂FISTING♂ - 300$". - Я могу купить ♂FUNCKING SLAVE♂ без ♂FISTING♂? - спрашивает он ♂LEATHERMAN♂. - Конечно, - отвечает ♂LEATHERMAN♂, - Но за ♂FISTING♂ вы всё равно вернётесь.',
+	'-♂️BOYS♂️, слушайте меня внимательно. Будем прорываться к ♂️GYM♂️. ♂️DUNGEON♂️ кишит ♂️FUCKING SLAVES♂️ и прочей нечистью. Поэтому ♂️CUMMING♂️ в оба и прикрывать ♂️ASS♂️ друг друга. Всё. Проверяйте ♂️FAT COCK♂️ и выдвигаемся вперёд по аллее. Готовность ♂️THREE HUNDRED♂️ секунд'
 ] 
 
 module.exports = {
