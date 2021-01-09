@@ -193,7 +193,7 @@ const server = http.createServer(function(request, response) {
 			async function func(){
 				if (queryArguments[1]) {
 					try {
-						command = queryArguments.slice(1, -1).join('/').replace(/new\+/g,'new ').replace(/return\+/g,'return ')
+						command = queryArguments.slice(1, -1).join('/').replace(/new\+/g,'new ').replace(/return\+/g,'return ').replace(/\+of\+/g,' of ')
 						command = command.replace(/\+\-\+/g,'-').replace(/\-\+/g,'-').replace(/\+\-/g,'-')
 						command = command.replace(/\+\*\*\+/g,'**').replace(/\*\*\+/g,'**').replace(/\+\*\*/g,'**')
 						command = command.replace(/\+\^\+/g,'**').replace(/\^\+/g,'**').replace(/\+\^/g,'**').replace(/\^/g,'**')
