@@ -220,6 +220,8 @@ const server = http.createServer(function(request, response) {
 		catch {response.end()}
 	}
 	else if (queryArguments[0] == 'dj'){
+		allowedNames = ['aloinfait','vichuxa']
+		
 		if (queryArguments[1] == 'skip'){
 			async function skipSound(){
 				result = JSON.parse((await requestify.get('https://streamdj.ru/api/request_skip/96947/nA1LF5euCzYZGqfWHcT6yhvMUlQ4psa7')).body)
@@ -232,7 +234,10 @@ const server = http.createServer(function(request, response) {
 				else 
 					response.end(`Неизвестный ответ сервера`)
 			}
-			skipSound()
+			if (queryArguments[2].in(allowedNames))
+				skipSound()
+			else 
+				response.end('У вас нет прав на пропуск трека')
 		}
 		else if (queryArguments[1] == 'list'){
 			async function getSoundsList(){
