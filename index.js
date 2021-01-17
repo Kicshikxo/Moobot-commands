@@ -230,7 +230,7 @@ const server = http.createServer(function(request, response) {
 				else if (result.success == '0')
 					response.end(`Список треков пуст :(`)
 				else 
-					response.end(`Неизветный ответ сервера`)
+					response.end(`Неизвестный ответ сервера`)
 			}
 			skipSound()
 		}
