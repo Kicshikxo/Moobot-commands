@@ -226,7 +226,7 @@ const server = http.createServer(function(request, response) {
 		
 		allowedNames = ['aloinfait','vichuxa']
 		
-		if (queryArguments[1] == 'skip'){
+		if (queryArguments[1].toLowerCase().in(['skip', 'скип', 'далее'])){
 			async function skipSound(){
 				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/request_skip/${channelID}/${channelAPI}`)).body)
 				if (result.error)
@@ -243,18 +243,18 @@ const server = http.createServer(function(request, response) {
 			else 
 				response.end('У вас нет прав на пропуск трека')
 		}
-		else if (queryArguments[1] == 'current'){
+		else if (queryArguments[1].toLowerCase().in(['current', 'песня', 'трек', 'текущий', 'текущее'])){
 			async function getCurrentSound(){
 				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/get_track/${channelID}`)).body)
 				if (result == null)
 					response.end('Текущий трек не найден')
 				else {
-					response.end(`Текущий трек: ${result.title} прислал ${result.author}. Ссылка: https://www.youtube.com/watch?v=${result.yid}`)
+					response.end(`Текущий трек: ${result.title}, прислал - ${result.author}. Ссылка: https://www.youtube.com/watch?v=${result.yid}`)
 				}
 			}
 			getCurrentSound()
 		}
-		else if (queryArguments[1] == 'list'){
+		else if (queryArguments[1].toLowerCase().in(['list', 'список'])){
 			async function getSoundsList(){
 				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/playlist/${channelID}/c`)).body)
 				if (result == false)
