@@ -248,9 +248,8 @@ const server = http.createServer(function(request, response) {
 				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/get_track/${channelID}`)).body)
 				if (result == null)
 					response.end('Текущий трек не найден')
-				else {
+				else 
 					response.end(`Текущий трек: ${result.title}, прислал - ${result.author}. Ссылка: https://www.youtube.com/watch?v=${result.yid}`)
-				}
 			}
 			getCurrentSound()
 		}
