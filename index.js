@@ -221,9 +221,10 @@ const server = http.createServer(function(request, response) {
 	}
 	else if (queryArguments[0] == 'dj'){
 		
-		allowedNames = ['aloinfait','vichuxa']
-		channelID = 96947
+		channelID = 82615
 		channelAPI = 'nA1LF5euCzYZGqfWHcT6yhvMUlQ4psa7'
+		
+		allowedNames = ['aloinfait','vichuxa']
 		
 		if (queryArguments[1] == 'skip'){
 			async function skipSound(){
