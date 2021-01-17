@@ -223,10 +223,11 @@ const server = http.createServer(function(request, response) {
 		
 		allowedNames = ['aloinfait','vichuxa']
 		channelID = 96947
+		channelAPI = 'nA1LF5euCzYZGqfWHcT6yhvMUlQ4psa7'
 		
 		if (queryArguments[1] == 'skip'){
 			async function skipSound(){
-				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/request_skip/${channelID}/nA1LF5euCzYZGqfWHcT6yhvMUlQ4psa7`)).body)
+				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/request_skip/${channelID}/${channelAPI}`)).body)
 				if (result.error)
 					response.end(`Ошибка: ${result.error}`)
 				else if (result.success == '1')
