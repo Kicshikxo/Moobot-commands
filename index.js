@@ -254,7 +254,7 @@ const server = http.createServer(function(request, response) {
 			}
 			getCurrentSound()
 		}
-		else if (queryArguments[1].toLowerCase().in(['list', 'список'])){
+		else if (queryArguments[1].toLowerCase().in(['list', 'список', 'лист'])){
 			async function getSoundsList(){
 				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/playlist/${channelID}/c`)).body)
 				if (result == false)
