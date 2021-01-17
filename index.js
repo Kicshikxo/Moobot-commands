@@ -226,7 +226,7 @@ const server = http.createServer(function(request, response) {
 		
 		allowedNames = ['aloinfait','vichuxa']
 		
-		if (queryArguments[1].toLowerCase().in(['skip', 'скип', 'далее'])){
+		if (queryArguments[1].toLowerCase().in(['skip', 'скип', 'далее', 'пропуск'])){
 			async function skipSound(){
 				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/request_skip/${channelID}/${channelAPI}`)).body)
 				if (result.error)
