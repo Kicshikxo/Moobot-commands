@@ -259,7 +259,7 @@ const server = http.createServer(function(request, response) {
 				if (result == false)
 					response.end('Список треков пуст :(')
 				else {
-					let list = `Количество треков: ${Object.keys(result).length};`
+					let list = `Количество треков: ${Object.keys(result).length}; `
 					for (i in result){
 						list += `${i}\x20-\x20${result[i].title};\x20`
 					}
