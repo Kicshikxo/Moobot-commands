@@ -227,6 +227,8 @@ const server = http.createServer(function(request, response) {
 					response.end(`Ошибка: ${result.error}`)
 				else if (result.success == '1')
 					response.end(`Трек пропущен`)
+				else if (result.success == '0')
+					response.end(`Список треков пуст :(`)
 			}
 			skipSound()
 		}
