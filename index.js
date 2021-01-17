@@ -220,11 +220,13 @@ const server = http.createServer(function(request, response) {
 		catch {response.end()}
 	}
 	else if (queryArguments[0] == 'dj'){
+		
 		allowedNames = ['aloinfait','vichuxa']
+		channelID = 96947
 		
 		if (queryArguments[1] == 'skip'){
 			async function skipSound(){
-				result = JSON.parse((await requestify.get('https://streamdj.ru/api/request_skip/96947/nA1LF5euCzYZGqfWHcT6yhvMUlQ4psa7')).body)
+				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/request_skip/${channelID}/nA1LF5euCzYZGqfWHcT6yhvMUlQ4psa7`)).body)
 				if (result.error)
 					response.end(`Ошибка: ${result.error}`)
 				else if (result.success == '1')
@@ -239,9 +241,20 @@ const server = http.createServer(function(request, response) {
 			else 
 				response.end('У вас нет прав на пропуск трека')
 		}
+		else if (queryArguments[1] == 'current'){
+			async function getCurrentSound(){
+				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/get_track/${channelID}`)).body)
+				if (result == null)
+					response.end('Текущий трек не найден')
+				else {
+					response.end(`Текущий трек: ${result.title} прислал ${result.author}. Ссылка: https://www.youtube.com/watch?v=${result.yid}`)
+				}
+			}
+			getCurrentSound()
+		}
 		else if (queryArguments[1] == 'list'){
 			async function getSoundsList(){
-				result = JSON.parse((await requestify.get('https://streamdj.ru/api/playlist/96947/c')).body)
+				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/playlist/${channelID}/c`)).body)
 				if (result == false)
 					response.end('Список треков пуст :(')
 				else {
