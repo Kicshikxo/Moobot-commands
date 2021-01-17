@@ -219,6 +219,20 @@ const server = http.createServer(function(request, response) {
 		}
 		catch {response.end()}
 	}
+	else if (queryArguments[0] == 'dj'){
+		if (queryArguments[1] == 'skip'){
+			async function skipSound(){
+				result = JSON.parse((await requestify.get('https://streamdj.ru/api/request_skip/96947/nA1LF5euCzYZGqfWHcT6yhvMUlQ4psa7')).body)
+				if (result.error)
+					response.end(`Ошибка: ${result.error}`)
+				else if (result.success == '1')
+					response.end(`Трек пропущен`)
+			}
+			skipSound()
+		}
+		else
+			response.end('Предложи свою песенку для стрима: https://streamdj.ru/c/Vichuxa')
+	}
 	else if (queryArguments[0] == 'repeat'){
 		if (queryArguments[1])
 			response.end(queryArguments[1].replace(/\+/g,' '))
