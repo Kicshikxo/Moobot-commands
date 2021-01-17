@@ -190,7 +190,7 @@ const server = http.createServer(function(request, response) {
 	}
 	else if (queryArguments[0] == 'eval'){
 		try {
-			async function func(){
+			async function eval(){
 				if (queryArguments[1]) {
 					try {
 						command = queryArguments.slice(1, -1).join('/').replace(/new\+/g,'new ').replace(/return\+/g,'return ').replace(/\+of\+/g,' of ').replace(/\+in\+/g,' in ')
@@ -215,7 +215,7 @@ const server = http.createServer(function(request, response) {
 					response.end()
 				}
 			}
-			func()
+			eval()
 		}
 		catch {response.end()}
 	}
