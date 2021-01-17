@@ -234,6 +234,21 @@ const server = http.createServer(function(request, response) {
 			}
 			skipSound()
 		}
+		else if (queryArguments[1] == 'list'){
+			async function getSoundsList(){
+				result = JSON.parse((await requestify.get('https://streamdj.ru/api/playlist/96947/c')).body)
+				if (result == false)
+					response.end('Список треков пуст :(')
+				else {
+					let list = ''
+					for (i in result){
+						list += `${i}\x20-\x20${result[i].title};\x20`
+					}
+					response.end(list)
+				}
+			}
+			getSoundsList()
+		}
 		else
 			response.end('Предложи свою песенку для стрима: https://streamdj.ru/c/Vichuxa')
 	}
