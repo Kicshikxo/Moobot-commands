@@ -243,7 +243,7 @@ const server = http.createServer(function(request, response) {
 			else 
 				response.end('У вас нет прав на пропуск трека')
 		}
-		else if (queryArguments[1].toLowerCase().in(['current', 'песня', 'трек', 'текущий', 'текущее'])){
+		else if (queryArguments[1].toLowerCase().in(['current', 'now', 'песня', 'трек', 'текущий', 'текущее'])){
 			async function getCurrentSound(){
 				result = JSON.parse((await requestify.get(`https://streamdj.ru/api/get_track/${channelID}`)).body)
 				if (result == null)
