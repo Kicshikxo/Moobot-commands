@@ -222,7 +222,7 @@ const server = http.createServer(function(request, response) {
 	else if (queryArguments[0] == 'dj'){
 		
 		channelID = 82615
-		channelAPI = '9PTj5Jpmrci1GyeHSIIFsDQhfVzqN7dW'
+		channelAPI = '9PTj5Jpmrci1GyeHSlIFsDQhfVzqN7dW'
 		
 		allowedNames = ['aloinfait','vichuxa']
 		
