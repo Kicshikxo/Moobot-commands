@@ -168,10 +168,10 @@ const server = http.createServer(function(request, response) {
 
 		text = decodeURIComponent(query.join(' '))
 		
-		langsList = ['az', 'ml', 'sq', 'mt', 'am', 'mk', 'en', 'mi', 'ar', 'mr', 'hy', 'mhr', 'af', 'mn', 'eu', 'de', 'ba', 'ne', 'be', 'no', 'bn', 'pa', 'my', 'pap', 'bg', 'fa', 'bs', 'pl', 'cy', 'pt', 'hu', 'ro', 'vi', 'ru', 'ht', 'ceb', 'gl', 'sr', 'nl', 'si', 'mrj', 'sk', 'el', 'sl', 'ka', 'sw', 'gu', 'su', 'da', 'tg', 'he', 'th', 'yi', 'tl', 'id', 'ta', 'ga', 'tt', 'it', 'te', 'is', 'tr', 'es', 'udm', 'kk', 'uz', 'kn', 'uk', 'ca', 'ur', 'ky', 'fi', 'zh', 'fr', 'ko', 'hi', 'xh', 'hr', 'km', 'cs', 'lo', 'sv', 'la', 'gd', 'lv', 'et', 'lt', 'eo', 'lb', 'jv', 'mg', 'ja', 'ms']
+		langsList = ['aa','ab','ae','af','ak','am','an','ar','as','av','ay','az','ba','be','bg','bh','bi','bm','bn','bo','br','bs','ca','ce','ch','co','cr','cs','cu','cv','cy','da','de','dv','dz','ee','el','en','eo','es','et','eu','fa','ff','fi','fj','fo','fr','fy','ga','gd','gl','gn','gu','gv','ha','he','hi','ho','hr','ht','hu','hy','hz','ia','id','ie','ig','ii','ik','io','is','it','iu','ja','jv','ka','kg','ki','kj','kk','kl','km','kn','ko','kr','ks','ku','kv','kw','ky','la','lb','lg','li','ln','lo','lt','lu','lv','mg','mh','mi','mk','ml','mn','mr','ms','mt','my','na','nb','nd','ne','ng','nl','nn','no','nr','nv','ny','oc','oj','om','or','os','pa','pi','pl','ps','pt','qu','rm','rn','ro','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sq','sr','ss','st','su','sv','sw','ta','te','tg','th','ti','tk','tl','tn','to','tr','ts','tt','tw','ty','ug','uk','ur','uz','ve','vi','vo','wa','wo','xh','yi','yo','za','zh','zu']
 		
 		if (!from.in(langsList) || !to.in(langsList)){
-			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'uk' (Украинский), 'tt' (Татарский), 'kk' (Казахский), 'be' (Белорусский), 'de' (Немецкий), 'fi' (Финский), 'fr' (Французский), 'ja' (Японский), 'zh' (Китайский), 'ko' (Корейский). Сначала вводится оригинальный язык перевода, а после желаемый. Примеры: '!transl ru en Привет', '!transl en ru Hello'`)
+			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'uk' (Украинский), 'tt' (Татарский), 'kk' (Казахский), 'be' (Белорусский), 'de' (Немецкий), 'fi' (Финский), 'fr' (Французский), 'ja' (Японский), 'zh' (Китайский), 'ko' (Корейский) и другие языки, задающиеся стандартом ISO 639. Сначала вводится оригинальный язык перевода, а после желаемый. Примеры: '!transl ru en Привет', '!transl en ru Hello'`)
 			return response.end()
 		}
 		
