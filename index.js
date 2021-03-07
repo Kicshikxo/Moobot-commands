@@ -184,7 +184,7 @@ const server = http.createServer(function(request, response) {
 			catch(e) {
 				return response.end(`Ошибка перевода. Ошибка: ${e}`)
 			}
-			return response.end(result)
+			return response.end(result) 
 		}
 		
 		transl(text, from, to)
