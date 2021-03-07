@@ -177,7 +177,7 @@ const server = http.createServer(function(request, response) {
 		
 		async function transl(text, from, to){
 			try {
-				result = await translate(text, {from: from, to: to})
+				result = await translate(text || '', {from: from, to: to})
 			}
 			catch(e) {
 				return response.end(`Ошибка перевода. Ошибка: ${e}`)
