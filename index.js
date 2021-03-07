@@ -163,8 +163,8 @@ const server = http.createServer(function(request, response) {
 	}
 	else if (queryArguments[0] == 'translate'){
 		query = queryArguments[1].split('+')
-		from = query.shift().toLowerCase()
-		to = query.shift().toLowerCase()
+		from = (query.shift() || '').toLowerCase()
+		to = (query.shift() || '').toLowerCase()
 
 		text = decodeURIComponent(query.join(' '))
 		
