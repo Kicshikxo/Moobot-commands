@@ -3,6 +3,7 @@ const http = require('http'),
 	  mongo = require("mongodb"),
 	  deepai = require('deepai'),
 	  requestify = require('requestify'),
+	  translate = require('translate'),
 	  
 	  texts = require('./texts.js'),
 	  commands = require('./commands.js')
@@ -10,6 +11,7 @@ const http = require('http'),
 function randInt(min, max){return ~~((Math.random() * (max - min + 1)) + min)}
 Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
 String.prototype.in = function(arr){return arr.indexOf(this.toString()) != -1}
+translate.engine = 'libre'
 
 const server = http.createServer(function(request, response) {
 	response.writeHeader(200, {"Content-Type": "application/json"})
@@ -161,32 +163,48 @@ const server = http.createServer(function(request, response) {
 	}
 	else if (queryArguments[0] == 'translate'){
 		query = queryArguments[1].split('+')
-		lang = query.shift()
+		from = query.shift()
+		to = query.shift()
 
-		text = encodeURIComponent(query.join(' '))
+		text = decodeURIComponent(query.join(' '))
 		
-		if (!lang.in(['az', 'ml', 'sq', 'mt', 'am', 'mk', 'en', 'mi', 'ar', 'mr', 'hy', 'mhr', 'af', 'mn', 'eu', 'de', 'ba', 'ne', 'be', 'no', 'bn', 'pa', 'my', 'pap', 'bg', 'fa', 'bs', 'pl', 'cy', 'pt', 'hu', 'ro', 'vi', 'ru', 'ht', 'ceb', 'gl', 'sr', 'nl', 'si', 'mrj', 'sk', 'el', 'sl', 'ka', 'sw', 'gu', 'su', 'da', 'tg', 'he', 'th', 'yi', 'tl', 'id', 'ta', 'ga', 'tt', 'it', 'te', 'is', 'tr', 'es', 'udm', 'kk', 'uz', 'kn', 'uk', 'ca', 'ur', 'ky', 'fi', 'zh', 'fr', 'ko', 'hi', 'xh', 'hr', 'km', 'cs', 'lo', 'sv', 'la', 'gd', 'lv', 'et', 'lt', 'eo', 'lb', 'jv', 'mg', 'ja', 'ms'])){
-			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'uk' (Украинский), 'tt' (Татарский), 'kk' (Казахский), 'be' (Белорусский), 'de' (Немецкий), 'fi' (Финский), 'fr' (Французский), 'ja' (Японский), 'zh' (Китайский), 'ko' (Корейский). Язык ввода определяется автоматически. Примеры: '!transl en Привет', '!transl ru Hello'`)
+		langsList = ['az', 'ml', 'sq', 'mt', 'am', 'mk', 'en', 'mi', 'ar', 'mr', 'hy', 'mhr', 'af', 'mn', 'eu', 'de', 'ba', 'ne', 'be', 'no', 'bn', 'pa', 'my', 'pap', 'bg', 'fa', 'bs', 'pl', 'cy', 'pt', 'hu', 'ro', 'vi', 'ru', 'ht', 'ceb', 'gl', 'sr', 'nl', 'si', 'mrj', 'sk', 'el', 'sl', 'ka', 'sw', 'gu', 'su', 'da', 'tg', 'he', 'th', 'yi', 'tl', 'id', 'ta', 'ga', 'tt', 'it', 'te', 'is', 'tr', 'es', 'udm', 'kk', 'uz', 'kn', 'uk', 'ca', 'ur', 'ky', 'fi', 'zh', 'fr', 'ko', 'hi', 'xh', 'hr', 'km', 'cs', 'lo', 'sv', 'la', 'gd', 'lv', 'et', 'lt', 'eo', 'lb', 'jv', 'mg', 'ja', 'ms']
+		
+		if (!from.in(langsList) || !to.in(langsList)){
+			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'uk' (Украинский), 'tt' (Татарский), 'kk' (Казахский), 'be' (Белорусский), 'de' (Немецкий), 'fi' (Финский), 'fr' (Французский), 'ja' (Японский), 'zh' (Китайский), 'ko' (Корейский). Сначала вводится оригинальный язык перевода, а после желаемый. Примеры: '!transl ru en Привет', '!transl en ru Hello'`)
 			return response.end()
 		}
 		
-		APIUrl = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T152328Z.ac1fea9447bfc10e.2fc4303594266a5551f3346c55fb58a5f796e977&text=${text}&lang=${lang}`
-		
-		XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
-		xhr = new XMLHttpRequest()
-		
-		xhr.onreadystatechange = function(){
-			if (this.readyState == 4) {
-				result = JSON.parse(this.responseText)
-				if (result.code == 200) response.write(result.text[0])
-				else response.write(` Ошибка перевода. Ошибка: ${result.code} ${result.message}`)
+		async function transl(text, from, to){
+			console.log(`Перевод: text: ${text}, to: ${to}`)
+			try {
+				result = await translate(text, {from: from, to: to})
 			}
+			catch(e) {
+				return response.end(`Ошибка перевода. Ошибка: ${e}`)
+			}
+			return response.end(result)
 		}
 		
-		xhr.open('GET', APIUrl, false)
-		xhr.send()
+		transl(text, from, to)
 		
-		response.end()
+		//APIUrl = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T152328Z.ac1fea9447bfc10e.2fc4303594266a5551f3346c55fb58a5f796e977&text=${text}&lang=${lang}`
+		
+// 		XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
+// 		xhr = new XMLHttpRequest()
+// 		
+// 		xhr.onreadystatechange = function(){
+// 			if (this.readyState == 4) {
+// 				result = JSON.parse(this.responseText)
+// 				if (result.code == 200) response.write(result.text[0])
+// 				else response.write(` Ошибка перевода. Ошибка: ${result.code} ${result.message}`)
+// 			}
+// 		}
+// 		
+// 		xhr.open('GET', APIUrl, false)
+// 		xhr.send()
+// 		
+// 		response.end()
 	}
 	else if (queryArguments[0] == 'eval'){
 		try {
