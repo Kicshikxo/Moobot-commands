@@ -117,7 +117,7 @@ commands = {
 		
 		if (upgradingItem.in(['рюкзак','сумка','сумку','инвентарь','inventory','inv'])){
 			
-			if (user.backpackSize == 50) return resolve(response.write(' У вас максимальный уровень рюкзака.'))
+			if (user.backpackSize == 15) return resolve(response.write(' У вас максимальный уровень рюкзака.'))
 			else {
 				newBackpackSize = config.backpackSizes[user.backpackSize]
 				price = config.backpackPrices[user.backpackSize]
