@@ -12,11 +12,9 @@
     "deepai": "^1.0.15",
     "iconv": "^3.0.0",
     "mongodb": "^3.5.8",
-    "node-fetch": "^2.6.1",
     "nodejs-base64": "^1.0.3",
     "requestify": "^0.2.5",
     "sha256": "^0.2.0",
-    "translate": "^1.2.1",
-    "xmlhttprequest": "^1.8.0"
+    "translate": "^0.7.0"
   }
 }
