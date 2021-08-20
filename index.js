@@ -3,7 +3,7 @@ const http = require('http'),
 	  mongo = require("mongodb"),
 	  deepai = require('deepai'),
 	  requestify = require('requestify'),
-	  translate = require('translate'),
+	  fetch = require('node-fetch'),
 	  
 	  texts = require('./texts.js'),
 	  commands = require('./commands.js')
@@ -11,7 +11,6 @@ const http = require('http'),
 function randInt(min, max){return ~~((Math.random() * (max - min + 1)) + min)}
 Array.prototype.choiceOne = function(){return this[randInt(0, this.length-1)]}
 String.prototype.in = function(arr){return arr.indexOf(this.toString()) != -1}
-translate.engine = 'libre'
 
 const server = http.createServer(function(request, response) {
 	response.writeHeader(200, {"Content-Type": "application/json"})
@@ -178,15 +177,25 @@ const server = http.createServer(function(request, response) {
 			response.write(` Доступные языки для перевода: 'en' (Английский), 'ru' (Русский), 'ar' (Арабский), 'zh' (Китайский), 'de' (Немецкий), 'it' (Итальянский), 'fr' (Французский), 'pt' (Португальский), 'es' (Испанский). Сначала вводится оригинальный язык перевода, а после желаемый. Примеры: '!transl ru en Привет', '!transl en ru Hello'`)
 			return response.end()
 		}
-		
+
 		async function transl(text, from, to){
 			try {
-				result = await translate(text || '', {from: from, to: to})
+					result = await fetch("https://libretranslate.de/translate", {
+					method: "POST",
+					body: JSON.stringify({
+						q: text,
+						source: from,
+						target: to
+					}),
+					headers: { "Content-Type": "application/json" }
+				});
+				result = await result.json()
+				return response.end(result.translatedText)
 			}
 			catch(e) {
-				return response.end(`Ошибка перевода. Ошибка: ${e}`)
+				return response.end(`Ошибка перевода. Ошибка: ${JSON.stringify(e)}`)
 			}
-			return response.end(result) 
+
 		}
 		
 		transl(text, from, to)
