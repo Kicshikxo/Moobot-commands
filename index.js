@@ -92,7 +92,7 @@ const server = http.createServer(function(request, response) {
 		else if (query.in(['цитата', 'цитаты', 'цитату'])) type = 5
 		else if (query.in(['тост', 'тосты'])) type = 6
 		else if (query.in(['статус', 'статусы'])) type = 8
-		else if (query.in(['кису', 'котю', 'cat', 'кота', 'кисулю', 'кисика', 'кошку', 'кота', 'кот', 'киса'])) {
+		else if (query.in(['кису', 'котика', 'кисика', 'кисулю', 'кисульку', 'котэ', 'киську', 'киску', 'котю', 'cat', 'кота', 'кисулю', 'кисика', 'кошку', 'кота', 'кот', 'киса'])) {
 			return requestify.get('https://some-random-api.ml/img/cat/').then(res => response.end(JSON.parse(res.body).link))
 		}
 		else {
