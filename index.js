@@ -96,7 +96,7 @@ const server = http.createServer(function(request, response) {
 			try {
 				return requestify.get('https://some-random-api.ml/img/cat/').then(res => response.end(JSON.parse(res.body).link))
 			} catch (e) {
-				response.end(`Ошибка нахождения кисы. Ошибка: ${e}`)
+				return response.end(`Ошибка нахождения кисы. Ошибка: ${e}`)
 			}
 		}
 		else {
