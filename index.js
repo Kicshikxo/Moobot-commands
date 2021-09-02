@@ -92,8 +92,12 @@ const server = http.createServer(function(request, response) {
 		else if (query.in(['цитата', 'цитаты', 'цитату'])) type = 5
 		else if (query.in(['тост', 'тосты'])) type = 6
 		else if (query.in(['статус', 'статусы'])) type = 8
-		else if (query.in(['кису', 'котика', 'кисика', 'кисулю', 'кисульку', 'котэ', 'киську', 'киску', 'котю', 'cat', 'кота', 'кисулю', 'кисика', 'кошку', 'кота', 'кот', 'киса'])) {
-			return requestify.get('https://some-random-api.ml/img/cat/').then(res => response.end(JSON.parse(res.body).link))
+		else if (query.in(['кису', 'котика', 'кисика', 'кисулю', 'кисульку', 'кисулькина', 'котэ', 'киську', 'киску', 'котю', 'cat', 'кота', 'кисулю', 'кисика', 'кошку', 'кота', 'кот', 'киса'])) {
+			try {
+				return requestify.get('https://some-random-api.ml/img/cat/').then(res => response.end(JSON.parse(res.body).link))
+			} catch (e) {
+				response.end(`Ошибка нахождения кисы. Ошибка: ${e}`)
+			}
 		}
 		else {
 			response.write(' Доступные категории для поиска: \'анекдот\', \'рассказ\', \'стих\', \'афоризма\', \'цитата\', \'тост\', \'статус\', \'кису\'. Для поиска 18+ (толком не отличается от обычного) после категории напишите \'18+\'. Например: \'!найти анек 18+\'')
@@ -104,9 +108,12 @@ const server = http.createServer(function(request, response) {
 	}
 	else if (queryArguments[0] == 'choice'){
 		options = queryArguments[1].split('+')
-		if (options.length < 2) response.write(' Количество вариантов должно быть больше одного. Варианты указываются после команды через пробел.')
-		else response.write(options.choiceOne())
-		response.end()
+		if (options.length < 2) {
+			response.end(' Количество вариантов должно быть больше одного. Варианты указываются после команды через пробел.')
+		}
+		else {
+			response.end(options.choiceOne())
+		}
 	}
 	else if (queryArguments[0] == 'hug'){
 		if (!queryArguments[2]){
