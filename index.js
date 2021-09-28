@@ -70,6 +70,9 @@ const server = http.createServer(function(request, response) {
 			client.close()
 		})
 	}
+	else if (queryArguments[0] == 'birthday'){
+		response.end(`День рождения Ани через: ${Math.abs(~~((new Date().setHours(0,0,0,0) - new Date('2022-09-25').setHours(0,0,0,0)) / 864e5))} дней`)
+	}
 	else if (queryArguments[0] == 'ask'){
 		if (!queryArguments[1]){
 			response.write(' Введите вопрос после команды.')
