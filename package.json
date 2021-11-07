@@ -1,21 +1,34 @@
 {
-  "name": "moobot-commands",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "deepai": "^1.0.15",
-    "iconv": "^3.0.0",
-    "mongodb": "^3.5.8",
-    "node-fetch": "^2.6.1",
-    "nodejs-base64": "^1.0.3",
-    "requestify": "^0.2.5",
-    "sha256": "^0.2.0",
-    "translate": "^0.7.0"
-  }
+	"name": "new-moobot-commands",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"dev": "nodemon index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Kicshikxo/moobot-command.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Kicshikxo/moobot-command/issues"
+	},
+	"homepage": "https://github.com/Kicshikxo/moobot-command#readme",
+	"devDependencies": {
+		"nodemon": "^2.0.14"
+	},
+	"dependencies": {
+		"axios": "^0.24.0",
+		"deepai": "^1.0.17",
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"iconv": "^3.0.1",
+		"iconv-lite": "^0.6.3",
+		"sha256": "^0.2.0",
+		"twitch-api-v5": "^2.0.4"
+	}
 }
