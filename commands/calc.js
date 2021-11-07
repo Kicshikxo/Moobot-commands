@@ -8,6 +8,6 @@ module.exports = {
             return "Введите пример. Например '2+2' или '123 **3 - 123456/ 2'"
         }
 
-        return JSON.stringify(await eval(example) || '').replace(/^\"+|\"+$/g, '')
+        return JSON.stringify(await eval(example) || '').trim('"')
     }
 }
