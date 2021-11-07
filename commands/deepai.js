@@ -8,9 +8,6 @@ module.exports = {
     },
     handler: async (params) => {
         const { q: text, apiKey } = params
-        if (!text) {
-            return 'Введите текст для преобразования его в картинку'
-        }
 
         deepai.setApiKey(apiKey)
 
