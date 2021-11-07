@@ -18,8 +18,8 @@ module.exports = {
         if (today === birthday) {
             return 'Сегодня день рождения стримера!'
         } else {
-            const days = ~~((birthday - today) / 864e5)
-            return `День рождения стримера через: ${days} ${['1'].includes(days.toString().slice(-1)) ? 'день' : ['2', '3', '4'].includes(days.toString().slice(-1)) ? 'дня' : 'дней'}`
+            const days = String(~~((birthday - today) / 864e5))
+            return `День рождения стримера через: ${days} ${['1'].includes(days.slice(-1)) ? 'день' : ['2', '3', '4'].includes(days.slice(-1)) ? 'дня' : 'дней'}`
         }
     }
 }
