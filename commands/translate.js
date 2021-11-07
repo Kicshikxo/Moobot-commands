@@ -18,7 +18,7 @@ module.exports = {
             result = await axios('https://libretranslate.de/translate', {
                 method: 'POST',
                 data: JSON.stringify({
-                    q: text,
+                    q: text.split(' ').slice(2).join(' '),
                     source: from.toLowerCase(),
                     target: to.toLowerCase()
                 }),
