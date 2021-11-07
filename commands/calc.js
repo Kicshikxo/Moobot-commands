@@ -5,6 +5,6 @@ module.exports = {
     handler: async (params) => {
         const { q: example } = params
 
-        return await eval(example)
+        return JSON.stringify(await eval(example) || '')
     }
 }
