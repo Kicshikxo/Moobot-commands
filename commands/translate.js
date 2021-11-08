@@ -2,8 +2,8 @@ const axios = require('axios')
 
 module.exports = {
     requiredParams: {
-        from: 'Идентификатор языка оригинального текста',
-        to: 'Идентификатор языка перевода',
+        from: 'Код языка оригинального текста',
+        to: 'Код языка перевода',
         text: 'Текст для перевода'
     },
     handler: async (params) => {
