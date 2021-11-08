@@ -37,7 +37,43 @@ RESTful API интерфейс, предоставляющий нескольк�
   
   <details><summary>Категории поиска</summary>
 
-    - анек/анекдот - Поиск анекдота
-    - киса/кот - Поиск рандомного изображения кота
+    - анек / анекдот - Поиск анекдота
+    - киса / кот - Поиск рандомного изображения кота
+
+  </details>
+  
+  <details><summary>Пример использования</summary>
+
+    - [/search/?q=анек](https://moobot-commands.herokuapp.com/search/?q=анек)
+
+  </details>
+  
+  <details><summary>Скриншот конфигурации</summary>
+  
+    <p align="center">
+      <img src="https://github.com/Kicshikxo/Moobot-commands/blob/master/configuration-screenshots/search.png?raw=true" alt="Скриншот конфигурации команды search"/>
+    </p>
+
+  </details>
+  
+- ### choice - Выбрать один из предложенных вариантов
+  
+  <details><summary>Параметры</summary>
+
+    - q - Список вариантов для выбора
+
+  </details>
+  
+  <details><summary>Пример использования</summary>
+
+    - [/choice/?q=кошка+собака](https://moobot-commands.herokuapp.com/choice/?q=кошка+собака)
+
+  </details>
+  
+  <details><summary>Скриншот конфигурации</summary>
+  
+    <p align="center">
+      <img src="https://github.com/Kicshikxo/Moobot-commands/blob/master/configuration-screenshots/choice.png?raw=true" alt="Скриншот конфигурации команды choice"/>
+    </p>
 
   </details>
