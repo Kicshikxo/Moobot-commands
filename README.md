@@ -77,3 +77,41 @@ RESTful API интерфейс, предоставляющий нескольк�
     </p>
 
   </details>
+  
+- ### translate - Переводчик
+  
+  <details><summary>Параметры</summary>
+
+    - from - Код языка оригинального текста
+    - to - Код языка перевода
+    - text - Текст для перевода (допускается наличие кода языка в начале)
+
+  </details>
+  
+  <details><summary>Доступные коды языков</summary>
+
+    - en - Английский
+    - ru - Русский
+    - de - Немецкий
+    - fr - Французский
+    - it - Итальянский
+    - es - Испанский
+    - zh - Китайский
+    - pt - Португальский
+    - ar - Арабский
+
+  </details>
+  
+  <details><summary>Пример использования</summary>
+
+    - [/translate/?from=en&to=ru&text=Hello](https://moobot-commands.herokuapp.com/translate/?from=en&to=ru&text=Hello)
+
+  </details>
+  
+  <details><summary>Скриншот конфигурации</summary>
+  
+    <p align="center">
+      <img src="https://github.com/Kicshikxo/Moobot-commands/blob/master/configuration-screenshots/translate.png?raw=true" alt="Скриншот конфигурации команды translate"/>
+    </p>
+
+  </details>
