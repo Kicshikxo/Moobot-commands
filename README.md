@@ -78,6 +78,50 @@ RESTful API интерфейс, предоставляющий нескольк�
 
   </details>
   
+- ### birthday - Количество дней до дня рождения стримера
+  
+  <details><summary>Параметры</summary>
+
+    - date - Дата дня рождения в формате ISO
+
+  </details>
+  
+  <details><summary>Пример использования</summary>
+
+    - [/birthday/?date=2021-09-25](https://moobot-commands.herokuapp.com/birthday/?date=2021-09-25)
+
+  </details>
+  
+  <details><summary>Скриншот конфигурации</summary>
+  
+    <p align="center">
+      <img src="https://github.com/Kicshikxo/Moobot-commands/blob/master/configuration-screenshots/birthday.png?raw=true" alt="Скриншот конфигурации команды birthday"/>
+    </p>
+
+  </details>
+  
+- ### calc - Решить математический пример
+  
+  <details><summary>Параметры</summary>
+
+    - q - Математическое выражение для вычисления
+
+  </details>
+  
+  <details><summary>Пример использования</summary>
+
+    - [/calc/?q=56-12/2](https://moobot-commands.herokuapp.com/calc/?q=56-12/2)
+
+  </details>
+  
+  <details><summary>Скриншот конфигурации</summary>
+  
+    <p align="center">
+      <img src="https://github.com/Kicshikxo/Moobot-commands/blob/master/configuration-screenshots/calc.png?raw=true" alt="Скриншот конфигурации команды calc"/>
+    </p>
+
+  </details>
+  
 - ### translate - Переводчик
   
   <details><summary>Параметры</summary>
@@ -135,6 +179,38 @@ RESTful API интерфейс, предоставляющий нескольк�
   
     <p align="center">
       <img src="https://github.com/Kicshikxo/Moobot-commands/blob/master/configuration-screenshots/deepai.png?raw=true" alt="Скриншот конфигурации команды deepai"/>
+    </p>
+
+  </details>
+  
+- ### dj - Получение информации из [Stream Dj](https://streamdj.ru/)
+  
+  <details><summary>Параметры</summary>
+
+    - q - Команда
+    - c - ID канала (указан в URL - https://streamdj.ru/dashboard/??????#)
+    - apiKey (Опционально) - API ключ от Stream Dj, необходим для команды skip
+
+  </details>
+  
+  <details><summary>Доступные команды</summary>
+
+    - current / track - Информация о текущем треке
+    - list - Список треков
+    - skip (работает только с указанным apiKey) - Пропустить текущий трек
+
+  </details>
+  
+  <details><summary>Пример использования</summary>
+
+    - [/dj/?c=??????&q=list](https://moobot-commands.herokuapp.com/dj/?c=99840&q=list)
+
+  </details>
+  
+  <details><summary>Скриншот конфигурации</summary>
+  
+    <p align="center">
+      <img src="https://github.com/Kicshikxo/Moobot-commands/blob/master/configuration-screenshots/dj.png?raw=true" alt="Скриншот конфигурации команды dj"/>
     </p>
 
   </details>
