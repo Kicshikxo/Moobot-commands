@@ -16,7 +16,7 @@ module.exports = {
 
             return iconv.decode(Buffer.from(response.data), 'windows-1251').slice(12, -2)
         }
-        else if (['киса', 'кису', 'котика', 'кисика', 'кисулю', 'кисульку', 'кисулькина', 'котэ', 'киську', 'киску', 'котю', 'cat', 'кота', 'кисулю', 'кисика', 'кошку', 'кота', 'кот', 'киса'].includes(query.toLowerCase())) {
+        else if (['киса', 'кису', 'котика', 'кисика', 'кисулю', 'кисульку', 'кисулькина', 'котэ', 'киську', 'киску', 'котю', 'cat', 'кота', 'кисулю', 'кисика', 'кошку', 'кота', 'кот'].includes(query.toLowerCase())) {
             try {
                 const { data: response } = await axios.get('https://some-random-api.ml/img/cat/')
                 const { data: shortenedLink } = await axios.get(`https://clck.ru/--?url=${response.link}`)
