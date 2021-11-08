@@ -115,3 +115,26 @@ RESTful API интерфейс, предоставляющий нескольк�
     </p>
 
   </details>
+
+- ### deepai - Создание картинки из текста с помощью сервиса deepai
+  
+  <details><summary>Параметры</summary>
+
+    - q - Текст для преобразования в картинку
+    - apiKey - API ключ для DeepAI (https://deepai.org/dashboard/profile)
+
+  </details>
+  
+  <details><summary>Пример использования</summary>
+
+    - [/deepai/?q=shark&apiKey=06ebd50a-????-????-????-7f3257e92553](https://moobot-commands.herokuapp.com/deepai/?q=shark&apiKey=06ebd50a-42aa-402e-b6c3-7f3257e92553)
+
+  </details>
+  
+  <details><summary>Скриншот конфигурации</summary>
+  
+    <p align="center">
+      <img src="https://github.com/Kicshikxo/Moobot-commands/blob/master/configuration-screenshots/deepai.png?raw=true" alt="Скриншот конфигурации команды deepai"/>
+    </p>
+
+  </details>
