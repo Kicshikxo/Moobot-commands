@@ -8,7 +8,7 @@ module.exports = {
     handler: async (params) => {
         const { q: query, c: channelId, apiKey } = params
 
-        if (['skip', 'скип', 'далее', 'пропустить', 'пропуск'].includes(query.toLowerCase())) {
+        if (['skip', 'скип', 'далее', 'пропустить', 'пропуск'].includes(query.toLowerCase()) && apiKey) {
             const { data: response } = await axios.get(`https://streamdj.ru/api/request_skip/${channelId}/${apiKey}`)
 
             if (response.error)
