@@ -6,7 +6,7 @@ module.exports = {
         c: 'ID канала'
     },
     handler: async (params) => {
-        const { q: query, c: channelId, apiKey, url } = params
+        const { q: query, c: channelId, apiKey, url, nickname } = params
 
         if (['skip', 'скип', 'далее', 'пропустить', 'пропуск'].includes(query.toLowerCase()) && apiKey) {
             const { data: response } = await axios.get(`https://streamdj.ru/api/request_skip/${channelId}/${apiKey}`)
@@ -38,8 +38,33 @@ module.exports = {
             }
         }
         else if (['link', 'ссылка'].includes(query.toLowerCase())) {
-			return url ? `Ссылка на диджея: ${url}` : 'Не указана ссылка на диджея :('
-		}
+            return url ? `Ссылка на диджея: ${url}` : 'Не указана ссылка на диджея :('
+        }
+        else if (['add', 'добавить'].includes(query.toLowerCase().split(' ')[0])) {
+            videoUrl = query.split(' ')[1]
+
+            if (!videoUrl?.length) {
+                return 'Не указана ютуб ссылка на видео'
+            }
+
+            const { data: result } = await axios({
+                method: 'POST',
+                withCredentials: true,
+                url: `https://streamdj.ru/includes/back.php?func=add_track&channel=${channelId}`,
+                headers: {
+                    'Accept': '*/*',
+                    'Connection': 'keep-alive',
+                    'content-type': 'application/x-www-form-urlencoded',
+                },
+                data: `url=${videoUrl}&author=Moobot`,
+            })
+
+            if (result.success) {
+                return 'Трек успешно добавлен'
+            } else if (result.error) {
+                return `Ошибка: ${result.error}`
+            }
+        }
         else {
             return `Неизвестная команда. Доступные команды: ${url ? 'ссылка - ссылка на диджея, ' : ''}трек - информация о текущем треке, треки - список всех треков в диджее.${url ? ` Ссылка на диджея: ${url}` : ''}`
         }

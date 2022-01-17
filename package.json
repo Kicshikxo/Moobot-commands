@@ -25,8 +25,8 @@
 		"axios": "^0.24.0",
 		"deepai": "^1.0.17",
 		"express": "^4.17.1",
+		"follow-redirects": ">=1.14.7",
 		"iconv-lite": "^0.6.3",
-		"sha256": "^0.2.0",
-		"follow-redirects": ">=1.14.7"
+		"sha256": "^0.2.0"
 	}
 }
