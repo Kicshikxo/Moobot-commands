@@ -37,6 +37,9 @@ module.exports = {
                 return `Количество треков: ${Object.keys(response).length}. ${Object.keys(response).map(index => `${index} - ${response[index].title}; `).join('')}`
             }
         }
+        else if (['link', 'ссылка'].includes(query.toLowerCase())) {
+			return `Ссылка на диджея: ${url}`
+		}
         else {
             return `Неизвестная команда. Доступные команды: трек - информация о текущем треке; треки - список всех треков в диджее.${url ? ` Ссылка на диджея: ${url}` : ''}`
         }
