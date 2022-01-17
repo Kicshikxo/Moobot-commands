@@ -44,7 +44,7 @@ module.exports = {
             videoUrl = query.split(' ')[1]
 
             if (!videoUrl?.length) {
-                return 'Не указана ютуб ссылка на видео'
+                return 'Не указана ютуб ссылка на трек'
             }
 
             const { data: result } = await axios({
