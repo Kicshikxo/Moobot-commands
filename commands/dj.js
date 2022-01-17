@@ -56,7 +56,7 @@ module.exports = {
                     'Connection': 'keep-alive',
                     'content-type': 'application/x-www-form-urlencoded',
                 },
-                data: `url=${videoUrl}&author=Moobot`,
+                data: `url=${videoUrl}&author=${nickname || 'Moobot'}`,
             })
 
             if (result.success) {
