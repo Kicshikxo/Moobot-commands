@@ -6,7 +6,7 @@ module.exports = {
         c: 'ID канала'
     },
     handler: async (params) => {
-        const { q: query, c: channelId, apiKey } = params
+        const { q: query, c: channelId, apiKey, url } = params
 
         if (['skip', 'скип', 'далее', 'пропустить', 'пропуск'].includes(query.toLowerCase()) && apiKey) {
             const { data: response } = await axios.get(`https://streamdj.ru/api/request_skip/${channelId}/${apiKey}`)
@@ -38,7 +38,7 @@ module.exports = {
             }
         }
         else {
-            return 'Неизвестная команда. Доступные команды: трек - информация о текущем треке; треки - список всех треков в диджее'
+            return `Неизвестная команда. Доступные команды: трек - информация о текущем треке; треки - список всех треков в диджее.${url ? ` Ссылка на диджея: ${url}` : ''}`
         }
     }
 }
