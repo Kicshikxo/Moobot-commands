@@ -62,10 +62,10 @@ module.exports = {
             if (result.success) {
                 return 'Трек успешно добавлен'
             } else if (result.error) {
-                return `Ошибка: ${result.error}`
+                return `Ошибка: ${result.error.toLowerCase()}`
             } else {
-				return 'Неизвестный ответ сервера'
-			}
+                return 'Неизвестный ответ сервера'
+            }
         }
         else {
             return `Неизвестная команда. Доступные команды: ${url ? 'ссылка - ссылка на диджея, ' : ''}трек - информация о текущем треке, треки - список всех треков в диджее.${url ? ` Ссылка на диджея: ${url}` : ''}`
