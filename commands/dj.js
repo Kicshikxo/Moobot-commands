@@ -37,8 +37,8 @@ module.exports = {
                 return `Количество треков: ${Object.keys(response).length}. ${Object.keys(response).map(index => `${index} - ${response[index].title}; `).join('')}`
             }
         }
-        else if (['link', 'ссылка'].includes(query.toLowerCase())) {
-            return url ? `Ссылка на диджея: ${url}` : 'Не указана ссылка на диджея :('
+        else if (['link', 'ссылка'].includes(query.toLowerCase()) && url) {
+            return `Ссылка на диджея: ${url}`
         }
         else if (['add', 'добавить'].includes(query.toLowerCase().split(' ')[0])) {
             videoUrl = query.split(' ')[1]
