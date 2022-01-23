@@ -16,7 +16,7 @@ RESTful API интерфейс, предоставляющий нескольк�
   
   <details><summary>Пример использования</summary>
 
-    - [/ask/?random=false&q=команда+крутая?](https://moobot-commands.herokuapp.com/ask/?random=false&q=команда+крутая?)
+    - [/ask/?random=false&q=команда+крутая?](https://kicshikxo-api.herokuapp.com/moobot-commands/ask/?random=false&q=команда+крутая?)
 
   </details>
   
@@ -45,7 +45,7 @@ RESTful API интерфейс, предоставляющий нескольк�
   
   <details><summary>Пример использования</summary>
 
-    - [/search/?q=анек](https://moobot-commands.herokuapp.com/search/?q=анек)
+    - [/search/?q=анек](https://kicshikxo-api.herokuapp.com/moobot-commands/search/?q=анек)
 
   </details>
   
@@ -67,7 +67,7 @@ RESTful API интерфейс, предоставляющий нескольк�
   
   <details><summary>Пример использования</summary>
 
-    - [/choice/?q=кошка+собака](https://moobot-commands.herokuapp.com/choice/?q=кошка+собака)
+    - [/choice/?q=кошка+собака](https://kicshikxo-api.herokuapp.com/moobot-commands/choice/?q=кошка+собака)
 
   </details>
   
@@ -89,7 +89,7 @@ RESTful API интерфейс, предоставляющий нескольк�
   
   <details><summary>Пример использования</summary>
 
-    - [/birthday/?date=2021-09-25](https://moobot-commands.herokuapp.com/birthday/?date=2021-09-25)
+    - [/birthday/?date=2021-09-25](https://kicshikxo-api.herokuapp.com/moobot-commands/birthday/?date=2021-09-25)
 
   </details>
   
@@ -111,7 +111,7 @@ RESTful API интерфейс, предоставляющий нескольк�
   
   <details><summary>Пример использования</summary>
 
-    - [/calc/?q=56-12/2](https://moobot-commands.herokuapp.com/calc/?q=56-12/2)
+    - [/calc/?q=56-12/2](https://kicshikxo-api.herokuapp.com/moobot-commands/calc/?q=56-12/2)
 
   </details>
   
@@ -149,7 +149,7 @@ RESTful API интерфейс, предоставляющий нескольк�
   
   <details><summary>Пример использования</summary>
 
-    - [/translate/?from=en&to=ru&text=Hello](https://moobot-commands.herokuapp.com/translate/?from=en&to=ru&text=Hello)
+    - [/translate/?from=en&to=ru&text=Hello](https://kicshikxo-api.herokuapp.com/moobot-commands/translate/?from=en&to=ru&text=Hello)
 
   </details>
   
@@ -172,7 +172,7 @@ RESTful API интерфейс, предоставляющий нескольк�
   
   <details><summary>Пример использования</summary>
 
-    - [/deepai/?q=shark&apiKey=06ebd50a-????-????-????-7f3257e92553](https://moobot-commands.herokuapp.com/deepai/?q=shark&apiKey=06ebd50a-42aa-402e-b6c3-7f3257e92553)
+    - [/deepai/?q=shark&apiKey=06ebd50a-????-????-????-7f3257e92553](https://kicshikxo-api.herokuapp.com/moobot-commands/deepai/?q=shark&apiKey=06ebd50a-42aa-402e-b6c3-7f3257e92553)
 
   </details>
   
@@ -206,7 +206,7 @@ RESTful API интерфейс, предоставляющий нескольк�
   
   <details><summary>Пример использования</summary>
 
-    - [/dj/?c=??????&q=list](https://moobot-commands.herokuapp.com/dj/?c=99840&q=list)
+    - [/dj/?c=??????&q=list](https://kicshikxo-api.herokuapp.com/moobot-commands/dj/?c=99840&q=list)
 
   </details>
   
