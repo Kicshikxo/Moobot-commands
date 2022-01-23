@@ -23,6 +23,7 @@
 	},
 	"dependencies": {
 		"axios": "^0.24.0",
+		"compression": "^1.7.4",
 		"deepai": "^1.0.17",
 		"express": "^4.17.1",
 		"follow-redirects": ">=1.14.7",
