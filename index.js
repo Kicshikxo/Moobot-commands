@@ -26,7 +26,11 @@ app.get('/*', (req, res) => {
     res.end('Инструкция по настройке команд: https://github.com/Kicshikxo/Moobot-commands#readme')
 })
 
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-    console.log(`Server started on port: ${PORT}`)
-});
+module.exports = app
+
+if (require.main === module) {
+    const PORT = process.env.PORT || 3000
+    app.listen(PORT, () => {
+        console.log(`Server started on port: ${PORT}`)
+    })
+}
