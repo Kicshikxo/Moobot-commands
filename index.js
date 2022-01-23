@@ -1,8 +1,10 @@
 const express = require('express')
+const compression = require('compression')
 const commands = require('./commands/index.js')
 
 const app = express()
 
+app.use(compression())
 app.use((req, res, next) => res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' }) && next())
 
 Object.keys(commands).forEach(command =>
