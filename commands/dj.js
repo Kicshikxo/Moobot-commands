@@ -37,7 +37,7 @@ module.exports = {
                 return `Количество треков: ${Object.keys(response).length}. ${Object.keys(response).map(index => `${index} - ${response[index].title}; `).join('')}`
             }
         }
-        else if (['count', 'количество', 'колво', 'кол-во', 'сколько', 'число'].includes(query.toLowerCase())) {
+        else if (['count', 'количество', 'колво', 'кол-во', 'число'].includes(query.toLowerCase())) {
             const { data: response } = await axios.get(`https://streamdj.ru/api/playlist/${channelId}/c`)
 
             if (response === false)
