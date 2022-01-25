@@ -43,7 +43,7 @@ module.exports = {
             if (response === false)
                 return 'Список треков пуст :('
             else {
-                return `Количество треков: ${Object.keys(response).length}.`
+                return `Количество треков: ${Object.keys(response).length}`
             }
         }
         else if (['link', 'ссылка'].includes(query.toLowerCase()) && url) {
