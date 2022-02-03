@@ -30,6 +30,10 @@ module.exports = {
             else
                 return `Текущий трек: ${response.title}, прислал - ${response.author}. Ссылка: https://www.youtube.com/watch?v=${response.yid}`
         }
+        else if (['count', 'количество', 'колво', 'кол-во'].includes(query.toLowerCase())) {
+            const { data: response } = await axios.get(`https://streamdj.ru/api/playlist/${channelId}/c`)
+            return `Количество треков: ${Object.keys(response).length}`
+        }
         else if (['list', 'список', 'лист', 'треки', 'список треков'].includes(query.toLowerCase())) {
             const { data: response } = await axios.get(`https://streamdj.ru/api/playlist/${channelId}/c`)
 
