@@ -1,4 +1,6 @@
 const axios = require('axios')
+const isUrl = require('is-url')
+const youtubeSearch = require('ytsr')
 
 module.exports = {
     requiredParams: {
@@ -6,10 +8,10 @@ module.exports = {
         c: 'ID канала'
     },
     handler: async (params) => {
-        const { q: query, c: channelId, apiKey, url, nickname } = params
+        const { q: query, c: channelId, djApiKey, url, nickname } = params
 
-        if (['skip', 'скип', 'далее', 'пропустить', 'пропуск'].includes(query.toLowerCase()) && apiKey) {
-            const { data: response } = await axios.get(`https://streamdj.ru/api/request_skip/${channelId}/${apiKey}`)
+        if (['skip', 'скип', 'далее', 'пропустить', 'пропуск'].includes(query.toLowerCase()) && djApiKey) {
+            const { data: response } = await axios.get(`https://streamdj.ru/api/request_skip/${channelId}/${djApiKey}`)
 
             if (response.error)
                 return `Ошибка: ${response.error}`
@@ -37,23 +39,22 @@ module.exports = {
                 return `Количество треков: ${Object.keys(response).length}. ${Object.keys(response).map(index => `${index} - ${response[index].title}; `).join('')}`
             }
         }
-        else if (['count', 'количество', 'колво', 'кол-во', 'сколько', 'число'].includes(query.toLowerCase())) {
-            const { data: response } = await axios.get(`https://streamdj.ru/api/playlist/${channelId}/c`)
-
-            if (response === false)
-                return 'Список треков пуст :('
-            else {
-                return `Количество треков: ${Object.keys(response).length}`
-            }
-        }
         else if (['link', 'ссылка'].includes(query.toLowerCase()) && url) {
             return `Ссылка на диджея: ${url}`
         }
         else if (['add', 'добавить', '+'].includes(query.toLowerCase().split(' ')[0])) {
-            videoUrl = query.split(' ')[1]
+            addQuery = query.split(' ').slice(1).join(' ')
 
-            if (!videoUrl?.length) {
-                return 'Не указана ютуб ссылка на трек'
+            if (!addQuery?.length) {
+                return `Не указано название трека или ютуб ссылка`
+            }
+
+            let videoLink
+            if (!isUrl(addQuery)) {
+                const videos = await youtubeSearch(`${addQuery} Official Music Video`, { limit: 1 })
+                videoLink = videos.items[0].url
+            } else {
+                videoLink = addQuery
             }
 
             const { data: result } = await axios({
@@ -65,15 +66,13 @@ module.exports = {
                     'Connection': 'keep-alive',
                     'content-type': 'application/x-www-form-urlencoded',
                 },
-                data: `url=${videoUrl}&author=${nickname || 'Moobot'}`,
+                data: `url=${videoLink}&author=${nickname || 'Moobot'}`,
             })
 
             if (result.success) {
                 return 'Трек успешно добавлен'
-            } else if (result.error) {
-                return `Ошибка: ${result.error.toLowerCase()}`
             } else {
-                return 'Неизвестный ответ сервера'
+                return `Ошибка: ${result?.error?.toLowerCase()}`
             }
         }
         else {
