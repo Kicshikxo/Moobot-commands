@@ -22,7 +22,7 @@
 		"nodemon": "^2.0.14"
 	},
 	"dependencies": {
-		"axios": "^0.24.0",
+		"axios": ">=0.21.2",
 		"compression": "^1.7.4",
 		"deepai": "^1.0.17",
 		"express": "^4.17.1",
