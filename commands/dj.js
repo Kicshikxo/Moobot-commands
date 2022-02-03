@@ -53,8 +53,8 @@ module.exports = {
             if (isUrl(addQuery)) {
                 videoLink = addQuery
             } else {
-                const videos = await youtubeSearch(`${addQuery} Official Music Video`, { limit: 1 })
-                videoLink = videos.items[0].url
+                const { items: videos } = await youtubeSearch(`${addQuery} Official Music Video`, { limit: 1 })
+                videoLink = videos[0].url
             }
 
             const { data: result } = await axios({
