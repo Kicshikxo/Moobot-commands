@@ -26,7 +26,7 @@ module.exports = {
             const { data: response } = await axios.get(`https://streamdj.ru/api/get_track/${channelId}`)
 
             if (response === null)
-                return 'Список треков пуст :('
+                return 'Ничего не играет'
             else
                 return `Текущий трек: ${response.title}, прислал - ${response.author}. Ссылка: https://www.youtube.com/watch?v=${response.yid}`
         }
