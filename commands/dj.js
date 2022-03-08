@@ -73,12 +73,18 @@ module.exports = {
                 data: `url=${videoLink}&author=${nickname || 'Moobot'}`,
             })
 
-            if (typeof result != 'object') return 'Неизвестный ответ сервера'
-
-            if (result.success || !result.error) {
-                return 'Трек успешно добавлен'
+            if (typeof result == 'string') {
+                if (result.includes('{"success":1}')) {
+                    return 'Трек успешно добавлен'
+                } else {
+                    return 'Неизвестная ошибка'
+                }
             } else {
-                return `Ошибка: ${result?.error?.toLowerCase()}`
+                if (result.success || !result.error) {
+                    return 'Трек успешно добавлен'
+                } else {
+                    return `Ошибка: ${result?.error?.toLowerCase()}`
+                }
             }
         }
         else {
