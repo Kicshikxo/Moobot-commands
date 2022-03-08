@@ -66,14 +66,15 @@ module.exports = {
                 withCredentials: true,
                 url: `https://streamdj.ru/includes/back.php?func=add_track&channel=${channelId}`,
                 headers: {
-                    'Accept': 'application/json',
                     'Connection': 'keep-alive',
                     'content-type': 'application/x-www-form-urlencoded',
                 },
                 data: `url=${videoLink}&author=${nickname || 'Moobot'}`,
             })
 
-            if (result.success) {
+            console.log(result)
+
+            if (result.success || !result.error) {
                 return 'Трек успешно добавлен'
             } else {
                 return `Ошибка: ${result?.error?.toLowerCase()}`
