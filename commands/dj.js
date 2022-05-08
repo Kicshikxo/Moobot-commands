@@ -61,10 +61,12 @@ module.exports = {
                 videoLink = videos[0].url
             }
 
+            console.log(videoLink)
+
             const { data: result } = await axios({
                 method: 'POST',
                 withCredentials: true,
-                url: `https://streamdj.ru/includes/back.php?func=add_track&channel=${channelId}`,
+                url: `https://streamdj.app/includes/back.php?func=add_track&channel=${channelId}`,
                 headers: {
                     'Accept': 'application/json',
                     'Connection': 'keep-alive',
@@ -72,6 +74,8 @@ module.exports = {
                 },
                 data: `url=${videoLink}&author=${nickname || 'Moobot'}`,
             })
+
+            console.log(result);
 
             if (typeof result == 'string') {
                 if (result.includes('{"success":1}')) {
