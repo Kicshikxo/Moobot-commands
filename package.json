@@ -1,35 +1,71 @@
 {
-	"name": "moobot-commands",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"start": "node index.js",
-		"dev": "nodemon index.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Kicshikxo/moobot-command.git"
-	},
-	"keywords": [],
-	"author": "Kicshikxo",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/Kicshikxo/moobot-command/issues"
-	},
-	"homepage": "https://github.com/Kicshikxo/moobot-command#readme",
-	"devDependencies": {
-		"nodemon": "^2.0.14"
-	},
-	"dependencies": {
-		"axios": ">=0.21.2",
-		"compression": "^1.7.4",
-		"deepai": "^1.0.17",
-		"express": "^4.17.1",
-		"follow-redirects": ">=1.14.7",
-		"iconv-lite": "^0.6.3",
-		"is-url": "^1.2.4",
-		"sha256": "^0.2.0",
-		"ytsr": "^3.6.0"
-	}
+    "name": "moobot-commands",
+    "version": "0.0.1",
+    "description": "",
+    "author": "",
+    "private": true,
+    "license": "WTFPL",
+    "scripts": {
+        "build": "nest build",
+        "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+        "start": "nest start",
+        "start:dev": "nest start --watch",
+        "start:debug": "nest start --debug --watch",
+        "start:prod": "node dist/main",
+        "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:cov": "jest --coverage",
+        "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+        "test:e2e": "jest --config ./test/jest-e2e.json"
+    },
+    "dependencies": {
+        "@nestjs/common": "^9.4.0",
+        "@nestjs/core": "^9.4.0",
+        "@nestjs/platform-express": "^9.4.0",
+        "@prisma/client": "^4.12.0",
+        "reflect-metadata": "^0.1.13",
+        "rxjs": "^7.8.0"
+    },
+    "devDependencies": {
+        "@nestjs/cli": "^9.3.0",
+        "@nestjs/schematics": "^9.1.0",
+        "@nestjs/testing": "^9.4.0",
+        "@types/express": "^4.17.17",
+        "@types/jest": "29.5.0",
+        "@types/node": "18.15.11",
+        "@types/supertest": "^2.0.12",
+        "@typescript-eslint/eslint-plugin": "^5.57.1",
+        "@typescript-eslint/parser": "^5.57.1",
+        "eslint": "^8.38.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "jest": "29.5.0",
+        "prettier": "^2.8.7",
+        "prisma": "^4.12.0",
+        "source-map-support": "^0.5.21",
+        "supertest": "^6.3.3",
+        "ts-jest": "29.1.0",
+        "ts-loader": "^9.4.2",
+        "ts-node": "^10.9.1",
+        "tsconfig-paths": "4.2.0",
+        "typescript": "^5.0.4"
+    },
+    "jest": {
+        "moduleFileExtensions": [
+            "js",
+            "json",
+            "ts"
+        ],
+        "rootDir": "src",
+        "testRegex": ".*\\.spec\\.ts$",
+        "transform": {
+            "^.+\\.(t|j)s$": "ts-jest"
+        },
+        "collectCoverageFrom": [
+            "**/*.(t|j)s"
+        ],
+        "coverageDirectory": "../coverage",
+        "testEnvironment": "node"
+    }
 }
