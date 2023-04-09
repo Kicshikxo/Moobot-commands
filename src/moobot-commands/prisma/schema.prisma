@@ -1,10 +1,11 @@
 generator client {
     provider = "prisma-client-js"
+    output   = "./client"
 }
 
 datasource db {
     provider = "postgresql"
-    url      = env("DATABASE_URL")
+    url      = env("MOOBOT_DATABASE_URL")
 }
 
 model Test {
