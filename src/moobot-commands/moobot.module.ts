@@ -1,10 +1,11 @@
+import { HttpModule } from '@nestjs/axios'
 import { Module } from '@nestjs/common'
 import { MoobotController } from './moobot.controller'
 import { MoobotService } from './moobot.service'
 import { PrismaService } from './prisma/prisma.service'
 
 @Module({
-    imports: [],
+    imports: [HttpModule],
     controllers: [MoobotController],
     providers: [MoobotService, PrismaService]
 })
