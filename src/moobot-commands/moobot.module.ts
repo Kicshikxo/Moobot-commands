@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
-import { PrismaService } from 'src/prisma.service'
 import { MoobotController } from './moobot.controller'
 import { MoobotService } from './moobot.service'
+import { PrismaService } from './prisma/prisma.service'
 
 @Module({
     imports: [],
